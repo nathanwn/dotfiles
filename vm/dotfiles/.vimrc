@@ -1,7 +1,8 @@
 " =============================================================================
 " AUTHOR: Minh Nhat Nguyen
-" VERSION: 20-03-2020
+" VERSION: 22-03-2020
 " =============================================================================
+
 
 " -----------------------------------------------------------------------------
 "                                   PLUGINS
@@ -18,6 +19,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-scripts/EditPlus'
   Plug 'morhetz/gruvbox'
   Plug 'nathan-wien/muse.vim'
+  Plug 'altercation/vim-colors-solarized'
+
+  " = Better syntax highlighting
+  Plug 'sheerun/vim-polyglot'
 
   " = Status bar
   Plug 'vim-airline/vim-airline'
@@ -40,6 +45,9 @@ call plug#end()
 " plasticboy/vim-markdown
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_disabled = 1
+
+" sheerun/vim-polyglot
+let g:polyglot_disabled = ['python']
 
 
 " -----------------------------------------------------------------------------
@@ -101,6 +109,9 @@ set clipboard=unnamed,unnamedplus
 " = Error bells: off
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
+
+" = Cursor
+set guicursor=
 
 " = Autocomplete (neovim only)
 if has('nvim')
@@ -240,8 +251,8 @@ endif
 " endif
 
 set background=dark
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+colorscheme solarized
+let g:airline_theme='solarized'
 
 
 " -----------------------------------------------------------------------------
@@ -271,29 +282,25 @@ set pastetoggle=<F3>
 " = Toggle Conceal
 let s:conceal_on = 0
 function! ToggleConceal()
-	if s:conceal_on
-		set conceallevel=2
-		let s:conceal_on = 0
-	else
-		set conceallevel=0
-		let s:conceal_on = 1
-	endif
+  if s:conceal_on
+    set conceallevel=2
+    let s:conceal_on = 0
+  else
+    set conceallevel=0
+    let s:conceal_on = 1
+  endif
 endfunction
 nmap \cc :call ToggleConceal()<CR>
 
-" = Filetype-specific bindings
-" . JSON
-" prettify json
-autocmd FileType json nmap <leader>p :%!python3 -m json.tool<CR>:echo('json prettified!')<CR>
 
 " = Need this for `a` in normal-mode to work properly
 nnoremap e he
 
 " = Remove trailing whitespace
 function! RemoveTrailingWhitespace()
-   let l:save = winsaveview()
-   keeppatterns %s/\s\+$//e
-   call winrestview(l:save)
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
 endfunction
 
 " autocmd BufWritePre * %s/\s\+$//e
@@ -334,10 +341,6 @@ function AlignCenter(end_col)
   echo "Aligned to center!"
 endfunction
 
-function ExecuteCmd()
-
-endfunction
-
 " map <leader>vl "xy:call VisualLength()<CR>
 nmap \ac "xy:echo(AlignCenter(80))<CR>
 nmap \ace "xy:echo(AlignCenter())<left><left>
@@ -360,10 +363,22 @@ endfunction
 
 function LangC()
   setlocal colorcolumn=80
+  let &equalprg= "indent -br -ce -brs -brf -cdw -nut -i4 -cli4 -lp -l79 -bbo -bad -bap"
+  autocmd BufWritePre *.c,*.h execute "silent %!" . &equalprg
+endfunction
+
+function LangCpp()
+  setlocal colorcolumn=80
+  let &equalprg= "indent -br -ce -brs -brf -cdw -nut -i4 -cli4 -lp -l79 -bbo -bad -bap"
+  autocmd BufWritePre *.cpp,*.hpp execute "silent %!" . &equalprg
 endfunction
 
 function LangHtml()
   call SetIndentSize(2)
+endfunction
+
+function LangJson()
+  nmap \ff :%!python3 -m json.tool<CR>:echo('json prettified!')<CR>
 endfunction
 
 function LangMarkdown()
@@ -378,8 +393,16 @@ function LangVim()
   call SetIndentSize(2)
 endfunction
 
+" autocmd BufEnter,BufNewFile,BufRead *.c   call LangC()
+" autocmd BufEnter,BufNewFile,BufRead *.h   call LangC()
+" autocmd BufEnter,BufNewFile,BufRead *.cpp call LangCpp()
+
+autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
+
 autocmd filetype c        call LangC()
+autocmd filetype cpp      call LangCpp()
 autocmd filetype html     call LangHtml()
+autocmd filetype json     call LangJson()
 autocmd filetype markdown call LangMarkdown()
 autocmd filetype sh       call LangSh()
 autocmd filetype vim      call LangVim()
