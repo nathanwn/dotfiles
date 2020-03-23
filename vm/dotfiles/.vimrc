@@ -363,14 +363,12 @@ endfunction
 
 function LangC()
   setlocal colorcolumn=80
-  let &equalprg= "indent -br -ce -brs -brf -cdw -nut -i4 -cli4 -lp -l79 -bbo -bad -bap"
-  autocmd BufWritePre *.c,*.h execute "silent %!" . &equalprg
+  autocmd BufWritePre *.c,*.h execute "%! clang-format -style=file"
 endfunction
 
 function LangCpp()
   setlocal colorcolumn=80
-  let &equalprg= "indent -br -ce -brs -brf -cdw -nut -i4 -cli4 -lp -l79 -bbo -bad -bap"
-  autocmd BufWritePre *.cpp,*.hpp execute "silent %!" . &equalprg
+  autocmd BufWritePre *.cpp,*.h,*.hpp execute "%! clang-format -style=file"
 endfunction
 
 function LangHtml()
@@ -398,6 +396,7 @@ endfunction
 " autocmd BufEnter,BufNewFile,BufRead *.cpp call LangCpp()
 
 autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
+autocmd BufEnter,BufNewFile,BufRead *.clang-format set filetype=yaml
 
 autocmd filetype c        call LangC()
 autocmd filetype cpp      call LangCpp()
