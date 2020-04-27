@@ -68,9 +68,13 @@ apt_packages = [
     # text editors
     "vim"                       ,
     "vim-gtk"                   ,
+    "neovim"                    ,
+    "python3-neovim"            ,
     "geany"                     ,
     # tmux
     "tmux"                      ,
+    # code formatter
+    "clang-format"              ,
     # downloaders
     "curl"                      ,
     "wget"                      ,
@@ -81,19 +85,29 @@ apt_packages = [
     "zathura"                   ,
     # svn
     "subversion"                ,
+    # docsets
+    "zeal"                      ,
     # unikey
     "ibus-unikey"               ,
     # guest-addition for virtualbox
     "dkms"                      ,
     # xfce4
     "papirus-icon-theme"        ,
+    # zsh
+    "zsh"                       ,
     # other
     "software-properties-common",
+    # packages
+    "snapd"
 ]
 
 
-apt_update()
+def main():
+    apt_update()
+
+    for package in apt_packages:
+        apt_install(package)
 
 
-for package in apt_packages:
-    apt_install(package)
+if __name__ == "__main__":
+    install_vscode()
