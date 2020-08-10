@@ -81,6 +81,7 @@ apt_packages = [
     # fonts
     "ttf-ubuntu-font-family"    ,
     "ttf-mscorefonts-installer" ,
+    "fonts-firacode"            ,
     # pdf
     "zathura"                   ,
     # svn
@@ -98,7 +99,11 @@ apt_packages = [
     # other
     "software-properties-common",
     # packages
-    "snapd"
+    "snapd",
+    # fpc
+    "fpc-3.0.4",
+    # python
+    "python3-pip"
 ]
 
 
