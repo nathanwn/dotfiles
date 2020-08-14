@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'
   Plug 'nathan-wien/muse.vim'
   Plug 'altercation/vim-colors-solarized'
+  Plug 'joshdick/onedark.vim'
 
   " = Better syntax highlighting
   Plug 'sheerun/vim-polyglot'
@@ -34,7 +35,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
   " = For neovim only
-
   if has('nvim')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
   else
@@ -57,13 +57,6 @@ let g:polyglot_disabled = ['python']
 filetype on
 filetype plugin on
 filetype indent on
-
-" = Terminal Color
-syntax enable
-set t_Co=256
-if !has('nvim')
-  set term=screen-256color
-endif
 
 " = Line number with relative line number on
 set nu
@@ -245,14 +238,21 @@ endif
 " -----------------------------------------------------------------------------
 "                                  THEME
 " -----------------------------------------------------------------------------
-" if filereadable(expand("~/.vimrc_background"))
-"   let base16colorspace=256
-"   source ~/.vimrc_background
-" endif
+syntax enable
+"set t_Co=256
+"if !has('nvim')
+"  set term=screen-256color
+"endif
 
-set background=dark
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+else
+  set background=dark
+  let g:onedark_termcolors=16
+  colorscheme onedark
+  let g:airline_theme='onedark'
+endif
 
 
 " -----------------------------------------------------------------------------
@@ -382,6 +382,10 @@ function LangJson()
   nmap \ff :%!python3 -m json.tool<CR>:echo('json prettified!')<CR>
 endfunction
 
+function LangPascal()
+  call SetIndentSize(2)
+endfunction
+
 function LangMarkdown()
   call SetIndentSize(2)
 endfunction
@@ -406,5 +410,6 @@ autocmd filetype cpp      call LangCpp()
 autocmd filetype html     call LangHtml()
 autocmd filetype json     call LangJson()
 autocmd filetype markdown call LangMarkdown()
+autocmd filetype pascal   call LangPascal()
 autocmd filetype sh       call LangSh()
 autocmd filetype vim      call LangVim()

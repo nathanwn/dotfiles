@@ -4,8 +4,11 @@ apps=(
   'clang-format'
   'curl'
   'ibus-bamboo'
+  'fonts-firacode'
+  "fonts-inconsolata"
   'geany'
   'neovim'
+  'npm'
   'papirus-icon-theme'
   'spotify'
   'stow'
@@ -17,10 +20,12 @@ apps=(
   'wget'
   'zathura'
   'zeal'
+  'zsh'
 )
 
 dots=(
   'bash'
+  'nvim'
   'tmux'
   'vim'
 )
@@ -49,12 +54,25 @@ function install_ibus-bamboo() {
   ibus restart
 }
 
+function install_fonts-firacode() {
+  apt_install fonts-firacode
+}
+
+function install_fonts-inconsolata() {
+  apt_install fonts-inconsolata
+}
+
+
 function install_geany() {
   apt_install geany libvte9
 }
 
 function install_neovim() {
   apt_install neovim
+}
+
+function install_npm() {
+  apt_install npm
 }
 
 function install_papirus-icon-theme() {
@@ -106,6 +124,10 @@ function install_zeal() {
   apt_install zeal
 }
 
+function install_zsh() {
+  apt_install zsh
+}
+
 echo "Actions:"
 echo "  [1] Install packages"
 echo "  [2] Create symlinks for dotfiles"
@@ -116,7 +138,7 @@ case $action in
     apt_update
     echo "Options:"
     echo "  [1] Install all packages"
-    echo "  [2] Install one package"
+    echo "  [2] Install single packages"
     read -p " -> " option
 
     case $option in
@@ -136,10 +158,13 @@ case $action in
         done
         echo
 
-        read -p "  -> " chosen_app_index
+        read -p "  -> " inp
+        IFS=' ' read -ra chosen_indices <<< "$inp"
 
-        install_cmd=install_${apps[$chosen_app_index]}
-        $install_cmd
+        for chosen_index in "${chosen_indices[@]}"; do
+          install_cmd=install_${apps[$chosen_index]}
+          $install_cmd
+        done
       ;;
       *)
         echo "Invalid input!"

@@ -123,3 +123,11 @@ fi
 function geany () {
     nohup geany "$@" > /dev/null 2>&1 & disown
 }
+
+export JAVA_HOME="/usr/lib/jvm/jdk-13.0.2/bin/"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/nhat/.sdkman"
+[[ -s "/home/nhat/.sdkman/bin/sdkman-init.sh" ]] && source "/home/nhat/.sdkman/bin/sdkman-init.sh"
+
+
