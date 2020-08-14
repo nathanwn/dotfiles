@@ -28,6 +28,7 @@ dots=(
   'nvim'
   'tmux'
   'vim'
+  'zsh'
 )
 
 function apt_update() {
