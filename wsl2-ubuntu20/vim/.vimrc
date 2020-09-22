@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'nathan-wien/muse.vim'
   " Plug 'altercation/vim-colors-solarized'
   Plug 'joshdick/onedark.vim'
+  Plug 'NLKNguyen/papercolor-theme'
 
   " = Better syntax highlighting
   Plug 'sheerun/vim-polyglot'
@@ -33,6 +34,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
+  " = Python
+  " Code folding
+  Plug 'tmhedberg/SimpylFold'
+
+  " = Git
+  Plug 'tpope/vim-fugitive'
+
+  " = Navigation
+  Plug 'christoomey/vim-tmux-navigator'
 
   " = For neovim only
   if has('nvim')
@@ -236,7 +247,18 @@ endif
 
 
 " -----------------------------------------------------------------------------
-"                                  THEME
+"                                    TMUX
+" -----------------------------------------------------------------------------
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+" -----------------------------------------------------------------------------
+"                                   THEME
 " -----------------------------------------------------------------------------
 syntax enable
 "set t_Co=256
@@ -248,10 +270,13 @@ if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
 else
-  set background=dark
-  let g:onedark_termcolors=16
-  colorscheme onedark
-  let g:airline_theme='onedark'
+  "set background=dark
+  "let g:onedark_termcolors=16
+  "colorscheme onedark
+  "let g:airline_theme='onedark'
+  set background=light
+  colorscheme PaperColor
+  let g:airline_theme='papercolor'
 endif
 
 

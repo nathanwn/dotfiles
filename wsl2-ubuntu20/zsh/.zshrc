@@ -1,4 +1,5 @@
 # PATH
+export PATH="/home/nhat/.local/bin:$PATH"
 
 # Editor
 export EDITOR='vim'
