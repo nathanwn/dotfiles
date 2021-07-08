@@ -20,6 +20,7 @@ apps=(
   'zathura'
   'zeal'
   'zsh'
+  'mesa-utils'
 )
 
 dots=(
