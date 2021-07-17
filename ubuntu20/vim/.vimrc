@@ -417,10 +417,6 @@ function SyntaxYaml()
   call SetIndentSize(2)
 endfunction
 
-" autocmd BufEnter,BufNewFile,BufRead *.c   call SyntaxC()
-" autocmd BufEnter,BufNewFile,BufRead *.h   call SyntaxC()
-" autocmd BufEnter,BufNewFile,BufRead *.cpp call SyntaxCpp()
-
 autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
 autocmd BufEnter,BufNewFile,BufRead *.clang-format set filetype=yaml
 
