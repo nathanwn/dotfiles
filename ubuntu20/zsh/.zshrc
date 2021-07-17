@@ -5,7 +5,7 @@
 _comp_options+=(globdots)
 
 # =============================================================================
-#                                    Path
+#                           Environment Variables
 # =============================================================================
 # local
 export PATH="$HOME/.local/bin:$PATH"
@@ -16,6 +16,8 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 # conda
 export PATH="$HOME/miniconda3/bin:$PATH"
+
+export EDITOR=nvim
 
 # =============================================================================
 #                                App settings

@@ -4,6 +4,7 @@ apps=(
   'curl'
   'fzf'
   'geany'
+  'i3'
   'krita'
   'stow'
   'tmux'
@@ -17,6 +18,7 @@ apps=(
 
 dots=(
   'bash'
+  'i3'
   'nvim'
   'tmux'
   'vim'
@@ -29,6 +31,10 @@ function apt_update() {
 
 function apt_install() {
   sudo apt install $* -y
+}
+
+function snap_install() {
+  sudo snap install $*
 }
 
 function install_clang-format() {
@@ -63,6 +69,10 @@ function install_geany() {
   apt_install geany libvte9
 }
 
+function install_i3() {
+  apt_install i3 i3blocks volumeicon-alsa rofi
+}
+
 function install_neovim() {
   apt_install neovim
 }
@@ -76,10 +86,7 @@ function install_papirus-icon-theme() {
 }
 
 function install_spotify() {
-  curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-  apt_update
-  apt_install spotify-client
+  snap_install spotify
 }
 
 function install_stow() {
