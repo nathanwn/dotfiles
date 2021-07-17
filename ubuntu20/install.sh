@@ -131,7 +131,7 @@ read -p " -> " action
 
 case $action in
   [1])
-    apt_update
+    # apt_update
     echo "Options:"
     echo "  [1] Install all packages"
     echo "  [2] Install single packages"
