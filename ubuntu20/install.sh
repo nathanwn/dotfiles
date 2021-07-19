@@ -19,7 +19,6 @@ apps=(
 dots=(
   'bash'
   'i3'
-  'nvim'
   'tmux'
   'vim'
   'zsh'
@@ -70,7 +69,8 @@ function install_geany() {
 }
 
 function install_i3() {
-  apt_install i3 i3blocks volumeicon-alsa rofi
+  apt_install i3 i3blocks rofi pasystray light blueman
+  sudo chmod +s /usr/bin/light
 }
 
 function install_neovim() {
