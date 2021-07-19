@@ -76,8 +76,8 @@ vim.opt.scrolloff = 8
 -- Undo files
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = '~/.config/nvim/undodir'
-vim.opt.undofile = true
+-- vim.opt.undodir = '$HOME/.config/nvim/undodir' -- this is incorrect
+vim.opt.undofile = false
 -- Cursor
 vim.opt.guicursor = ''
 -- Mouse
