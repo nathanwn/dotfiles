@@ -86,6 +86,8 @@ vim.opt.mouse = 'a'
 vim.opt.exrc = true
 -- Backspace issue
 vim.opt.backspace = { 'indent', 'eol', 'start' }
+-- Clipboard
+vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 -- Termcolor
 -- vim.opt.termguicolors = true
 
@@ -242,3 +244,13 @@ vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
+
+-------------------------------------------------------------------------------
+-- Key bindings
+-------------------------------------------------------------------------------
+-- Indentation
+vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
+vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
+
+-- Ensure `a` in normal-mode to work properly
+vim.api.nvim_set_keymap('n', 'e', 'he', { noremap = true })
