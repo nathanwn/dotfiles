@@ -1,18 +1,12 @@
--- Inspirations:
--- lua guide #1: https://github.com/nanotee/nvim-lua-guide#using-meta-accessors
--- lua guide #2: https://learnxinyminutes.com/docs/lua/
--- telescope: https://www.youtube.com/watch?v=guxLXcG1kzQ
--- ecnerwala's setup: https://github.com/ecnerwala/dotfiles/blob/master/vim/.config/nvim/init.lua
--- blogpost #1: https://oroques.dev/notes/neovim-init/#set-options
--- blogpost #2: https://blog.inkdrop.info/how-to-set-up-neovim-0-5-modern-plugins-lsp-treesitter-etc-542c3d9c9887
-
 -- Concise way to escape termcodes
 local function t(str)
     -- Adjust boolean arguments as needed
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+-------------------------------------------------------------------------------
 -- Leader
+-------------------------------------------------------------------------------
 vim.g.mapleader = t'<Space>'
 vim.g.maplocalleader = t'<Space>'
 
@@ -20,38 +14,38 @@ vim.g.maplocalleader = t'<Space>'
 -- Plugins
 -------------------------------------------------------------------------------
 vim.fn['plug#begin']()
--- Git
-vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
-vim.cmd [[ Plug 'airblade/vim-gitgutter' ]]
--- Tmux
-vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
--- Theme
-vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
-vim.cmd [[ Plug 'vim-airline/vim-airline' ]]
-vim.cmd [[ Plug 'vim-airline/vim-airline-themes' ]]
+  -- Git
+  vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
+  vim.cmd [[ Plug 'airblade/vim-gitgutter' ]]
+  -- Tmux
+  vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
+  -- Theme
+  vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
+  vim.cmd [[ Plug 'vim-airline/vim-airline' ]]
+  vim.cmd [[ Plug 'vim-airline/vim-airline-themes' ]]
 
--- FZF
-vim.cmd [[ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } ]]
-vim.cmd [[ Plug 'junegunn/fzf.vim' ]]
-vim.cmd [[ Plug 'airblade/vim-rooter' ]]
--- LSP
-vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
--- Autocomplete
-vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
--- Telescope
-vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
-vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
-vim.cmd [[ Plug 'nvim-telescope/telescope.nvim' ]]
-vim.cmd [[ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } ]]
-vim.cmd [[ Plug 'kyazdani42/nvim-web-devicons' ]]
+  -- FZF
+  vim.cmd [[ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } ]]
+  vim.cmd [[ Plug 'junegunn/fzf.vim' ]]
+  vim.cmd [[ Plug 'airblade/vim-rooter' ]]
+  -- LSP
+  vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
+  -- Autocomplete
+  vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
+  -- Telescope
+  vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
+  vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
+  vim.cmd [[ Plug 'nvim-telescope/telescope.nvim' ]]
+  vim.cmd [[ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } ]]
+  vim.cmd [[ Plug 'kyazdani42/nvim-web-devicons' ]]
 
--- TS, React
-vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
-vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
--- Emmet
-vim.cmd [[ Plug 'mattn/emmet-vim' ]]
--- Go
-vim.cmd [[ Plug 'fatih/vim-go' ]]
+  -- TS, React
+  vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
+  vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
+  -- Emmet
+  vim.cmd [[ Plug 'mattn/emmet-vim' ]]
+  -- Go
+  vim.cmd [[ Plug 'fatih/vim-go' ]]
 vim.fn['plug#end']()
 
 -------------------------------------------------------------------------------
@@ -66,6 +60,14 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+-- Characters
+vim.opt.list = true;
+vim.opt.listchars = {
+  tab = '» ',
+  trail = '␣',
+  extends = '▶',
+  precedes = '◀',
+}
 -- Error bells
 vim.opt.errorbells = false
 -- Split
@@ -101,11 +103,11 @@ vim.g.airline_theme = 'papercolor'
 
 -- Tmux
 vim.g.tmux_navigator_no_mappings = 1
-vim.api.nvim_set_keymap('n', '<silent> <C-h>', ':TmuxNavigateLeft<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<silent> <C-j>', ':TmuxNavigateDown<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<silent> <C-k>', ':TmuxNavigateUp<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<silent> <C-l>', ':TmuxNavigateRight<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<silent> <C-\\>', ':TmuxNavigatePrevious<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', ':TmuxNavigateRight<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', { noremap = true, silent = true })
 
 -- vim-go
 vim.g.go_def_mode = 'gopls'
@@ -150,29 +152,37 @@ local lsp_on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<Leader>hv', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+
+  buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+  -- Workspace management
   buf_set_keymap('n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "tsserver" }
-for _, lsp in ipairs(servers) do
+local lsp_servers = {
+  "pyright",     -- python
+  "tsserver",    -- typescript
+}
+for _, lsp in ipairs(lsp_servers) do
   nvim_lsp[lsp].setup {
     on_attach = lsp_on_attach,
     flags = {
@@ -180,6 +190,43 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- Lua custom server
+local sumneko_root_path = vim.fn.getenv("HOME").."/bin/lang-servers/lua-language-server"
+local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
+
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+require('lspconfig').sumneko_lua.setup {
+  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file('', true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
 
 -------------------------------------------------------------------------------
 -- Autocomplete
@@ -240,6 +287,23 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzf')
 
+require('telescope').setup{
+  defaults = {
+    sorting_strategy = 'ascending',
+    layout_config = {
+      prompt_position = 'top',
+    }
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = false, -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
+  }
+}
+
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
@@ -248,6 +312,9 @@ vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin
 -------------------------------------------------------------------------------
 -- Key bindings
 -------------------------------------------------------------------------------
+-- Reload init.lua
+vim.api.nvim_set_keymap('n', '<F12>', ':luafile ~/.config/nvim/init.lua<CR>', { noremap = true })
+
 -- Indentation
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })

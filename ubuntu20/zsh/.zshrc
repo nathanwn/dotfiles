@@ -7,6 +7,7 @@ _comp_options+=(globdots)
 # =============================================================================
 #                           Environment Variables
 # =============================================================================
+# PATH
 # local
 export PATH="$HOME/.local/bin:$PATH"
 # dart
@@ -16,7 +17,10 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 # conda
 export PATH="$HOME/miniconda3/bin:$PATH"
+# pascal
+export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
 
+# EDITOR
 export EDITOR=nvim
 
 # =============================================================================
@@ -40,6 +44,8 @@ function ef() { fzf | xargs -o vim }
 function opf() { fzf | xargs -o xdg-open > /dev/null 2>&1 }
 # bindkey -s "^i" "ef\n"
 # bindkey -s "^o" "opf\n"
+
+alias luamake=/home/nhat/install/lua-language-server/3rd/luamake/luamake
 
 # =============================================================================
 #                                   Theme

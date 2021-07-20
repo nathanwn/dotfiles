@@ -83,12 +83,17 @@ function SyntaxJson()
   nmap \ff :%!python3 -m json.tool<CR>:echo('json prettified!')<CR>
 endfunction
 
-function SyntaxPascal()
+function SyntaxLua()
   call SetIndentSize(2)
 endfunction
 
 function SyntaxMarkdown()
   call SetIndentSize(2)
+endfunction
+
+function SyntaxPascal()
+  call SetIndentSize(2)
+  let g:pascal_fpc=1
 endfunction
 
 function SyntaxTSReact()
@@ -114,6 +119,7 @@ autocmd filetype c               call SyntaxC()
 autocmd filetype cpp             call SyntaxCpp()
 autocmd filetype html            call SyntaxHtml()
 autocmd filetype json            call SyntaxJson()
+autocmd filetype lua             call SyntaxLua()
 autocmd filetype markdown        call SyntaxMarkdown()
 autocmd filetype pascal          call SyntaxPascal()
 autocmd filetype sh              call SyntaxSh()
