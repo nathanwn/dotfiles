@@ -35,21 +35,26 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # =============================================================================
-#                           Aliases & Key-bindings
+#                                  Aliases
 # =============================================================================
 alias e="nvim"
 alias vim="nvim"
 alias open="xdg-open"
+
+# =============================================================================
+#                                 Functions
+# =============================================================================
 function ef() { fzf | xargs -o vim }
 function opf() { fzf | xargs -o xdg-open > /dev/null 2>&1 }
-# bindkey -s "^i" "ef\n"
-# bindkey -s "^o" "opf\n"
 
-alias luamake=/home/nhat/install/lua-language-server/3rd/luamake/luamake
+# =============================================================================
+#                                Key-bindings
+# =============================================================================
+# vi-mode
+bindkey -v
 
 # =============================================================================
 #                                   Theme
 # =============================================================================
-fpath+=$HOME/.zsh/pure
-autoload -U promptinit; promptinit
-prompt pure
+# Starship: https://github.com/starship/starship
+eval "$(starship init zsh)"

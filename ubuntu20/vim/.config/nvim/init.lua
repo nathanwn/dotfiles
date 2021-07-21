@@ -4,6 +4,8 @@ local function t(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+local NVIM_PATH = vim.fn.getenv("HOME")..'/.config/nvim';
+
 -------------------------------------------------------------------------------
 -- Leader
 -------------------------------------------------------------------------------
@@ -14,24 +16,25 @@ vim.g.maplocalleader = t'<Space>'
 -- Plugins
 -------------------------------------------------------------------------------
 vim.fn['plug#begin']()
+  -- UTILITIES
   -- Git
   vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
-  vim.cmd [[ Plug 'airblade/vim-gitgutter' ]]
+  vim.cmd [[ Plug 'mhinz/vim-signify' ]]
   -- Tmux
   vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
-  -- Theme
+  -- Undo
+  vim.cmd [[ Plug 'mbbill/undotree' ]]
+
+  -- THEMES
   vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
   vim.cmd [[ Plug 'vim-airline/vim-airline' ]]
   vim.cmd [[ Plug 'vim-airline/vim-airline-themes' ]]
 
-  -- FZF
+  -- FUZZY-FINDING
+  -- fzf
   vim.cmd [[ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } ]]
   vim.cmd [[ Plug 'junegunn/fzf.vim' ]]
   vim.cmd [[ Plug 'airblade/vim-rooter' ]]
-  -- LSP
-  vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
-  -- Autocomplete
-  vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
   -- Telescope
   vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
   vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
@@ -39,6 +42,13 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } ]]
   vim.cmd [[ Plug 'kyazdani42/nvim-web-devicons' ]]
 
+  -- LSP & AUTOCOMPLETE
+  -- Lsp
+  vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
+  -- Autocomplete
+  vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
+
+  -- LANGUAGE-SPECIFIC
   -- TS, React
   vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
   vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
@@ -78,8 +88,8 @@ vim.opt.scrolloff = 8
 -- Undo files
 vim.opt.swapfile = false
 vim.opt.backup = false
--- vim.opt.undodir = '$HOME/.config/nvim/undodir' -- this is incorrect
-vim.opt.undofile = false
+vim.opt.undodir = NVIM_PATH..'/undodir'
+vim.opt.undofile = true
 -- Cursor
 vim.opt.guicursor = ''
 -- Mouse
@@ -101,7 +111,7 @@ vim.opt.background = 'light'
 vim.cmd [[ colorscheme PaperColor ]]
 vim.g.airline_theme = 'papercolor'
 
--- Tmux
+-- tmux-navigator
 vim.g.tmux_navigator_no_mappings = 1
 vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<CR>', { noremap = true, silent = true })
@@ -115,11 +125,12 @@ vim.g.go_info_mode = 'gopls'
 vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc
 
 -- vim-fugitive
--- . git status
--- vim.api.nvim_set_keymap('n', '<leader>gs', ':G<CR>')
 -- . git diff select left/right
-vim.api.nvim_set_keymap('n', '<leader>g,', ':diffget //2<CR>', { noremap = true } )
-vim.api.nvim_set_keymap('n', '<leader>g.', ':diffget //3<CR>', { noremap = true } )
+vim.api.nvim_set_keymap('n', '<Leader>g,', ':diffget //2<CR>', { noremap = true } )
+vim.api.nvim_set_keymap('n', '<Leader>g.', ':diffget //3<CR>', { noremap = true } )
+
+-- undotree
+vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- LSP
@@ -304,10 +315,11 @@ require('telescope').setup{
   }
 }
 
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ previewer = false })<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers({ previewer = false })<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>fH', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>frc', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles/ubuntu20", hidden=true })<CR>]], { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- Key bindings

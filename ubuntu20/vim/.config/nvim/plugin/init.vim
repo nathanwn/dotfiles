@@ -1,12 +1,12 @@
 " Stuff that I have not been able to convert to lua
 
-function! SetIndentSize(indentsize)
+function SetIndentSize(indentsize)
   let &l:tabstop     = a:indentsize
   let &l:shiftwidth  = a:indentsize
   let &l:softtabstop = a:indentsize
 endfunction
 
-function! ToggleConceal()
+function ToggleConceal()
   if s:conceal_on
     set conceallevel=2
     let s:conceal_on = 0
@@ -16,7 +16,7 @@ function! ToggleConceal()
   endif
 endfunction
 
-function! RemoveTrailingWhitespace()
+function RemoveTrailingWhitespace()
   let l:save = winsaveview()
   keeppatterns %s/\s\+$//e
   call winrestview(l:save)
@@ -53,8 +53,12 @@ function AlignCenter(end_col)
   let num_spaces = (a:end_col - col('.') + 1) / 2 - (select_len / 2) - 1
   " pad spaces
   exe 'normal ' . string(num_spaces) . 'i '
-
   echo "Aligned to center!"
+endfunction
+
+function GetCurrentPathToClipboard()
+  let @+=expand("%:p")
+  echo "Path copied!"
 endfunction
 
 " Show syntax highlighting group under cursor
@@ -63,7 +67,7 @@ function! <SID>SynStack()
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+endfunction
 
 function SyntaxC()
   setlocal colorcolumn=80
@@ -138,10 +142,10 @@ let s:conceal_on = 0
 nmap \cc :call ToggleConceal()<CR>
 
 " Centering selected text
-nmap \ac "xy:echo(AlignCenter(80))<CR>
+nmap \ac "xy:call AlignCenter(80)<CR>
 
 " Execute selected shell command
 vnoremap \ex :w !bash<CR>
 
 " Copy path to clipboard
-nmap \cp :let @+=expand("%:p")<CR>
+nmap \cp :call GetCurrentPathToClipboard()<CR>
