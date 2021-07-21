@@ -16,7 +16,7 @@ export PATH="/usr/lib/dart/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 # conda
-export PATH="$HOME/miniconda3/bin:$PATH"
+# export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
 # pascal
 export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
 
@@ -30,9 +30,6 @@ export EDITOR=nvim
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # =============================================================================
 #                                  Aliases
@@ -58,3 +55,24 @@ bindkey -v
 # =============================================================================
 # Starship: https://github.com/starship/starship
 eval "$(starship init zsh)"
+
+
+# =============================================================================
+#                               Auto-generated
+# =============================================================================
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# conda
+__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
