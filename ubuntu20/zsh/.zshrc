@@ -10,13 +10,13 @@ _comp_options+=(globdots)
 # PATH
 # local
 export PATH="$HOME/.local/bin:$PATH"
+# exa
+export PATH="$HOME/bin/exa/exa-linux-x86_64-v0.10.0/bin:$PATH"
 # dart
 export PATH="/usr/lib/dart/bin:$PATH"
 # go
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
-# conda
-# export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
 # pascal
 export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
 
@@ -34,9 +34,9 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 # =============================================================================
 #                                  Aliases
 # =============================================================================
-alias e="nvim"
 alias vim="nvim"
 alias open="xdg-open"
+alias ls="exa"
 
 # =============================================================================
 #                                 Functions
@@ -55,7 +55,6 @@ bindkey -v
 # =============================================================================
 # Starship: https://github.com/starship/starship
 eval "$(starship init zsh)"
-
 
 # =============================================================================
 #                               Auto-generated
