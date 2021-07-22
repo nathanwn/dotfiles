@@ -1,6 +1,7 @@
 #!/bin/bash
 
 apps=(
+  'alacritty'
   'curl'
   'fzf'
   'geany'
@@ -17,6 +18,7 @@ apps=(
 )
 
 dots=(
+  'alacritty'
   'bash'
   'i3'
   'tmux'
@@ -34,6 +36,11 @@ function apt_install() {
 
 function snap_install() {
   sudo snap install $*
+}
+
+function install_alacritty() {
+  sudo add-apt-repository ppa:aslatter/ppa
+  apt_install alacritty
 }
 
 function install_clang-format() {

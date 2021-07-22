@@ -36,7 +36,7 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 # =============================================================================
 alias vim="nvim"
 alias open="xdg-open"
-alias ls="exa"
+command -v exa >/dev/null 2>&1 || alias ls="exa"
 
 # =============================================================================
 #                                 Functions
