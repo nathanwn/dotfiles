@@ -1,30 +1,13 @@
 # =============================================================================
+#                               Local Configs
+# =============================================================================
+[[ -f "$HOME/.zsh_local" ]] && source "$HOME/.zsh_local"
+
+# =============================================================================
 #                                   Shell
 # =============================================================================
 # tab-complete hidden items
 _comp_options+=(globdots)
-
-# =============================================================================
-#                           Environment Variables
-# =============================================================================
-# PATH
-# local
-export PATH="$HOME/.local/bin:$PATH"
-# exa
-export PATH="$HOME/bin/exa/exa-linux-x86_64-v0.10.0/bin:$PATH"
-# dart
-export PATH="/usr/lib/dart/bin:$PATH"
-# go
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$(go env GOPATH)/bin:$PATH"
-# pascal
-export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
-
-# spotifyd
-export PATH="$HOME/bin/spotifyd/target/release:$PATH"
-
-# EDITOR
-export EDITOR=nvim
 
 # =============================================================================
 #                                App settings
@@ -38,14 +21,13 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 #                                  Aliases
 # =============================================================================
 alias vim="nvim"
-alias open="xdg-open"
 command -v exa >/dev/null 2>&1 || alias ls="exa"
 
 # =============================================================================
 #                                 Functions
 # =============================================================================
 function ef() { fzf | xargs -o vim }
-function opf() { fzf | xargs -o xdg-open > /dev/null 2>&1 }
+function opf() { fzf | xargs -o open > /dev/null 2>&1 }
 
 # =============================================================================
 #                                Key-bindings
