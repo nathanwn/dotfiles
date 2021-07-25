@@ -1,3 +1,5 @@
+# Nvim
+
 ## Language Servers
 
 ### Lua

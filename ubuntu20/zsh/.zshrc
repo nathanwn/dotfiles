@@ -20,6 +20,9 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 # pascal
 export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
 
+# spotifyd
+export PATH="$HOME/bin/spotifyd/target/release:$PATH"
+
 # EDITOR
 export EDITOR=nvim
 
