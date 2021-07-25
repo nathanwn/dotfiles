@@ -14,8 +14,8 @@ _comp_options+=(globdots)
 # =============================================================================
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-source /usr/share/doc/fzf/examples/completion.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+source "$HOME/.config/fzf/completion.zsh"
+source "$HOME/.config/fzf/key-bindings.zsh"
 
 # =============================================================================
 #                                  Aliases
