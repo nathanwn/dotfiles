@@ -329,7 +329,7 @@ vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers({ previewer = false })<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fH', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>frc', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles/ubuntu20", hidden=true })<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>frc', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles", hidden=true })<CR>]], { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- Key bindings
