@@ -20,9 +20,11 @@ apps=(
 dots=(
   'alacritty'
   'bash'
+  'code'
   'i3'
   'tmux'
   'vim'
+  'xmodmap'
   'zsh'
 )
 
