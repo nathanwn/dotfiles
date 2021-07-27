@@ -59,6 +59,8 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
 
   -- LANGUAGE-SPECIFIC
+  -- Colorizer
+  vim.cmd [[ Plug 'chrisbra/Colorizer' ]]
   -- TS, React
   vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
   vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
@@ -111,7 +113,9 @@ vim.opt.backspace = { 'indent', 'eol', 'start' }
 -- Clipboard
 vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 -- Termcolor
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
+-- Buffers
+vim.opt.hidden = true
 
 -------------------------------------------------------------------------------
 -- Plugin settings
