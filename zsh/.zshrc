@@ -14,8 +14,6 @@ _comp_options+=(globdots)
 # =============================================================================
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-source "$HOME/.config/fzf/completion.zsh"
-source "$HOME/.config/fzf/key-bindings.zsh"
 
 # =============================================================================
 #                                  Aliases
@@ -34,6 +32,9 @@ function opf() { fzf | xargs -o open > /dev/null 2>&1 }
 # =============================================================================
 # vi-mode
 bindkey -v
+# fzf
+source "$HOME/.config/fzf/completion.zsh"
+source "$HOME/.config/fzf/key-bindings.zsh"
 
 # =============================================================================
 #                                   Theme
