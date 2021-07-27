@@ -24,6 +24,9 @@
         "editor.formatOnPaste": false,
         "editor.suggestSelection": "recentlyUsedByPrefix"
     },
+    "[bibtex]": {
+        "editor.tabSize": 2
+    },
     "latex-workshop.latex.tools": [
         {
             "name": "latexmk",
