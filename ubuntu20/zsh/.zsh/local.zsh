@@ -13,7 +13,7 @@ export PATH="/usr/local/go/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 # pascal
 export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
-
 # spotifyd
 export PATH="$HOME/bin/spotifyd/target/release:$PATH"
 
+alias gpath="pwd | xclip -selection clipboard"
