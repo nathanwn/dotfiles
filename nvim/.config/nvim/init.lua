@@ -332,8 +332,10 @@ require('telescope').setup{
 vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ previewer = false })<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers({ previewer = false })<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fH', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>frc', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles", hidden=true })<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>f.', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles", hidden=true })<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>frc', [[<cmd>lua require('telescope.builtin').find_files({ cwd=NVIM_PATH, hidden=true })<CR>]], { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- Key bindings
@@ -347,3 +349,9 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
 
 -- Ensure `a` in normal-mode to work properly
 vim.api.nvim_set_keymap('n', 'e', 'he', { noremap = true })
+
+------
+-- Coloring
+------
+-- Read: https://neovim.io/doc/user/lsp.html
+vim.cmd [[ hi LspDiagnosticsDefaultHint guibg='#eeeeee' guifg='#7A7A7A' ]]
