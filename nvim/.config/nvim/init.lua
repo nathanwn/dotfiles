@@ -187,8 +187,8 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<Leader>[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', '<Leader>]d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
@@ -335,7 +335,6 @@ vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<Leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fH', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>f.', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles", hidden=true })<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>frc', [[<cmd>lua require('telescope.builtin').find_files({ cwd=NVIM_PATH, hidden=true })<CR>]], { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- Key bindings
@@ -354,4 +353,4 @@ vim.api.nvim_set_keymap('n', 'e', 'he', { noremap = true })
 -- Coloring
 ------
 -- Read: https://neovim.io/doc/user/lsp.html
-vim.cmd [[ hi LspDiagnosticsDefaultHint guibg='#eeeeee' guifg='#7A7A7A' ]]
+vim.cmd [[ hi LspDiagnosticsDefaultHint guifg='#A0A0A0' ]]
