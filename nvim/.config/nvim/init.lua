@@ -37,8 +37,9 @@ vim.fn['plug#begin']()
 
   -- THEMES
   vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
-  vim.cmd [[ Plug 'vim-airline/vim-airline' ]]
-  vim.cmd [[ Plug 'vim-airline/vim-airline-themes' ]]
+  -- vim.cmd [[ Plug 'vim-airline/vim-airline' ]]
+  -- vim.cmd [[ Plug 'vim-airline/vim-airline-themes' ]]
+  vim.cmd [[ Plug 'hoob3rt/lualine.nvim' ]]
 
   -- FUZZY-FINDING
   -- fzf
@@ -123,7 +124,12 @@ vim.opt.hidden = true
 -- Theme
 vim.opt.background = 'light'
 vim.cmd [[ colorscheme PaperColor ]]
-vim.g.airline_theme = 'papercolor'
+-- airline
+-- vim.g.airline_theme = 'papercolor'
+-- lualine
+require('lualine').setup {
+  options = {theme = 'papercolor_light'}
+}
 
 -- tmux-navigator
 vim.g.tmux_navigator_no_mappings = 1
@@ -330,6 +336,7 @@ require('telescope').setup{
 }
 
 vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ previewer = false })<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>fF', [[<cmd>lua require('telescope.builtin').find_files({ previewer = false, hidden=true })<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers({ previewer = false })<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
