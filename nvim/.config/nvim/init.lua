@@ -259,6 +259,10 @@ require('lspconfig').sumneko_lua.setup {
   },
 }
 
+-- Virtual text coloring
+-- Read: https://neovim.io/doc/user/lsp.html
+vim.cmd [[ hi LspDiagnosticsDefaultHint guifg='#A0A0A0' ]]
+
 -------------------------------------------------------------------------------
 -- Autocomplete
 -------------------------------------------------------------------------------
@@ -355,9 +359,3 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
 
 -- Ensure `a` in normal-mode to work properly
 vim.api.nvim_set_keymap('n', 'e', 'he', { noremap = true })
-
-------
--- Coloring
-------
--- Read: https://neovim.io/doc/user/lsp.html
-vim.cmd [[ hi LspDiagnosticsDefaultHint guifg='#A0A0A0' ]]
