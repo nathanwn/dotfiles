@@ -34,6 +34,9 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
   -- Undo
   vim.cmd [[ Plug 'mbbill/undotree' ]]
+  -- Treesitter
+  vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' } ]]
+  vim.cmd [[Plug 'nvim-treesitter/playground']]
 
   -- THEMES
   vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
@@ -151,6 +154,30 @@ vim.api.nvim_set_keymap('n', '<Leader>g.', ':diffget //3<CR>', { noremap = true 
 
 -- undotree
 vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = true, silent = true })
+
+-------------------------------------------------------------------------------
+-- Treesitter
+-------------------------------------------------------------------------------
+-- Functionalities
+require('nvim-treesitter.configs').setup {
+    ensure_installed = 'maintained',
+    highlight = { enable = true },
+    indent = { enable = true },
+}
+
+-- Folding
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- C++ patch
+require('nvim-treesitter.parsers').get_parser_configs().cpp = {
+  install_info = {
+    url = "~/bin/tree-sitter-cpp",
+    files = { "src/parser.c", "src/scanner.cc" },
+    generate_requires_npm = true,
+  },
+  maintainers = { "@theHamsta" },
+}
 
 -------------------------------------------------------------------------------
 -- LSP
@@ -301,10 +328,10 @@ _G.s_tab_complete = function()
   end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
 
 -------------------------------------------------------------------------------
 -- Telescope
