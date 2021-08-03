@@ -18,8 +18,8 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # =============================================================================
 #                                  Aliases
 # =============================================================================
-alias vim="nvim"
-command -v exa >/dev/null 2>&1 || alias ls="exa"
+[ -x "$(command -v nvim)" ] && alias vim="nvim";
+[ -x "$(command -v exa)"  ] && alias ls="exa";
 
 # =============================================================================
 #                                Key-bindings
