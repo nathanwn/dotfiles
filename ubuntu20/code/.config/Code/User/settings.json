@@ -1,28 +1,32 @@
 {
     "editor.fontFamily": "'Jetbrains Mono', 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "window.zoomLevel": 1,
     "editor.detectIndentation": false,
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "papercolor-vscode-light",
+    "workbench.panel.defaultLocation": "right",
     "[html]": {
         "editor.suggest.insertMode": "replace",
         "editor.tabSize": 2,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
     },
     "[javascript]": {
         "editor.tabSize": 2,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
     },
     "[css]": {
         "editor.tabSize": 2,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
     },
     "[scss]": {
         "editor.tabSize": 2,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
     },
     "[latex]": {
         "editor.tabSize": 2,
         "editor.formatOnPaste": false,
-        "editor.suggestSelection": "recentlyUsedByPrefix"
+        "editor.suggestSelection": "recentlyUsedByPrefix",
+        "editor.wordWrap": "on",
     },
     "[bibtex]": {
         "editor.tabSize": 2
@@ -169,15 +173,12 @@
             ]
         }
     ],
-    "editor.minimap.enabled": false,
-    "workbench.colorTheme": "papercolor-vscode-light",
-    "workbench.panel.defaultLocation": "right",
     "latex-workshop.view.pdf.viewer": "tab",
     "files.exclude": {
         "**/*.aux": true,
         "**/*.fdb_latexmk": true,
         "**/*.fls": true,
         "**/*.synctex.gz": true,
-        "**/*.toc": true
-    }
+        "**/*.toc": true,
+    },
 }
