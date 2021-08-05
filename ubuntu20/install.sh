@@ -9,6 +9,7 @@ apps=(
   'krita'
   'stow'
   'tmux'
+  'tmuxinator'
   'valgrind'
   'vim'
   'vlc'
@@ -108,6 +109,10 @@ function install_subversion() {
 
 function install_tmux() {
   apt_install tmux
+}
+
+function install_tmuxinator() {
+  sudo gem install tmuxinator
 }
 
 function install_valgrind() {
