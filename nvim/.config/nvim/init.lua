@@ -83,7 +83,6 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
   -- Undo
   vim.cmd [[ Plug 'mbbill/undotree' ]]
-
   -- Treesitter
   vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' } ]]
   vim.cmd [[Plug 'nvim-treesitter/playground']]
