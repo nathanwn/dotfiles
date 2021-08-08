@@ -13,68 +13,6 @@ vim.g.mapleader = t'<Space>'
 vim.g.maplocalleader = t'<Space>'
 
 -------------------------------------------------------------------------------
--- Plugins
--------------------------------------------------------------------------------
-vim.api.nvim_exec(
-  [[
-    if empty(glob('~/.config/nvim/autoload/plug.vim'))
-      silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
-  ]],
-  false
-)
-
-vim.fn['plug#begin']()
-  -- UTILITIES
-  -- Git
-  vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
-  vim.cmd [[ Plug 'mhinz/vim-signify' ]]
-  -- Tmux
-  vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
-  -- Undo
-  vim.cmd [[ Plug 'mbbill/undotree' ]]
-  -- Treesitter
-  vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' } ]]
-  vim.cmd [[Plug 'nvim-treesitter/playground']]
-
-  -- THEMES
-  vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
-  -- vim.cmd [[ Plug 'vim-airline/vim-airline' ]]
-  -- vim.cmd [[ Plug 'vim-airline/vim-airline-themes' ]]
-  vim.cmd [[ Plug 'hoob3rt/lualine.nvim' ]]
-
-  -- FUZZY-FINDING
-  -- fzf
-  vim.cmd [[ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } ]]
-  vim.cmd [[ Plug 'junegunn/fzf.vim' ]]
-  vim.cmd [[ Plug 'airblade/vim-rooter' ]]
-  -- Telescope
-  vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
-  vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
-  vim.cmd [[ Plug 'nvim-telescope/telescope.nvim' ]]
-  vim.cmd [[ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } ]]
-  vim.cmd [[ Plug 'kyazdani42/nvim-web-devicons' ]]
-
-  -- LSP & AUTOCOMPLETE
-  -- Lsp
-  vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
-  -- Autocomplete
-  vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
-
-  -- LANGUAGE-SPECIFIC
-  -- Colorizer
-  vim.cmd [[ Plug 'chrisbra/Colorizer' ]]
-  -- TS, React
-  vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
-  vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
-  -- Emmet
-  vim.cmd [[ Plug 'mattn/emmet-vim' ]]
-  -- Go
-  vim.cmd [[ Plug 'fatih/vim-go' ]]
-vim.fn['plug#end']()
-
--------------------------------------------------------------------------------
 -- Editor settings
 -------------------------------------------------------------------------------
 -- Line numbers
@@ -120,6 +58,72 @@ vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 vim.opt.termguicolors = true
 -- Buffers
 vim.opt.hidden = true
+-- Latex
+vim.g.tex_flavor = 'latex'
+
+-------------------------------------------------------------------------------
+-- Plugins
+-------------------------------------------------------------------------------
+vim.api.nvim_exec(
+  [[
+    if empty(glob('~/.config/nvim/autoload/plug.vim'))
+      silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+  ]],
+  false
+)
+
+vim.fn['plug#begin']()
+  -- UTILITIES
+  -- Git
+  vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
+  vim.cmd [[ Plug 'mhinz/vim-signify' ]]
+  -- Tmux
+  vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
+  -- Undo
+  vim.cmd [[ Plug 'mbbill/undotree' ]]
+
+  -- Treesitter
+  vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' } ]]
+  vim.cmd [[Plug 'nvim-treesitter/playground']]
+
+  -- THEMES
+  vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
+  vim.cmd [[ Plug 'hoob3rt/lualine.nvim' ]]
+
+  -- FUZZY-FINDING
+  -- fzf
+  vim.cmd [[ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } ]]
+  vim.cmd [[ Plug 'junegunn/fzf.vim' ]]
+  vim.cmd [[ Plug 'airblade/vim-rooter' ]]
+  -- Telescope
+  vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
+  vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
+  vim.cmd [[ Plug 'nvim-telescope/telescope.nvim' ]]
+  vim.cmd [[ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } ]]
+  vim.cmd [[ Plug 'kyazdani42/nvim-web-devicons' ]]
+
+  -- LSP & AUTOCOMPLETE
+  -- Lsp
+  vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
+  -- Autocomplete
+  vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
+  -- Snippets
+  vim.cmd [[ Plug 'L3MON4D3/LuaSnip' ]]
+  vim.cmd [[ Plug 'rafamadriz/friendly-snippets' ]]
+
+  -- LANGUAGE-SPECIFIC
+  -- Colorizer
+  vim.cmd [[ Plug 'chrisbra/Colorizer' ]]
+  -- TS, React
+  vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
+  vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
+  -- Emmet
+  vim.cmd [[ Plug 'mattn/emmet-vim' ]]
+  -- Go
+  vim.cmd [[ Plug 'fatih/vim-go' ]]
+vim.fn['plug#end']()
 
 -------------------------------------------------------------------------------
 -- Plugin settings
@@ -162,7 +166,7 @@ vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = tr
 require('nvim-treesitter.configs').setup {
     ensure_installed = 'maintained',
     highlight = { enable = true },
-    indent = { enable = true },
+    indent = { enable = false },
 }
 
 -- Folding
@@ -230,7 +234,7 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 
-  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 end
 
@@ -239,7 +243,10 @@ end
 local lsp_servers = {
   "pyright",     -- python
   "tsserver",    -- typescript
+  "ccls",        -- c++
+  "texlab",      -- latex
 }
+
 for _, lsp in ipairs(lsp_servers) do
   nvim_lsp[lsp].setup {
     on_attach = lsp_on_attach,
@@ -260,8 +267,6 @@ table.insert(runtime_path, 'lua/?/init.lua')
 
 require('lspconfig').sumneko_lua.setup {
   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-  on_attach = on_attach,
-  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -293,6 +298,23 @@ vim.cmd [[ hi LspDiagnosticsDefaultHint guifg='#A0A0A0' ]]
 -------------------------------------------------------------------------------
 -- Autocomplete
 -------------------------------------------------------------------------------
+-- Snippets
+require("luasnip/loaders/from_vscode").load()
+
+-- Completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
+require'lspconfig'.rust_analyzer.setup {
+  capabilities = capabilities,
+}
 vim.opt.completeopt = { 'menuone', 'noselect' }
 
 require('compe').setup {
@@ -304,6 +326,7 @@ require('compe').setup {
     path = true,
     buffer = true,
     nvim_lsp = true,
+    luasnip = true,
   }
 }
 
@@ -313,19 +336,31 @@ vim.api.nvim_set_keymap('i', '<CR>', [[ compe#confirm('<CR>') ]], { noremap = tr
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  else
-    return t "<Tab>"
-  end
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
+
+_G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+        return t "<C-n>"
+    elseif require("luasnip").expand_or_jumpable() then
+        return t "<cmd>lua require'luasnip'.jump(1)<Cr>"
+    elseif check_back_space() then
+        return t "<Tab>"
+    else
+        return vim.fn["compe#complete"]()
+    end
+end
+
 _G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  else
-    return t "<S-Tab>"
-  end
+    if vim.fn.pumvisible() == 1 then
+        return t "<C-p>"
+    elseif require("luasnip").jumpable(-1) then
+        return t "<cmd>lua require'luasnip'.jump(-1)<CR>"
+    else
+        return t "<S-Tab>"
+    end
 end
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
