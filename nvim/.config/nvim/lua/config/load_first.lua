@@ -1,4 +1,4 @@
-vim.g.python3_host_prog = vim.fn.getenv("HOME")..'/.py/nvim-env/bin/python3'
+vim.g.python3_host_prog = vim.fn.getenv("HOME")..'/.py/nvim/bin/python3'
 
 -- Concise way to escape termcodes
 local function t(str)
