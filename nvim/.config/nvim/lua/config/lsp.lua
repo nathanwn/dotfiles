@@ -19,7 +19,7 @@ local lsp_on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  --Enable completion triggered by <c-x><c-o>
+  -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
@@ -77,7 +77,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
-require('lspconfig').sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   settings = {
     Lua = {
@@ -106,3 +106,42 @@ require('lspconfig').sumneko_lua.setup {
 -- Virtual text coloring
 -- Read: https://neovim.io/doc/user/lsp.html
 vim.cmd [[ hi LspDiagnosticsDefaultHint guifg='#A0A0A0' ]]
+
+-- Diagnostics
+nvim_lsp.diagnosticls.setup {
+  filetypes = {"javascript", "typescript"},
+  init_options = {
+    linters = {
+      eslint = {
+        command = "./node_modules/.bin/eslint",
+        rootPatterns = {".git"},
+        debounce = 100,
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+          "--format",
+          "json"
+        },
+        sourceName = "eslint",
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "${message} [${ruleId}]",
+          security = "severity"
+        },
+        securities = {
+          [2] = "error",
+          [1] = "warning"
+        }
+      },
+      filetypes = {
+        javascript = "eslint",
+        typescript = "eslint"
+      }
+    }
+  }
+}

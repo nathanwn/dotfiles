@@ -33,6 +33,9 @@ require('compe').setup {
     buffer = true,
     nvim_lsp = true,
     luasnip = true,
+    omni = {
+      filetype = { 'tex' },
+    },
   }
 }
 

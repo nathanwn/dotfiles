@@ -17,9 +17,14 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
   -- Undo
   vim.cmd [[ Plug 'mbbill/undotree' ]]
+  -- Outline
+  vim.cmd [[ Plug 'simrat39/symbols-outline.nvim' ]]
+  -- Nerdtree
+  vim.cmd [[ Plug 'preservim/nerdtree' ]]
+  vim.cmd [[ Plug 'ryanoasis/vim-devicons' ]]
   -- Treesitter
   vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' } ]]
-  vim.cmd [[Plug 'nvim-treesitter/playground']]
+  vim.cmd [[ Plug 'nvim-treesitter/playground' ]]
 
   -- THEMES
   vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
@@ -40,6 +45,8 @@ vim.fn['plug#begin']()
   -- LSP & AUTOCOMPLETE
   -- Lsp
   vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
+  -- Diagnostic
+  vim.cmd [[ Plug 'iamcco/diagnostic-languageserver' ]]
   -- Autocomplete
   vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
   -- Snippets
@@ -56,7 +63,32 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'mattn/emmet-vim' ]]
   -- Go
   vim.cmd [[ Plug 'fatih/vim-go' ]]
+  -- Tex
+  vim.cmd [[ Plug 'lervag/vimtex' ]]
 vim.fn['plug#end']()
+
+-- vim-fugitive
+-- . git diff select left/right
+vim.api.nvim_set_keymap('n', '<Leader>g,', ':diffget //2<CR>', { noremap = true } )
+vim.api.nvim_set_keymap('n', '<Leader>g.', ':diffget //3<CR>', { noremap = true } )
+
+-- tmux-navigator
+vim.g.tmux_navigator_no_mappings = 1
+vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-l>', ':TmuxNavigateRight<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', { noremap = true, silent = true })
+
+-- undotree
+vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = true, silent = true })
+
+-- outline
+vim.api.nvim_set_keymap('n', '<Leader>ol', ':SymbolsOutline<CR>', { noremap = true, silent = true })
+
+-- nerdtree
+-- nnoremap <C-t> :NERDTreeToggle<CR>
+vim.api.nvim_set_keymap('n', '<Leader>nt', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Theme
 vim.opt.background = 'light'
@@ -68,23 +100,7 @@ require('lualine').setup {
   options = {theme = 'papercolor_light'}
 }
 
--- tmux-navigator
-vim.g.tmux_navigator_no_mappings = 1
-vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-l>', ':TmuxNavigateRight<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', { noremap = true, silent = true })
-
 -- vim-go
 vim.g.go_def_mode = 'gopls'
 vim.g.go_info_mode = 'gopls'
 vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc
-
--- vim-fugitive
--- . git diff select left/right
-vim.api.nvim_set_keymap('n', '<Leader>g,', ':diffget //2<CR>', { noremap = true } )
-vim.api.nvim_set_keymap('n', '<Leader>g.', ':diffget //3<CR>', { noremap = true } )
-
--- undotree
-vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = true, silent = true })
