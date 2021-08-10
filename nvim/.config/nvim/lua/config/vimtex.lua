@@ -23,7 +23,7 @@ vim.g.vimtex_compiler_latexmk = {
     '-interaction=nonstopmode',
   }
 }
-vim.g.vimtex_compiler_progname = vim.fn.getenv("HOME")..'/.py/nvim-env/bin/nvr'
+vim.g.vimtex_compiler_progname = vim.fn.getenv("HOME")..'/.py/nvim/bin/nvr'
 
 vim.api.nvim_set_keymap('n', '<F9>', '<ESC>:VimtexCompile<CR>', { noremap = true })
 
