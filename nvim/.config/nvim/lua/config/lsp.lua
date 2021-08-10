@@ -55,8 +55,7 @@ end
 local lsp_servers = {
   "pyright",     -- python
   "tsserver",    -- typescript
-  "ccls",        -- c++
-  "texlab",      -- latex
+  "clangd",      -- c++
 }
 
 for _, lsp in ipairs(lsp_servers) do
