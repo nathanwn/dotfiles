@@ -50,7 +50,8 @@ vim.fn['plug#begin']()
   -- Autocomplete
   vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
   -- Snippets
-  vim.cmd [[ Plug 'L3MON4D3/LuaSnip' ]]
+  vim.cmd [[ Plug 'hrsh7th/vim-vsnip' ]]
+  vim.cmd [[ Plug 'hrsh7th/vim-vsnip-integ' ]]
   vim.cmd [[ Plug 'rafamadriz/friendly-snippets' ]]
 
   -- LANGUAGE-SPECIFIC
