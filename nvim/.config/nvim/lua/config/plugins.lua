@@ -68,6 +68,7 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
   -- Pandoc
   vim.cmd [[ Plug 'vim-pandoc/vim-pandoc' ]]
+  vim.cmd [[ Plug 'vim-pandoc/vim-pandoc-syntax' ]]
 vim.fn['plug#end']()
 
 -- vim-fugitive
@@ -110,3 +111,5 @@ vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc
 
 -- pandoc
 vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]
+vim.cmd [[ let g:pandoc#spell#enabled = 0 ]]
+vim.api.nvim_set_keymap('n', '<Leader>pdn', ':Pandoc #notes<CR>', { noremap = true, silent = true })

@@ -98,6 +98,7 @@ endfunction
 
 function SyntaxMarkdown()
   call SetIndentSize(2)
+  setlocal nofoldenable
 endfunction
 
 function SyntaxPascal()
