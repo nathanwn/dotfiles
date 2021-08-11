@@ -65,7 +65,9 @@ vim.fn['plug#begin']()
   -- Go
   vim.cmd [[ Plug 'fatih/vim-go' ]]
   -- Tex
-  vim.cmd [[ Plug 'lervag/vimtex' ]]
+  vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
+  -- Pandoc
+  vim.cmd [[ Plug 'vim-pandoc/vim-pandoc' ]]
 vim.fn['plug#end']()
 
 -- vim-fugitive
@@ -105,3 +107,6 @@ require('lualine').setup {
 vim.g.go_def_mode = 'gopls'
 vim.g.go_info_mode = 'gopls'
 vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc
+
+-- pandoc
+vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]

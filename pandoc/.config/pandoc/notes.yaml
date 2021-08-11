@@ -1,0 +1,15 @@
+# from-to
+from: markdown
+to: pdf
+
+# settings
+variables:
+  documentclass: article
+  papersize: a4
+  numbersections: true
+  geometry:
+  - margin=2cm
+
+# toc
+toc: true
+toc-depth: 2
