@@ -5,8 +5,8 @@
 set $mod Mod4
 
 # Monitors
-set $monitor_main "DP-1"
-set $monitor_lap  "eDP-1"
+set $monitor_left "DP-1"
+set $monitor_right  "eDP-1"
 
 # ==============================================================================
 #                                   Fonts
@@ -30,7 +30,7 @@ exec --no-startup-id pasystray
 # Ibus
 exec --no-startup-id ibus-daemon -x -d -r
 # Second monitor
-exec --no-startup-id xrandr --output $monitor_main --auto --left-of $monitor_lap
+exec --no-startup-id xrandr --output $monitor_left --auto --left-of $monitor_right
 
 # ==============================================================================
 #                               Function keys
@@ -153,12 +153,16 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # bind workspaces to monitors
-workspace $ws1 output $monitor_main
-workspace $ws2 output $monitor_main
-workspace $ws3 output $monitor_main
-workspace $ws4 output $monitor_lap
-workspace $ws5 output $monitor_lap
-workspace $ws6 output $monitor_lap
+workspace $ws1 output $monitor_left
+workspace $ws2 output $monitor_left
+workspace $ws3 output $monitor_left
+workspace $ws4 output $monitor_left
+workspace $ws5 output $monitor_left
+workspace $ws6 output $monitor_left
+workspace $ws7 output $monitor_right
+workspace $ws8 output $monitor_right
+workspace $ws9 output $monitor_right
+workspace $ws0 output $monitor_right
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
