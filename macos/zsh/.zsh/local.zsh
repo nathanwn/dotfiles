@@ -6,11 +6,11 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 
-# Add scripts
+# scripts
 export PATH="$HOME/.scripts:$PATH"
 # neovim
 export PATH="$HOME/bin/nvim-osx64/bin:$PATH"
-# Add Visual Studio Code (code)
+# vscode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 # latex
 export PATH="$PATH:/Library/TeX/texbin"
