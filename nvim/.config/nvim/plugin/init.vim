@@ -101,6 +101,11 @@ function SyntaxMarkdown()
   setlocal nofoldenable
 endfunction
 
+function SyntaxPandoc()
+  call SyntaxMarkdown()
+  setlocal omnifunc=pandoc#completion#Complete
+endfunction
+
 function SyntaxPascal()
   call SetIndentSize(2)
   let g:pascal_fpc=1
@@ -136,6 +141,7 @@ autocmd filetype json            call SyntaxJson()
 autocmd filetype latex           call SyntaxLatex()
 autocmd filetype lua             call SyntaxLua()
 autocmd filetype markdown        call SyntaxMarkdown()
+autocmd filetype pandoc          call SyntaxPandoc()
 autocmd filetype pascal          call SyntaxPascal()
 autocmd filetype sh              call SyntaxSh()
 autocmd filetype tex             call SyntaxTex()

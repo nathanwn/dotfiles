@@ -30,6 +30,11 @@ require('compe').setup {
     buffer = true,
     nvim_lsp = true,
     vsnip = true,
+    omni = {
+      filetypes = {
+        'pandoc',
+      }
+    }
   }
 }
 
