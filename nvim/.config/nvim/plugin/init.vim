@@ -61,13 +61,22 @@ function GetCurrentPathToClipboard()
   echo "Path copied!"
 endfunction
 
-" Show syntax highlighting group under cursor
+" Show syntax highlighting groups for word under cursor
+nmap <F7> :call <SID>SynStack()<CR>
+nmap <F8> :call <SID>SynStackP()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunction
+endfunc
+function! <SID>SynStackP()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.')-1, col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
 
 function SyntaxC()
   setlocal colorcolumn=80
@@ -104,6 +113,10 @@ endfunction
 function SyntaxPandoc()
   call SyntaxMarkdown()
   setlocal omnifunc=pandoc#completion#Complete
+  hi Conceal             guifg=#AF005F ctermfg=125
+  hi pandocAtxHeader     guifg=#AF005F ctermfg=125 gui=bold term=bold
+  hi pandocAtxHeaderMark guifg=#AF005F ctermfg=125
+  hi pandocAtxStart      guifg=#AF005F ctermfg=125
 endfunction
 
 function SyntaxPascal()
