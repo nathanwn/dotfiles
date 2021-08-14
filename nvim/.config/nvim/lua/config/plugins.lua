@@ -94,15 +94,20 @@ vim.api.nvim_set_keymap('n', '<Leader>ol', ':SymbolsOutline<CR>', { noremap = tr
 -- nnoremap <C-t> :NERDTreeToggle<CR>
 vim.api.nvim_set_keymap('n', '<Leader>nt', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
--- Theme
+-- theme
 vim.opt.background = 'light'
 vim.cmd [[ colorscheme PaperColor ]]
 -- airline
 -- vim.g.airline_theme = 'papercolor'
 -- lualine
 require('lualine').setup {
-  options = {theme = 'papercolor_light'}
+  options = {
+    theme = 'papercolor_light'
+  }
 }
+
+-- rooter
+vim.g.rooter_patterns = {'.git', 'ref.bib'}
 
 -- vim-go
 vim.g.go_def_mode = 'gopls'
@@ -112,4 +117,4 @@ vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc
 -- pandoc
 vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]
 vim.cmd [[ let g:pandoc#spell#enabled = 0 ]]
-vim.api.nvim_set_keymap('n', '<Leader>pdn', ':Pandoc #notes<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>pdn', ":execute 'Pandoc pdf --defaults='.expand('$HOME').'/.config/pandoc/notes.yaml --resource-path=.:'.expand('$HOME').'/.config/pandoc --citeproc'", { noremap = true, silent = true })

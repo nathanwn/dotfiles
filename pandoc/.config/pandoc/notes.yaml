@@ -9,6 +9,9 @@ variables:
   numbersections: true
   geometry:
   - margin=2cm
+  hyperrefoptions:
+  - linktoc=all
+  linestretch: 1.15
 
 # toc
 toc: true
