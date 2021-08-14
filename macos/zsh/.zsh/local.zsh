@@ -12,6 +12,13 @@ export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/bin/nvim-osx64/bin:$PATH"
 # vscode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# chromedriver
+export PATH="$HOME/development/chromedriver:$PATH"
+# flutter
+export PATH="$HOME/development/flutter/bin:$PATH"
+# golang
+export PATH="$(go env GOPATH)/bin:$PATH"
 # latex
 export PATH="$PATH:/Library/TeX/texbin"
 # llvm
@@ -19,12 +26,8 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 # qt
 export PATH="$HOME/apps/Qt/5.12.6/clang_64/bin:$PATH"
 export PATH="/usr/local/Cellar/gcc/10.2.0/bin:$PATH"
-# flutter
-export PATH="$HOME/development/flutter/bin:$PATH"
-# chromedriver
-export PATH="$HOME/development/chromedriver:$PATH"
-# golang
-export PATH="$(go env GOPATH)/bin:$PATH"
+# rust
+FILE="$HOME/.cargo/env" && test -f $FILE && source $FILE
 
 # LLVM stuff
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
