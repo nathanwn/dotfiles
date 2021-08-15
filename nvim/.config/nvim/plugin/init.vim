@@ -117,6 +117,7 @@ function SyntaxPandoc()
   hi pandocAtxHeader     guifg=#AF005F ctermfg=125 gui=bold term=bold
   hi pandocAtxHeaderMark guifg=#AF005F ctermfg=125
   hi pandocAtxStart      guifg=#AF005F ctermfg=125
+  autocmd BufEnter * silent! lcd %:p:h
 endfunction
 
 function SyntaxPascal()
@@ -146,6 +147,7 @@ endfunction
 
 autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
 autocmd BufEnter,BufNewFile,BufRead *.clang-format set filetype=yaml
+autocmd BufEnter,BufNewFile,BufRead *.md set filetype=markdown
 
 autocmd filetype c               call SyntaxC()
 autocmd filetype cpp             call SyntaxCpp()
