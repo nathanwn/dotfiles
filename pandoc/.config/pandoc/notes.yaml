@@ -11,6 +11,7 @@ variables:
   - margin=2cm
   hyperrefoptions:
   - linktoc=all
+  linkcolor: blue
   linestretch: 1.15
 
 # toc
