@@ -119,5 +119,3 @@ vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc
 -- pandoc
 vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]
 vim.cmd [[ let g:pandoc#spell#enabled = 0 ]]
-
-vim.api.nvim_set_keymap('n', '<Leader>pdn', ":execute 'Pandoc pdf --defaults='.expand('$HOME').'/.config/pandoc/notes.yaml --resource-path=.:'.expand('$HOME').'/.config/pandoc --citeproc -H '.expand('$HOME').'/.config/pandoc/disablefloat.tex'<CR>", { noremap = true, silent = true })
