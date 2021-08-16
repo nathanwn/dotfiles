@@ -91,8 +91,7 @@ vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = tr
 vim.api.nvim_set_keymap('n', '<Leader>ol', ':SymbolsOutline<CR>', { noremap = true, silent = true })
 
 -- nerdtree
--- nnoremap <C-t> :NERDTreeToggle<CR>
-vim.api.nvim_set_keymap('n', '<Leader>nt', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-t>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
 -- theme
 vim.opt.background = 'light'
@@ -109,6 +108,7 @@ require('lualine').setup {
 -- rooter
 vim.g.rooter_patterns = {
   '.git',
+  '*.pandoc',
 }
 
 -- vim-go

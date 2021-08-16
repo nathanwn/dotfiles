@@ -117,7 +117,7 @@ function SyntaxPandoc()
   hi pandocAtxHeader     guifg=#AF005F ctermfg=125 gui=bold term=bold
   hi pandocAtxHeaderMark guifg=#AF005F ctermfg=125
   hi pandocAtxStart      guifg=#AF005F ctermfg=125
-  autocmd BufEnter * silent! lcd %:p:h
+  nnoremap <silent> <Leader>pdn :execute 'Pandoc pdf --defaults='.expand('$HOME').'/.config/pandoc/notes.yaml --resource-path=.:'.expand('$HOME').'/.config/pandoc --citeproc -H '.expand('$HOME').'/.config/pandoc/disablefloat.tex'<CR>
 endfunction
 
 function SyntaxPascal()
