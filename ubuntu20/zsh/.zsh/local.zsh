@@ -20,6 +20,8 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
 # rust
 FILE="$HOME/.cargo/env" && test -f $FILE && source $FILE
+# scala
+export PATH="$HOME/bin/scala/scala-2.12.14/bin:$PATH"
 # tex
 export PATH="$HOME/bin/texlab/target/release:$PATH"
 
@@ -33,3 +35,7 @@ export PATH="$HOME/bin/spotifyd/target/release:$PATH"
 export PATH="$HOME/bin/qpdf/qpdf/build:$PATH"
 
 alias gpath="pwd | xclip -selection clipboard"
+
+function zath() {
+    nohup zathura $1 > /dev/null & disown &
+}
