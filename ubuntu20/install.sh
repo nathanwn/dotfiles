@@ -6,6 +6,7 @@ apps=(
   'fzf'
   'geany'
   'i3'
+  'i3status-rs'
   'krita'
   'stow'
   'tmux'
@@ -81,6 +82,10 @@ function install_geany() {
 function install_i3() {
   apt_install i3 i3blocks rofi pasystray light blueman
   sudo chmod +s /usr/bin/light
+}
+
+function install_i3status-rs() {
+  sudo apt install libdbus-1-dev
 }
 
 function install_neovim() {

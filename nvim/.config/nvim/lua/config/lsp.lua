@@ -53,9 +53,10 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local lsp_servers = {
+  "clangd",      -- c++
+  "elmls",       -- elmls
   "pyright",     -- python
   "tsserver",    -- typescript
-  "clangd",      -- c++
 }
 
 for _, lsp in ipairs(lsp_servers) do
