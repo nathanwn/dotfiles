@@ -9,6 +9,7 @@ apps=(
   'i3status-rs'
   'krita'
   'stow'
+  'sxiv'
   'tmux'
   'tmuxinator'
   'valgrind'
@@ -106,6 +107,10 @@ function install_spotify() {
 
 function install_stow() {
   apt_install stow
+}
+
+function install_sxiv() {
+  apt_install sxiv
 }
 
 function install_subversion() {
