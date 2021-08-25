@@ -1,6 +1,8 @@
 # diagnostic
-npm install -g diagnostic-languageserver
+npm i -g diagnostic-languageserver
 # python
-npm install -g pyright
+npm i -g pyright
 # tsserver
-npm install -g typescript typescript-language-server
+npm i -g typescript typescript-language-server
+# json
+npm i -g vscode-langservers-extracted

@@ -7,3 +7,6 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
 
 -- Ensure `a` in normal-mode to work properly
 vim.api.nvim_set_keymap('n', 'e', 'he', { noremap = true })
+
+-- Terminal
+vim.api.nvim_set_keymap('t', '<C-[>', '<C-\\><C-n>', { noremap = true })

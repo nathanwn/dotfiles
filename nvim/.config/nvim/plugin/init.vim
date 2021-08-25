@@ -93,7 +93,8 @@ function SyntaxHtml()
 endfunction
 
 function SyntaxJson()
-  nmap \ff :%!python3 -m json.tool<CR>:echo('json prettified!')<CR>
+  call SetIndentSize(2)
+  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()
 endfunction
 
 function SyntaxLatex()
@@ -129,7 +130,11 @@ function SyntaxTex()
   call SetIndentSize(2)
 endfunction
 
-function SyntaxTSReact()
+function SyntaxTypeScript()
+  call SetIndentSize(2)
+endfunction
+
+function SyntaxTypeScriptReact()
   call SetIndentSize(2)
 endfunction
 
@@ -160,7 +165,7 @@ autocmd filetype pandoc          call SyntaxPandoc()
 autocmd filetype pascal          call SyntaxPascal()
 autocmd filetype sh              call SyntaxSh()
 autocmd filetype tex             call SyntaxTex()
-autocmd filetype typescriptreact call SyntaxTSReact()
+autocmd filetype typescriptreact call SyntaxTypeScriptReact()
 autocmd filetype vim             call SyntaxVim()
 autocmd filetype yaml            call SyntaxYaml()
 

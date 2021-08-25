@@ -55,6 +55,7 @@ end
 local lsp_servers = {
   "clangd",      -- c++
   "elmls",       -- elmls
+  "jsonls",      -- json
   "pyright",     -- python
   "tsserver",    -- typescript
 }

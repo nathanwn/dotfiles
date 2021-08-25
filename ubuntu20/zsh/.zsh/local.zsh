@@ -27,6 +27,8 @@ export PATH="$HOME/bin/texlab/target/release:$PATH"
 
 # infer
 export PATH="$HOME/bin/infer/infer-linux64-v1.1.0/bin:$PATH"
+# hadolint
+export PATH="$HOME/bin/hadolint:$PATH"
 
 # Applications
 # spotifyd
@@ -36,6 +38,25 @@ export PATH="$HOME/bin/qpdf/qpdf/build:$PATH"
 
 alias gpath="pwd | xclip -selection clipboard"
 
-function zath() {
-    nohup zathura $1 > /dev/null & disown &
-}
+function zath() { nohup zathura $1 > /dev/null & disown & }
+function imgview() { nohup sxiv $1 > /dev/null & disown & }
+
+# -----------------------------------------------------------------------------
+#                               Auto-generated
+# -----------------------------------------------------------------------------
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# conda
+__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="$HOME/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
