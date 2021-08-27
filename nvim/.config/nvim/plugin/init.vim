@@ -77,7 +77,6 @@ function! <SID>SynStackP()
   echo map(synstack(line('.')-1, col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-
 function SyntaxC()
   setlocal colorcolumn=80
   " autocmd BufWritePre *.c,*.h execute "%! clang-format -style=file"
@@ -94,7 +93,6 @@ endfunction
 
 function SyntaxJson()
   call SetIndentSize(2)
-  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()
 endfunction
 
 function SyntaxLatex()
@@ -157,7 +155,7 @@ autocmd BufEnter,BufNewFile,BufRead *.md set filetype=markdown
 autocmd filetype c               call SyntaxC()
 autocmd filetype cpp             call SyntaxCpp()
 autocmd filetype html            call SyntaxHtml()
-autocmd filetype json            call SyntaxJson()
+" autocmd filetype json            call SyntaxJson()
 autocmd filetype latex           call SyntaxLatex()
 autocmd filetype lua             call SyntaxLua()
 autocmd filetype markdown        call SyntaxMarkdown()

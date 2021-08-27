@@ -23,13 +23,12 @@ local lsp_on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
-
   -- See `:help vim.lsp.*` for documentation on any of the below functions
+  local opts = { noremap=true, silent=true }
   buf_set_keymap('n', '<Leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', '<Leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', '<Leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<Leader>hv', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<Leader>K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', '<Leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
   buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -48,14 +47,34 @@ local lsp_on_attach = function(client, bufnr)
 
   buf_set_keymap('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_formatting then
+    vim.cmd [[
+      augroup Format
+          autocmd! * <buffer>
+          autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
+      augroup END
+    ]]
+  end
+
+  if client.resolved_capabilities.document_highlight then
+    vim.cmd [[
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
+      augroup END
+    ]]
+  end
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local lsp_servers = {
   "clangd",      -- c++
-  "elmls",       -- elmls
   "jsonls",      -- json
+  "prismals",    -- prisma
   "pyright",     -- python
   "tsserver",    -- typescript
 }
@@ -69,7 +88,10 @@ for _, lsp in ipairs(lsp_servers) do
   }
 end
 
--- Lua custom server
+------------------------------
+-- Lua
+------------------------------
+-- Custom server
 local sumneko_root_path = vim.fn.getenv("HOME").."/bin/lang-servers/lua-language-server"
 local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
 
@@ -104,45 +126,26 @@ nvim_lsp.sumneko_lua.setup {
   },
 }
 
+------------------------------
+-- Elm
+------------------------------
+-- nvim_lsp.efm.setup {
+--   init_options = {documentFormatting = true},
+--   settings = {
+--     rootMarkers = {".git/"},
+--     languages = {
+--       lua = {
+--         {formatCommand = "lua-format -i", formatStdin = true}
+--       }
+--     }
+--   },
+--   filetypes = {
+--     'javascript',
+--     'typescript',
+--     'typescriptreact'
+--   }
+-- }
+
 -- Virtual text coloring
 -- Read: https://neovim.io/doc/user/lsp.html
 vim.cmd [[ hi LspDiagnosticsDefaultHint guifg='#A0A0A0' ]]
-
--- Diagnostics
-nvim_lsp.diagnosticls.setup {
-  filetypes = {"javascript", "typescript"},
-  init_options = {
-    linters = {
-      eslint = {
-        command = "./node_modules/.bin/eslint",
-        rootPatterns = {".git"},
-        debounce = 100,
-        args = {
-          "--stdin",
-          "--stdin-filename",
-          "%filepath",
-          "--format",
-          "json"
-        },
-        sourceName = "eslint",
-        parseJson = {
-          errorsRoot = "[0].messages",
-          line = "line",
-          column = "column",
-          endLine = "endLine",
-          endColumn = "endColumn",
-          message = "${message} [${ruleId}]",
-          security = "severity"
-        },
-        securities = {
-          [2] = "error",
-          [1] = "warning"
-        }
-      },
-      filetypes = {
-        javascript = "eslint",
-        typescript = "eslint"
-      }
-    }
-  }
-}

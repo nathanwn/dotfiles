@@ -19,9 +19,11 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'mbbill/undotree' ]]
   -- Outline
   vim.cmd [[ Plug 'simrat39/symbols-outline.nvim' ]]
-  -- Nerdtree
-  vim.cmd [[ Plug 'preservim/nerdtree' ]]
-  vim.cmd [[ Plug 'ryanoasis/vim-devicons' ]]
+  -- Explorer Tree
+  vim.cmd [[ Plug 'kyazdani42/nvim-web-devicons' ]]
+  vim.cmd [[ Plug 'kyazdani42/nvim-tree.lua' ]]
+  -- Colorizer
+  vim.cmd [[ Plug 'chrisbra/Colorizer' ]]
   -- Treesitter
   vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' } ]]
   vim.cmd [[ Plug 'nvim-treesitter/playground' ]]
@@ -55,8 +57,6 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'rafamadriz/friendly-snippets' ]]
 
   -- LANGUAGE-SPECIFIC
-  -- Colorizer
-  vim.cmd [[ Plug 'chrisbra/Colorizer' ]]
   -- TS, React
   vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
   vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
@@ -64,11 +64,13 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'mattn/emmet-vim' ]]
   -- Go
   vim.cmd [[ Plug 'fatih/vim-go' ]]
-  -- Tex
-  vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
   -- Pandoc
   vim.cmd [[ Plug 'vim-pandoc/vim-pandoc' ]]
   vim.cmd [[ Plug 'vim-pandoc/vim-pandoc-syntax' ]]
+  -- Prisma
+  vim.cmd [[ Plug 'pantharshit00/vim-prisma' ]]
+  -- Tex
+  vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
 vim.fn['plug#end']()
 
 -- vim-fugitive
@@ -90,8 +92,11 @@ vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = tr
 -- outline
 vim.api.nvim_set_keymap('n', '<Leader>ol', ':SymbolsOutline<CR>', { noremap = true, silent = true })
 
--- nerdtree
-vim.api.nvim_set_keymap('n', '<C-e>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+-- nvimtree
+vim.g.nvim_tree_ignore = {
+  '.git',
+}
+vim.api.nvim_set_keymap('n', '<C-e>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- theme
 vim.opt.background = 'light'
