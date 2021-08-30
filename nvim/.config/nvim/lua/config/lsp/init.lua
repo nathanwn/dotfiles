@@ -13,6 +13,19 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+------------------------------
+-- TS
+------------------------------
+-- enable null-ls integration
+require("null-ls").config {}
+require("lspconfig")["null-ls"].setup {}
+
+local function config_typescript(client)
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
+  require('nvim-lsp-ts-utils').setup({})
+end
+
 -- Use an lsp_on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local lsp_on_attach = function(client, bufnr)
@@ -66,6 +79,10 @@ local lsp_on_attach = function(client, bufnr)
         autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
       augroup END
     ]]
+  end
+
+  if client.name == 'typescript' then
+    config_typescript(client)
   end
 end
 
@@ -125,26 +142,6 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
-
-------------------------------
--- Elm
-------------------------------
--- nvim_lsp.efm.setup {
---   init_options = {documentFormatting = true},
---   settings = {
---     rootMarkers = {".git/"},
---     languages = {
---       lua = {
---         {formatCommand = "lua-format -i", formatStdin = true}
---       }
---     }
---   },
---   filetypes = {
---     'javascript',
---     'typescript',
---     'typescriptreact'
---   }
--- }
 
 -- Virtual text coloring
 -- Read: https://neovim.io/doc/user/lsp.html

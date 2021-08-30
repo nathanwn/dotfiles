@@ -60,10 +60,14 @@ vim.fn['plug#begin']()
   -- TS, React
   vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
   vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
+  vim.cmd [[ Plug 'jose-elias-alvarez/null-ls.nvim' ]]
+  vim.cmd [[ Plug 'jose-elias-alvarez/nvim-lsp-ts-utils' ]]
   -- Emmet
   vim.cmd [[ Plug 'mattn/emmet-vim' ]]
   -- Go
   vim.cmd [[ Plug 'fatih/vim-go' ]]
+  -- Markdown
+  vim.cmd [[ Plug 'plasticboy/vim-markdown' ]]
   -- Pandoc
   vim.cmd [[ Plug 'vim-pandoc/vim-pandoc' ]]
   vim.cmd [[ Plug 'vim-pandoc/vim-pandoc-syntax' ]]
