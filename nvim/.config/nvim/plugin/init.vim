@@ -77,53 +77,6 @@ function! <SID>SynStackP()
   echo map(synstack(line('.')-1, col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-function SyntaxC()
-  setlocal colorcolumn=80
-  " autocmd BufWritePre *.c,*.h execute "%! clang-format -style=file"
-endfunction
-
-function SyntaxCpp()
-  setlocal colorcolumn=80
-  " autocmd BufWritePre *.cpp,*.h,*.hpp execute "%! clang-format -style=file"
-endfunction
-
-function SyntaxHtml()
-  call SetIndentSize(2)
-endfunction
-
-function SyntaxJson()
-  call SetIndentSize(2)
-endfunction
-
-function SyntaxLatex()
-  setlocal filetype=tex
-  call SyntaxTex()
-endfunction
-
-function SyntaxLua()
-  call SetIndentSize(2)
-endfunction
-
-function SyntaxMarkdown()
-  call SetIndentSize(2)
-  setlocal nofoldenable
-endfunction
-
-function SyntaxPandoc()
-  call SyntaxMarkdown()
-  setlocal omnifunc=pandoc#completion#Complete
-  hi Conceal             guifg=#AF005F ctermfg=125
-  hi pandocAtxHeader     guifg=#AF005F ctermfg=125 gui=bold term=bold
-  hi pandocAtxHeaderMark guifg=#AF005F ctermfg=125
-  hi pandocAtxStart      guifg=#AF005F ctermfg=125
-  nnoremap <buffer> <silent> <Leader>pdn :execute 'Pandoc pdf --defaults='.expand('$HOME').'/.config/pandoc/notes.yaml --resource-path=.:'.expand('$HOME').'/.config/pandoc --citeproc -H '.expand('$HOME').'/.config/pandoc/disablefloat.tex'<CR>
-endfunction
-
-function SyntaxPascal()
-  call SetIndentSize(2)
-  let g:pascal_fpc=1
-endfunction
-
 function SyntaxTex()
   call SetIndentSize(2)
 endfunction
@@ -132,41 +85,9 @@ function SyntaxTypeScript()
   call SetIndentSize(2)
 endfunction
 
-function SyntaxTypeScriptReact()
-  call SetIndentSize(2)
-endfunction
-
-function SyntaxSh()
-  call SetIndentSize(2)
-endfunction
-
-function SyntaxVim()
-  call SetIndentSize(2)
-endfunction
-
-function SyntaxYaml()
-  call SetIndentSize(2)
-endfunction
-
 autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
 autocmd BufEnter,BufNewFile,BufRead *.clang-format set filetype=yaml
 autocmd BufEnter,BufNewFile,BufRead *.md set filetype=markdown
-
-autocmd filetype c               call SyntaxC()
-autocmd filetype cpp             call SyntaxCpp()
-autocmd filetype html            call SyntaxHtml()
-" autocmd filetype json            call SyntaxJson()
-autocmd filetype latex           call SyntaxLatex()
-autocmd filetype lua             call SyntaxLua()
-autocmd filetype markdown        call SyntaxMarkdown()
-autocmd filetype pandoc          call SyntaxPandoc()
-autocmd filetype pascal          call SyntaxPascal()
-autocmd filetype sh              call SyntaxSh()
-autocmd filetype tex             call SyntaxTex()
-autocmd filetype typescript      call SyntaxTypeScript()
-autocmd filetype typescriptreact call SyntaxTypeScriptReact()
-autocmd filetype vim             call SyntaxVim()
-autocmd filetype yaml            call SyntaxYaml()
 
 " autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * call RemoveTrailingWhitespace()
