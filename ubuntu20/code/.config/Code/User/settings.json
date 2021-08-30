@@ -2,8 +2,9 @@
   "editor.fontFamily": "'Jetbrains Mono', 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.detectIndentation": false,
   "editor.minimap.enabled": false,
-  "workbench.colorTheme": "Default Light+",
+  "workbench.colorTheme": "papercolor-vscode-light",
   "workbench.panel.defaultLocation": "right",
+  "window.zoomLevel": 1,
   "[bibtex]": {
     "editor.tabSize": 2
   },
@@ -38,6 +39,10 @@
     "editor.wordWrap": "on",
     "editor.quickSuggestions": false,
     "editor.tabSize": 2
+  },
+  "[prisma]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
   },
   "[typescript]": {
     "editor.tabSize": 2,
@@ -204,7 +209,5 @@
   },
   "files.associations": {
     "*.json": "json"
-  },
-  "window.zoomLevel": 1,
-  "editor.fontSize": 12
+  }
 }
