@@ -1,30 +1,55 @@
-local options = { noremap = true, silent = true }
+local keys = require('utils').keys;
 
-local keymap = function(mode, key, cmd, opts)
-  vim.api.nvim_set_keymap(mode, key, cmd, opts or options);
-end
+----------
+-- Plugins
+----------
+-- vim-fugitive
+-- . git diff select left/right
+keys.map('n', '<Leader>g,', ':diffget //2<CR>')
+keys.map('n', '<Leader>g.', ':diffget //3<CR>')
 
-local keymap_buf = function(mode, key, cmd, opts)
-  vim.api.nvim_buf_set_keymap('n', key, cmd, opts or options);
-end
+-- vim-fugitive
+-- . git diff select left/right
+keys.map('n', '<Leader>g,', ':diffget //2<CR>')
+keys.map('n', '<Leader>g.', ':diffget //3<CR>')
 
+-- tmux-navigator
+vim.g.tmux_navigator_no_mappings = 1
+keys.map('n', '<C-h>', ':TmuxNavigateLeft<CR>')
+keys.map('n', '<C-j>', ':TmuxNavigateDown<CR>')
+keys.map('n', '<C-k>', ':TmuxNavigateUp<CR>')
+keys.map('n', '<C-l>', ':TmuxNavigateRight<CR>')
+keys.map('n', '<C-\\>', ':TmuxNavigatePrevious<CR>')
+
+-- nvimtree
+keys.map('n', '<C-e>', ':NvimTreeToggle<CR>')
+
+-- undotree
+keys.map('n', '<Leader>ud', ':UndotreeToggle<CR>')
+
+-- outline
+keys.map('n', '<Leader>ol', ':SymbolsOutline<CR>')
+
+----------
+-- Settings
+----------
 -- Reload init.lua
-keymap('n', '<F12>', ':luafile ~/.config/nvim/init.lua<CR>');
+keys.map('n', '<F12>', ':luafile ~/.config/nvim/init.lua<CR>');
 
 -- Indentation
-keymap('v', '<', '<gv')
-keymap('v', '>', '>gv')
+keys.map('v', '<', '<gv')
+keys.map('v', '>', '>gv')
 
 -- Ensure `a` in normal-mode to work properly
-keymap('n', 'e', 'he')
+keys.map('n', 'e', 'he')
 
 -- Terminal
-keymap('n', '<Leader>tv', ':vsplit | terminal<CR>')
-keymap('n', '<Leader>ts', ':split | terminal<CR>')
-keymap('t', '<C-[>', '<C-\\><C-n>')
+keys.map('n', '<Leader>tv', ':vsplit | terminal<CR>')
+keys.map('n', '<Leader>ts', ':split | terminal<CR>')
+keys.map('t', '<C-[>', '<C-\\><C-n>')
 
 -- Resize splits
-keymap('n', '<C-s><C-k>', ':resize -1<CR>')
-keymap('n', '<C-s><C-j>', ':resize +1<CR>')
-keymap('n', '<C-s><C-h>', ':vertical resize -1<CR>')
-keymap('n', '<C-s><C-l>', ':vertical resize -1<CR>')
+keys.map('n', '<C-s><C-k>', ':resize -1<CR>')
+keys.map('n', '<C-s><C-j>', ':resize +1<CR>')
+keys.map('n', '<C-s><C-h>', ':vertical resize -1<CR>')
+keys.map('n', '<C-s><C-l>', ':vertical resize -1<CR>')

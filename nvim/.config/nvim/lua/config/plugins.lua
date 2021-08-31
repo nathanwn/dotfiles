@@ -77,36 +77,14 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
 vim.fn['plug#end']()
 
--- vim-fugitive
--- . git diff select left/right
-vim.api.nvim_set_keymap('n', '<Leader>g,', ':diffget //2<CR>', { noremap = true } )
-vim.api.nvim_set_keymap('n', '<Leader>g.', ':diffget //3<CR>', { noremap = true } )
-
--- tmux-navigator
-vim.g.tmux_navigator_no_mappings = 1
-vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-l>', ':TmuxNavigateRight<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-\\>', ':TmuxNavigatePrevious<CR>', { noremap = true, silent = true })
-
--- undotree
-vim.api.nvim_set_keymap('n', '<Leader>ud', ':UndotreeToggle<CR>', { noremap = true, silent = true })
-
--- outline
-vim.api.nvim_set_keymap('n', '<Leader>ol', ':SymbolsOutline<CR>', { noremap = true, silent = true })
-
 -- nvimtree
 vim.g.nvim_tree_ignore = {
   '.git',
 }
-vim.api.nvim_set_keymap('n', '<C-e>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- theme
 vim.opt.background = 'light'
 vim.cmd [[ colorscheme PaperColor ]]
--- airline
--- vim.g.airline_theme = 'papercolor'
 -- lualine
 require('lualine').setup {
   options = {
@@ -123,7 +101,7 @@ vim.g.rooter_patterns = {
 -- vim-go
 vim.g.go_def_mode = 'gopls'
 vim.g.go_info_mode = 'gopls'
-vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc
+vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc/lsp
 
 -- pandoc
 vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]
