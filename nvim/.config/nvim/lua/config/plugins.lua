@@ -58,8 +58,6 @@ vim.fn['plug#begin']()
   -- TS, React
   vim.cmd [[ Plug 'leafgarland/typescript-vim' ]]
   vim.cmd [[ Plug 'peitalin/vim-jsx-typescript' ]]
-  -- vim.cmd [[ Plug 'jose-elias-alvarez/null-ls.nvim' ]]
-  -- vim.cmd [[ Plug 'jose-elias-alvarez/nvim-lsp-ts-utils' ]]
   -- Emmet
   vim.cmd [[ Plug 'mattn/emmet-vim' ]]
   -- Go
