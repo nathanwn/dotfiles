@@ -25,15 +25,27 @@ local default_on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', '<Leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<Leader>K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
-  buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  if client.server_capabilities.definitionProvider then
+    -- buf_set_keymap('n', '<Leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', '<Leader>gD', "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+    buf_set_keymap('n', '<Leader>gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  end
+
+  buf_set_keymap('n', '<Leader>gi', "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+
+  -- buf_set_keymap('n', '<Leader>gH', "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap('n', '<Leader>gH', "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
+  buf_set_keymap('n', '<Leader>gt', "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+
+  -- buf_set_keymap('n', '<Leader>rn', "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  buf_set_keymap('n', '<Leader>rn', "<cmd>lua require('lspsaga.rename').rename()<CR>", opts)
   buf_set_keymap("n", "<Leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
+  if client.server_capabilities.codeActionProvider then
+    -- buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<Leader>ca', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
+  end
 
   buf_set_keymap('n', '<Leader>[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', '<Leader>]d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
@@ -46,7 +58,10 @@ local default_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 
   buf_set_keymap('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+
   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gs', "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
+
 end
 
 local default_lsp_config = {

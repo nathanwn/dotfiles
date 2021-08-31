@@ -47,6 +47,7 @@ vim.fn['plug#begin']()
   -- LSP & AUTOCOMPLETE
   -- Lsp
   vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
+  vim.cmd [[ Plug 'glepnir/lspsaga.nvim' ]]
   -- Diagnostic
   vim.cmd [[ Plug 'iamcco/diagnostic-languageserver' ]]
   -- Autocomplete
