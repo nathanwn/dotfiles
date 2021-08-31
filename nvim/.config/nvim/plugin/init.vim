@@ -62,8 +62,8 @@ function GetCurrentPathToClipboard()
 endfunction
 
 " Show syntax highlighting groups for word under cursor
-nmap <F7> :call <SID>SynStack()<CR>
-nmap <F8> :call <SID>SynStackP()<CR>
+nnoremap <F7> :call <SID>SynStack()<CR>
+nnoremap <F8> :call <SID>SynStackP()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
@@ -97,13 +97,13 @@ set pastetoggle=<F3>
 
 " Toggle Conceal
 let s:conceal_on = 0
-nmap \cc :call ToggleConceal()<CR>
+nnoremap \cc :call ToggleConceal()<CR>
 
 " Centering selected text
-nmap \ac "xy:call AlignCenter(80)<CR>
+nnoremap \ac "xy:call AlignCenter(80)<CR>
 
 " Execute selected shell command
 vnoremap \ex :w !bash<CR>
 
 " Copy path to clipboard
-nmap \cp :call GetCurrentPathToClipboard()<CR>
+nnoremap \cp :call GetCurrentPathToClipboard()<CR>

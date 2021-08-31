@@ -141,6 +141,7 @@ nvim_lsp.sumneko_lua.setup {
       },
     },
   },
+  on_attach = lsp_on_attach
 }
 
 -- Virtual text coloring
