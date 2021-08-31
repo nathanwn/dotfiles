@@ -1,4 +1,4 @@
-local nvim_lsp = require('lspconfig')
+local nvim_lsp = require('lspconfig');
 
 -- Make diagnostics less aggressive
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -13,22 +13,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-------------------------------
--- TS
-------------------------------
--- enable null-ls integration
-require("null-ls").config {}
-require("lspconfig")["null-ls"].setup {}
-
-local function config_typescript(client)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
-  require('nvim-lsp-ts-utils').setup({})
-end
-
--- Use an lsp_on_attach function to only map the following keys
+-- Use an default_on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local lsp_on_attach = function(client, bufnr)
+local default_on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -60,89 +47,29 @@ local lsp_on_attach = function(client, bufnr)
 
   buf_set_keymap('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd [[
-      augroup Format
-          autocmd! * <buffer>
-          autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
-      augroup END
-    ]]
-  end
-
-  if client.resolved_capabilities.document_highlight then
-    vim.cmd [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
-      augroup END
-    ]]
-  end
-
-  if client.name == 'typescript' then
-    config_typescript(client)
-  end
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local lsp_servers = {
-  "clangd",      -- c++
-  "jsonls",      -- json
-  "prismals",    -- prisma
-  "pyright",     -- python
-  "tsserver",    -- typescript
-}
-
-for _, lsp in ipairs(lsp_servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = lsp_on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
+local default_lsp_config = {
+  on_attach = default_on_attach,
+  flags = {
+    debounce_text_changes = 150,
   }
-end
-
-------------------------------
--- Lua
-------------------------------
--- Custom server
-local sumneko_root_path = vim.fn.getenv("HOME").."/bin/lang-servers/lua-language-server"
-local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
-
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-nvim_lsp.sumneko_lua.setup {
-  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-  on_attach = lsp_on_attach
 }
+
+local servers = {
+  clangd = require('config.lsp.servers.clangd')(),
+  efm = require('config.lsp.servers.efm')(default_on_attach),
+  yamlls = require('config.lsp.servers.yamlls')(),
+  jsonls = require('config.lsp.servers.jsonls')(),
+  prismals = require('config.lsp.servers.prismals')(default_on_attach),
+  pyright = require('config.lsp.servers.pyright')(),
+  sumneko_lua = require('config.lsp.servers.sumneko_lua')(),
+  tsserver = require('config.lsp.servers.tsserver')(default_on_attach),
+}
+
+for server, config in pairs(servers) do
+  nvim_lsp[server].setup(vim.tbl_deep_extend("force", default_lsp_config, config))
+end
 
 -- Virtual text coloring
 -- Read: https://neovim.io/doc/user/lsp.html
