@@ -27,13 +27,16 @@ local default_on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   if client.server_capabilities.definitionProvider then
-    buf_set_keymap('n', '<Leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', '<Leader>gd', "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  end
+
+  if client.server_capabilities.declarationProvider then
+    buf_set_keymap('n', '<Leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   end
 
   buf_set_keymap('n', '<Leader>gi', "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 
-  buf_set_keymap('n', '<Leader>gH', "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap('n', '<Leader>gh', "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap('n', '<Leader>gt', "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 
   buf_set_keymap('n', '<Leader>rn', "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
@@ -45,8 +48,8 @@ local default_on_attach = function(client, bufnr)
 
   buf_set_keymap('n', '<Leader>[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', '<Leader>]d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<Leader>gS', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<Leader>gq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
   -- Workspace management
   buf_set_keymap('n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -54,7 +57,6 @@ local default_on_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 
   buf_set_keymap('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-
   buf_set_keymap('n', '<Leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 end
 
@@ -77,6 +79,7 @@ local servers = {
 }
 
 for server, config in pairs(servers) do
+  -- config overrides default_lsp_config
   nvim_lsp[server].setup(vim.tbl_deep_extend("force", default_lsp_config, config))
 end
 

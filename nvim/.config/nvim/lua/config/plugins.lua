@@ -10,9 +10,14 @@ vim.api.nvim_exec(
 
 vim.fn['plug#begin']()
   -- UTILITIES
+  -- Prerequisites for a lot of things
+  vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
+  vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
+
   -- Git
   vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
-  vim.cmd [[ Plug 'mhinz/vim-signify' ]]
+  -- vim.cmd [[ Plug 'mhinz/vim-signify' ]]
+  vim.cmd [[ Plug 'lewis6991/gitsigns.nvim' ]]
   -- Tmux
   vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
   -- Undo
@@ -38,8 +43,6 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'junegunn/fzf.vim' ]]
   vim.cmd [[ Plug 'airblade/vim-rooter' ]]
   -- Telescope
-  vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
-  vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
   vim.cmd [[ Plug 'nvim-telescope/telescope.nvim' ]]
   vim.cmd [[ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' } ]]
   vim.cmd [[ Plug 'kyazdani42/nvim-web-devicons' ]]
@@ -72,6 +75,9 @@ vim.fn['plug#begin']()
   -- Tex
   vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
 vim.fn['plug#end']()
+
+-- gitsigns
+-- require('gitsigns').setup()
 
 -- nvimtree
 vim.g.nvim_tree_ignore = {

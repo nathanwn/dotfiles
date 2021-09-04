@@ -5,13 +5,8 @@ local keys = require('utils').keys;
 ----------
 -- vim-fugitive
 -- . git diff select left/right
-keys.map('n', '<Leader>g,', ':diffget //2<CR>')
-keys.map('n', '<Leader>g.', ':diffget //3<CR>')
-
--- vim-fugitive
--- . git diff select left/right
-keys.map('n', '<Leader>g,', ':diffget //2<CR>')
-keys.map('n', '<Leader>g.', ':diffget //3<CR>')
+keys.map('n', '<Leader>g<', ':diffget //2<CR>')
+keys.map('n', '<Leader>g>', ':diffget //3<CR>')
 
 -- tmux-navigator
 vim.g.tmux_navigator_no_mappings = 1
@@ -52,4 +47,4 @@ keys.map('t', '<C-[>', '<C-\\><C-n>')
 keys.map('n', '<C-s><C-k>', ':resize -1<CR>')
 keys.map('n', '<C-s><C-j>', ':resize +1<CR>')
 keys.map('n', '<C-s><C-h>', ':vertical resize -1<CR>')
-keys.map('n', '<C-s><C-l>', ':vertical resize -1<CR>')
+keys.map('n', '<C-s><C-l>', ':vertical resize +1<CR>')

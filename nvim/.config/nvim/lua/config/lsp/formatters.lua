@@ -17,4 +17,10 @@ M.prettier_d  = {
   formatStdin = true
 }
 
+-- python
+M.python_black = {
+  formatCommand = "black --quiet -",
+  formatStdin = true
+}
+
 return M;
