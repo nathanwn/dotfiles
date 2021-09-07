@@ -20,11 +20,3 @@ require('telescope').setup{
     }
   }
 }
-
-vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ previewer=false, hidden=true })<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fF', [[<cmd>lua require('telescope.builtin').find_files({ previewer=false, hidden=true })<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers({ previewer=false })<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fH', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>f.', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles", hidden=true })<CR>]], { noremap = true, silent = true })

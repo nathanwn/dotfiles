@@ -16,7 +16,6 @@ vim.fn['plug#begin']()
 
   -- Git
   vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
-  -- vim.cmd [[ Plug 'mhinz/vim-signify' ]]
   vim.cmd [[ Plug 'lewis6991/gitsigns.nvim' ]]
   -- Tmux
   vim.cmd [[ Plug 'christoomey/vim-tmux-navigator' ]]
@@ -50,6 +49,7 @@ vim.fn['plug#begin']()
   -- LSP & AUTOCOMPLETE
   -- Lsp
   vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
+  vim.cmd [[ Plug 'scalameta/nvim-metals' ]]
   -- Autocomplete
   vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
   -- Snippets
@@ -77,7 +77,7 @@ vim.fn['plug#begin']()
 vim.fn['plug#end']()
 
 -- gitsigns
--- require('gitsigns').setup()
+require('gitsigns').setup()
 
 -- nvimtree
 vim.g.nvim_tree_ignore = {

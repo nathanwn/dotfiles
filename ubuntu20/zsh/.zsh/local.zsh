@@ -22,6 +22,7 @@ export PATH="$HOME/bin/fpc-3.2.0/bin:$PATH"
 FILE="$HOME/.cargo/env" && test -f $FILE && source $FILE
 # scala
 export PATH="$HOME/bin/scala/scala-2.12.14/bin:$PATH"
+export PATH="$HOME/.local/share/coursier/bin:$PATH"
 # tex
 export PATH="$HOME/bin/texlab/target/release:$PATH"
 
