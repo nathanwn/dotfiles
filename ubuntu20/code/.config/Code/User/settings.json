@@ -48,7 +48,10 @@
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.rulers": [80, 120]
+    "editor.rulers": [
+      80,
+      120
+    ]
   },
   "[scss]": {
     "editor.tabSize": 2,
@@ -198,6 +201,7 @@
   ],
   "latex-workshop.view.pdf.viewer": "tab",
   "files.exclude": {
+    "**/__pycache__": true,
     "**/*.aux": true,
     "**/*.fdb_latexmk": true,
     "**/*.fls": true,
@@ -210,7 +214,11 @@
   "files.associations": {
     "*.json": "json"
   },
+<<<<<<< HEAD
+  "editor.fontSize": 12
+=======
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
+>>>>>>> 58c7eeaa0e34f113ecd5fe84010a596a92ab9ecd
 }
