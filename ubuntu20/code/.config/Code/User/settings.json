@@ -214,11 +214,7 @@
   "files.associations": {
     "*.json": "json"
   },
-<<<<<<< HEAD
-  "editor.fontSize": 12
-=======
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
->>>>>>> 58c7eeaa0e34f113ecd5fe84010a596a92ab9ecd
 }
