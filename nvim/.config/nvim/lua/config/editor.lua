@@ -14,6 +14,7 @@ vim.opt.listchars = {
   trail = '␣',
   extends = '▶',
   precedes = '◀',
+  -- eol = '⏎'
 }
 -- Error bells
 vim.opt.errorbells = false
