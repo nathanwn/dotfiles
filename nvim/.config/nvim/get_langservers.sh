@@ -8,3 +8,5 @@ npm i -g vscode-langservers-extracted
 npm i -g @prisma/language-server
 # yaml
 npm i -g yaml-language-server
+# prettierd
+npm i -g @fsouza/prettierd

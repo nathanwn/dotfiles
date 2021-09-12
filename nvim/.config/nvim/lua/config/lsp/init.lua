@@ -71,6 +71,7 @@ local default_lsp_config = {
 
 local servers = {
   clangd = require('config.lsp.servers.clangd')(),
+  cmake = require('config.lsp.servers.cmake')(),
   efm = require('config.lsp.servers.efm')(default_on_attach),
   yamlls = require('config.lsp.servers.yamlls')(),
   jsonls = require('config.lsp.servers.jsonls')(default_on_attach),

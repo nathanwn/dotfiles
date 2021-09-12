@@ -82,6 +82,7 @@ require('gitsigns').setup()
 -- nvimtree
 vim.g.nvim_tree_ignore = {
   '.git',
+  '__pycache__'
 }
 
 -- theme

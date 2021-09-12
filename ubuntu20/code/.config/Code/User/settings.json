@@ -1,10 +1,10 @@
 {
-  "editor.fontFamily": "'Jetbrains Mono', 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "'CaskaydiaCove Nerd Font', 'JetbrainsMono Nerd Font', 'Jetbrains Mono', 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.detectIndentation": false,
   "editor.minimap.enabled": false,
   "workbench.colorTheme": "papercolor-vscode-light",
   "workbench.panel.defaultLocation": "right",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 4,
   "[bibtex]": {
     "editor.tabSize": 2
   },
@@ -44,14 +44,14 @@
     "editor.tabSize": 2,
     "editor.formatOnSave": true
   },
+  "[python]": {
+    "editor.formatOnSave": true
+  },
   "[typescript]": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.rulers": [
-      80,
-      120
-    ]
+    "editor.rulers": [80, 120]
   },
   "[scss]": {
     "editor.tabSize": 2,
@@ -88,9 +88,7 @@
     {
       "name": "latexmk_rconly",
       "command": "latexmk",
-      "args": [
-        "%DOC%"
-      ],
+      "args": ["%DOC%"],
       "env": {}
     },
     {
@@ -107,9 +105,7 @@
     {
       "name": "bibtex",
       "command": "bibtex",
-      "args": [
-        "%DOCFILE%"
-      ],
+      "args": ["%DOCFILE%"],
       "env": {}
     },
     {
@@ -124,10 +120,7 @@
     {
       "name": "jnw2tex",
       "command": "julia",
-      "args": [
-        "-e",
-        "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
-      ],
+      "args": ["-e", "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"],
       "env": {}
     },
     {
@@ -142,61 +135,38 @@
     {
       "name": "tectonic",
       "command": "tectonic",
-      "args": [
-        "--synctex",
-        "--keep-logs",
-        "%DOC%.tex"
-      ],
+      "args": ["--synctex", "--keep-logs", "%DOC%.tex"],
       "env": {}
     }
   ],
   "latex-workshop.latex.recipes": [
     {
       "name": "latexmk 🔃",
-      "tools": [
-        "latexmk"
-      ]
+      "tools": ["latexmk"]
     },
     {
       "name": "latexmk (latexmkrc)",
-      "tools": [
-        "latexmk_rconly"
-      ]
+      "tools": ["latexmk_rconly"]
     },
     {
       "name": "latexmk (lualatex)",
-      "tools": [
-        "lualatexmk"
-      ]
+      "tools": ["lualatexmk"]
     },
     {
       "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
-      "tools": [
-        "pdflatex",
-        "bibtex",
-        "pdflatex",
-        "pdflatex"
-      ]
+      "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
     },
     {
       "name": "Compile Rnw files",
-      "tools": [
-        "rnw2tex",
-        "latexmk"
-      ]
+      "tools": ["rnw2tex", "latexmk"]
     },
     {
       "name": "Compile Jnw files",
-      "tools": [
-        "jnw2tex",
-        "latexmk"
-      ]
+      "tools": ["jnw2tex", "latexmk"]
     },
     {
       "name": "tectonic",
-      "tools": [
-        "tectonic"
-      ]
+      "tools": ["tectonic"]
     }
   ],
   "latex-workshop.view.pdf.viewer": "tab",
@@ -216,5 +186,6 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.fontSize": 12
 }
