@@ -4,7 +4,7 @@
   "editor.minimap.enabled": false,
   "workbench.colorTheme": "papercolor-vscode-light",
   "workbench.panel.defaultLocation": "right",
-  "window.zoomLevel": 4,
+  "window.zoomLevel": 1,
   "[bibtex]": {
     "editor.tabSize": 2
   },

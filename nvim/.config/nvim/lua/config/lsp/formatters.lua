@@ -17,6 +17,14 @@ M.prettier_d  = {
   formatStdin = true
 }
 
+M.prettierd = {
+  formatCommand = 'prettierd "${INPUT}"',
+  formatStdin = true,
+  -- env = {
+  --   string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json')),
+  -- },
+}
+
 -- python
 M.python_black = {
   formatCommand = "black --quiet -",

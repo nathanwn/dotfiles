@@ -4,17 +4,17 @@ local utils = require('config.lsp.utils');
 
 local languages = {
   -- lua = {luafmt},
-  typescript = { formatters.prettier, linters.eslint_d },
-  javascript = { formatters.prettier, linters.eslint_d },
-  typescriptreact = { formatters.prettier, linters.eslint_d },
-  ['typescript.tsx'] = { formatters.prettier, linters.eslint_d },
-  javascriptreact = { formatters.prettier, linters.eslint_d },
-  ['javascript.jsx'] = { formatters.prettier, linters.eslint_d },
-  vue = { formatters.prettier, linters.eslint_d },
-  json = { formatters.prettier },
-  html = { formatters.prettier },
-  scss = { formatters.prettier },
-  css = { formatters.prettier },
+  typescript = { formatters.prettierd, linters.eslint_d },
+  javascript = { formatters.prettierd, linters.eslint_d },
+  typescriptreact = { formatters.prettierd, linters.eslint_d },
+  ['typescript.tsx'] = { formatters.prettierd, linters.eslint_d },
+  javascriptreact = { formatters.prettierd, linters.eslint_d },
+  ['javascript.jsx'] = { formatters.prettierd, linters.eslint_d },
+  vue = { formatters.prettierd, linters.eslint_d },
+  json = { formatters.prettierd },
+  html = { formatters.prettierd },
+  scss = { formatters.prettierd },
+  css = { formatters.prettierd },
   python = { formatters.python_black },
 }
 
