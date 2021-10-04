@@ -26,7 +26,8 @@ keys.map('n', '<Leader>vo', ':SymbolsOutline<CR>')
 
 -- Telescope
 keys.map('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ previewer=false, hidden=true })<CR>]])
-keys.map('n', '<Leader>fF', [[<cmd>lua require('telescope.builtin').find_files({ previewer=false, hidden=true })<CR>]])
+keys.map('n', '<Leader>fF', [[<cmd>lua require('telescope.builtin').find_files({ previewer=false, hidden=false })<CR>]])
+keys.map('n', '<Leader>fP', [[<cmd>lua require('telescope.builtin').find_files()<CR>]])
 keys.map('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers({ previewer=false })<CR>]])
 keys.map('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
 keys.map('n', '<Leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])

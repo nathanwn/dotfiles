@@ -34,6 +34,7 @@ vim.fn['plug#begin']()
 
   -- THEMES
   vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
+  vim.cmd [[ Plug 'monsonjeremy/onedark.nvim' ]]
   vim.cmd [[ Plug 'hoob3rt/lualine.nvim' ]]
 
   -- FUZZY-FINDING
@@ -84,14 +85,17 @@ vim.g.nvim_tree_ignore = {
   '.git',
   '__pycache__'
 }
+require('nvim-tree').setup()
 
 -- theme
 vim.opt.background = 'light'
 vim.cmd [[ colorscheme PaperColor ]]
+-- require('onedark').setup()
 -- lualine
 require('lualine').setup {
   options = {
     theme = 'papercolor_light'
+    -- theme = 'onedark'
   }
 }
 

@@ -77,6 +77,7 @@ local servers = {
   jsonls = require('config.lsp.servers.jsonls')(default_on_attach),
   prismals = require('config.lsp.servers.prismals')(default_on_attach),
   pyright = require('config.lsp.servers.pyright')(),
+  -- sqlls = require('config.lsp.servers.sqlls')(),
   sumneko_lua = require('config.lsp.servers.sumneko_lua')(),
   tsserver = require('config.lsp.servers.tsserver')(default_on_attach),
 }
