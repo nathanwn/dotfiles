@@ -1,9 +1,9 @@
 # Path to your oh-my-bash installation.
-export OSH=/home/ubuntu/.oh-my-bash
+export OSH=$HOME/.oh-my-bash
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="simple"
+OSH_THEME="powerline-multiline"
 
 # completions can be found in ~/.oh-my-bash/completions/*
 completions=(
