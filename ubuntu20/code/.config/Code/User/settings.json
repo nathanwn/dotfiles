@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "'CaskaydiaCove Nerd Font', 'JetbrainsMono Nerd Font', 'Jetbrains Mono', 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontFamily": "'CaskaydiaCove Nerd Font','JetbrainsMono Nerd Font','Jetbrains Mono', 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.detectIndentation": false,
   "editor.minimap.enabled": false,
   "workbench.colorTheme": "papercolor-vscode-light",

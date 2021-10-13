@@ -1,29 +1,3 @@
-# https://www.nerdfonts.com/font-downloads
-font:
-  normal:
-    # family: "JetbrainsMono Nerd Font"
-    family: "CaskaydiaCove Nerd Font"
-    style: Regular
-  bold:
-    family: "CaskaydiaCove Nerd Font"
-    style: Bold
-  italic:
-    family: "CaskaydiaCove Nerd Font"
-    style: Italic
-  bold_italic:
-    family: "CaskaydiaCove Nerd Font"
-    style: Bold Italic
-  size: 12
-
-window:
-  padding:
-    x: 5
-    y: 0
-
-scrolling:
-  history: 10000
-  multiplier: 10
-
 # Colors (Solarized Dark)
 colors:
   # Default colors

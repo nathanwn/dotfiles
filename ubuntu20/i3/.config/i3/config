@@ -5,8 +5,8 @@
 set $mod Mod4
 
 # Monitors
-set $monitor_left "DP-1"
-set $monitor_right  "eDP-1"
+set $monitor_left "DP-1-1"
+set $monitor_right  "eDP-1-1"
 
 # ==============================================================================
 #                                   Fonts
@@ -213,5 +213,5 @@ bar {
 }
 
 # Wallpaper
-set $wallpaper = "$HOME/wallpapers/switz.jpg"
+set $wallpaper = "/usr/share/backgrounds/warty-final-ubuntu.png"
 exec_always [ -f $wallpaper ] || feh --bg-scale $wallpaper
