@@ -62,20 +62,21 @@ function GetCurrentPathToClipboard()
 endfunction
 
 " Show syntax highlighting groups for word under cursor
-nnoremap <F7> :call <SID>SynStack()<CR>
-nnoremap <F8> :call <SID>SynStackP()<CR>
-function! <SID>SynStack()
+function! SynStack()
   if !exists("*synstack")
+    echo "error"
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-function! <SID>SynStackP()
+function! SynStackPrevLine()
   if !exists("*synstack")
     return
   endif
   echo map(synstack(line('.')-1, col('.')), 'synIDattr(v:val, "name")')
 endfunc
+nnoremap <F7> :call SynStack()<CR>
+nnoremap <F8> :call SynStackPrevLine()<CR>
 
 function SyntaxTex()
   call SetIndentSize(2)
