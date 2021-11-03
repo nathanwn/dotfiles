@@ -85,16 +85,19 @@ vim.fn['plug#end']()
 require('gitsigns').setup()
 
 -- nvimtree
-vim.g.nvim_tree_ignore = {
-  '.git',
-  -- python
-  '__pycache__',
-  -- latex
-  '*.aux', '*.bbl', '*.blg',
-  '*.fdb_latexmk', '*.fls',
-  '*.lof', '*.log', '*.lot', '*.synctex.gz', '*.toc',
-}
-require('nvim-tree').setup()
+require('nvim-tree').setup({
+  filters = {
+    custom = {
+        '.git',
+      -- python
+      '__pycache__',
+      -- latex
+      '*.aux', '*.bbl', '*.blg',
+      '*.fdb_latexmk', '*.fls',
+      '*.lof', '*.log', '*.lot', '*.synctex.gz', '*.toc',
+    }
+  }
+})
 
 -- theme
 -- require('config.themes.onedark')
