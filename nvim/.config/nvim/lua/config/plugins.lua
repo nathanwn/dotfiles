@@ -84,23 +84,48 @@ require('gitsigns').setup()
 -- nvimtree
 vim.g.nvim_tree_ignore = {
   '.git',
-  '__pycache__'
+  -- python
+  '__pycache__',
+  -- latex
+  '*.aux', '*.bbl', '*.blg',
+  '*.fdb_latexmk', '*.fls',
+  '*.lof', '*.log', '*.lot', '*.synctex.gz', '*.toc',
 }
 require('nvim-tree').setup()
 
 -- theme
-require('config.themes.solarized-dark')
+require('config.themes.papercolor-light')
 
 -- rooter
 vim.g.rooter_patterns = {
   '.git',
   '*.pandoc',
+  'requirements.txt',
+  'main.tex',
 }
 
 -- vim-go
 vim.g.go_def_mode = 'gopls'
 vim.g.go_info_mode = 'gopls'
 vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc/lsp
+
+-- latex
+vim.g.tex_flavor = 'latex'
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtex_compiler_latexmk = {
+  build_dir = '',
+  callback = 1,
+  continuous = 1,
+  executable = 'latexmk',
+  hooks = {},
+  options = {
+    '-shell-escape',
+    '-verbose',
+    '-file-line-error',
+    '-synctex=1',
+    '-interaction=nonstopmode',
+  },
+}
 
 -- pandoc
 vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]

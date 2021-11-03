@@ -33,6 +33,7 @@ require('compe').setup {
     omni = {
       filetypes = {
         'pandoc',
+        'tex',
       }
     }
   }
