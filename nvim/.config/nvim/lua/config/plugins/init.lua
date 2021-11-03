@@ -76,6 +76,9 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'pantharshit00/vim-prisma' ]]
   -- Tex
   vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
+
+  -- GRAMMAR CHECKER
+  vim.cmd [[ Plug 'rhysd/vim-grammarous' ]]
 vim.fn['plug#end']()
 
 -- gitsigns
