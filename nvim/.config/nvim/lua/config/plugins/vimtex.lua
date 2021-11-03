@@ -1,3 +1,4 @@
+vim.g.tex_flavor = 'latex'
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtex_quickfix_mode = false
 vim.g.vimtex_mappings_enabled = false
@@ -26,4 +27,4 @@ vim.g.vimtex_compiler_latexmk = {
 vim.g.vimtex_compiler_progname = vim.fn.getenv("HOME")..'/.py/nvim/bin/nvr'
 
 vim.api.nvim_set_keymap('n', '<F9>', '<ESC>:VimtexCompile<CR>', { noremap = true })
-
+vim.api.nvim_set_keymap('n', '<F10>', '<ESC>:VimtexView<CR>', { noremap = true })

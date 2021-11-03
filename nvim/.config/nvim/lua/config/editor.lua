@@ -28,6 +28,8 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = vim.fn.getenv("HOME")..'/.config/nvim/undodir'
 vim.opt.undofile = true
+-- Wrap
+vim.opt.linebreak = true
 -- Cursor
 vim.opt.guicursor = ''
 -- Mouse

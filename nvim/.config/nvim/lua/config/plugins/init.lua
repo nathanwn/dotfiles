@@ -94,6 +94,7 @@ vim.g.nvim_tree_ignore = {
 require('nvim-tree').setup()
 
 -- theme
+-- require('config.themes.onedark')
 require('config.themes.papercolor-light')
 
 -- rooter
@@ -109,24 +110,12 @@ vim.g.go_def_mode = 'gopls'
 vim.g.go_info_mode = 'gopls'
 vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc/lsp
 
--- latex
-vim.g.tex_flavor = 'latex'
-vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtex_compiler_latexmk = {
-  build_dir = '',
-  callback = 1,
-  continuous = 1,
-  executable = 'latexmk',
-  hooks = {},
-  options = {
-    '-shell-escape',
-    '-verbose',
-    '-file-line-error',
-    '-synctex=1',
-    '-interaction=nonstopmode',
-  },
-}
-
 -- pandoc
 vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]
 vim.cmd [[ let g:pandoc#spell#enabled = 0 ]]
+
+require "config.plugins.treesitter"
+require "config.lsp"
+require "config.plugins.compe"
+require "config.plugins.telescope"
+require "config.plugins.vimtex"
