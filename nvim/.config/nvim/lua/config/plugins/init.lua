@@ -53,10 +53,15 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
   vim.cmd [[ Plug 'scalameta/nvim-metals' ]]
   -- Autocomplete
-  vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
+  vim.cmd [[ Plug 'hrsh7th/nvim-cmp' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-nvim-lsp' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-buffer' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-path' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-cmdline' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-omni' ]]
   -- Snippets
+  vim.cmd [[ Plug 'hrsh7th/cmp-vsnip' ]]
   vim.cmd [[ Plug 'hrsh7th/vim-vsnip' ]]
-  vim.cmd [[ Plug 'hrsh7th/vim-vsnip-integ' ]]
   vim.cmd [[ Plug 'rafamadriz/friendly-snippets' ]]
 
   -- LANGUAGE-SPECIFIC
@@ -92,7 +97,7 @@ require('nvim-tree').setup({
       -- python
       '__pycache__',
       -- latex
-      '*.aux', '*.bbl', '*.blg',
+      '*.aux', '*.bbl', '*.blg', '*.bcf',
       '*.fdb_latexmk', '*.fls',
       '*.lof', '*.log', '*.lot', '*.synctex.gz', '*.toc',
     }
@@ -122,6 +127,7 @@ vim.cmd [[ let g:pandoc#spell#enabled = 0 ]]
 
 require "config.plugins.treesitter"
 require "config.lsp"
-require "config.plugins.compe"
+require "config.plugins.cmp"
+-- require "config.plugins.compe"
 require "config.plugins.telescope"
 require "config.plugins.vimtex"
