@@ -40,7 +40,6 @@ export PATH="$HOME/bin/spotifyd/target/release:$PATH"
 export PATH="$HOME/bin/qpdf/qpdf/build:$PATH"
 
 alias gpath="pwd | xclip -selection clipboard"
-alias rellis="cd $HOME/work/uq/engg4811/RELLIS-3D"
 
 function zath() { nohup zathura $1 > /dev/null & disown & }
 function imgview() { nohup sxiv $1 > /dev/null & disown & }
