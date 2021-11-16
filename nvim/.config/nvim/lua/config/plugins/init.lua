@@ -98,8 +98,9 @@ require('nvim-tree').setup({
       '__pycache__',
       -- latex
       '*.aux', '*.bbl', '*.blg', '*.bcf',
-      '*.fdb_latexmk', '*.fls',
-      '*.lof', '*.log', '*.lot', '*.synctex.gz', '*.toc',
+      '*.fdb_latexmk', '*.fls', '*.glo', '*.ist',
+      '*.lof', '*.log', '*.lot', '*.synctex.gz',
+      '*.toc',
     }
   }
 })
