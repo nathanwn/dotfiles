@@ -107,7 +107,6 @@ require('nvim-tree').setup({
 })
 
 -- theme
--- require('config.themes.onedark')
 require('config.themes.papercolor-light')
 
 -- rooter
