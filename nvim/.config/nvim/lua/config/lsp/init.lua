@@ -70,16 +70,26 @@ local default_lsp_config = {
 }
 
 local servers = {
+  -- C++
   clangd = require('config.lsp.servers.clangd')(),
   cmake = require('config.lsp.servers.cmake')(),
-  efm = require('config.lsp.servers.efm')(default_on_attach),
-  yamlls = require('config.lsp.servers.yamlls')(),
-  -- jsonls = require('config.lsp.servers.jsonls')(default_on_attach),
-  prismals = require('config.lsp.servers.prismals')(default_on_attach),
-  pyright = require('config.lsp.servers.pyright')(),
-  -- sqlls = require('config.lsp.servers.sqlls')(),
-  sumneko_lua = require('config.lsp.servers.sumneko_lua')(),
+  -- JS, TS
   tsserver = require('config.lsp.servers.tsserver')(default_on_attach),
+  -- Lua
+  sumneko_lua = require('config.lsp.servers.sumneko_lua')(),
+  -- JSON
+  -- jsonls = require('config.lsp.servers.jsonls')(default_on_attach),
+  -- Prisma
+  prismals = require('config.lsp.servers.prismals')(default_on_attach),
+  -- Python
+  pyright = require('config.lsp.servers.pyright')(),
+  -- jedi_language_server = require('config.lsp.servers.jedi')(),
+  -- SQL
+  -- sqlls = require('config.lsp.servers.sqlls')(),
+  -- yaml
+  yamlls = require('config.lsp.servers.yamlls')(),
+  -- Formatting
+  efm = require('config.lsp.servers.efm')(default_on_attach),
 }
 
 for server, config in pairs(servers) do

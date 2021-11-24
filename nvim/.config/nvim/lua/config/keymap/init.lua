@@ -62,6 +62,8 @@ keys.map('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspa
 keys.map('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 keys.map('n', '<Leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
+keys.map('n', '<Leader>g*', '<cmd>lua vim.cmd("e"..vim.lsp.get_log_path())<CR>')
+
 
 ----------
 -- Settings
@@ -78,7 +80,7 @@ keys.map('n', 'e', 'he')
 
 -- Terminal
 keys.map('n', '<Leader>vt', ':vsplit | terminal<CR>')
-keys.map('n', '<Leader>vts', ':split | terminal<CR>')
+keys.map('n', '<Leader>vT', ':split | terminal<CR>')
 keys.map('t', '<C-[>', '<C-\\><C-n>')
 
 -- Resize splits

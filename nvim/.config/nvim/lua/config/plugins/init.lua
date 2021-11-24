@@ -53,6 +53,7 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
   vim.cmd [[ Plug 'scalameta/nvim-metals' ]]
   -- Autocomplete
+  -- vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
   vim.cmd [[ Plug 'hrsh7th/nvim-cmp' ]]
   vim.cmd [[ Plug 'hrsh7th/cmp-nvim-lsp' ]]
   vim.cmd [[ Plug 'hrsh7th/cmp-buffer' ]]
