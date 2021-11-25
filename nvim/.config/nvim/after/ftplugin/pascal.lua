@@ -1,2 +1,2 @@
 require("utils").editor.set_buf_indent(2)
-vim.wo.foldenable = false
+vim.g.pascal_fpc = 1

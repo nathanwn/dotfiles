@@ -53,10 +53,16 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
   vim.cmd [[ Plug 'scalameta/nvim-metals' ]]
   -- Autocomplete
-  vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
+  -- vim.cmd [[ Plug 'hrsh7th/nvim-compe' ]]
+  vim.cmd [[ Plug 'hrsh7th/nvim-cmp' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-nvim-lsp' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-buffer' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-path' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-cmdline' ]]
+  vim.cmd [[ Plug 'hrsh7th/cmp-omni' ]]
   -- Snippets
+  vim.cmd [[ Plug 'hrsh7th/cmp-vsnip' ]]
   vim.cmd [[ Plug 'hrsh7th/vim-vsnip' ]]
-  vim.cmd [[ Plug 'hrsh7th/vim-vsnip-integ' ]]
   vim.cmd [[ Plug 'rafamadriz/friendly-snippets' ]]
 
   -- LANGUAGE-SPECIFIC
@@ -76,25 +82,39 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'pantharshit00/vim-prisma' ]]
   -- Tex
   vim.cmd [[ Plug 'lervag/vimtex', { 'for': 'tex' } ]]
+
+  -- GRAMMAR CHECKER
+  vim.cmd [[ Plug 'rhysd/vim-grammarous' ]]
 vim.fn['plug#end']()
 
 -- gitsigns
 require('gitsigns').setup()
 
 -- nvimtree
-vim.g.nvim_tree_ignore = {
-  '.git',
-  '__pycache__'
-}
-require('nvim-tree').setup()
+require('nvim-tree').setup({
+  filters = {
+    custom = {
+        '.git',
+      -- python
+      '__pycache__',
+      -- latex
+      '*.aux', '*.bbl', '*.blg', '*.bcf',
+      '*.fdb_latexmk', '*.fls', '*.glo', '*.ist',
+      '*.lof', '*.log', '*.lot', '*.synctex.gz',
+      '*.toc',
+    }
+  }
+})
 
 -- theme
-require('config.themes.solarized-dark')
+require('config.themes.papercolor-light')
 
 -- rooter
 vim.g.rooter_patterns = {
   '.git',
   '*.pandoc',
+  'requirements.txt',
+  'main.tex',
 }
 
 -- vim-go
@@ -105,3 +125,10 @@ vim.g.go_def_mapping_enabled = false  -- prevent conflict with coc/lsp
 -- pandoc
 vim.cmd [[ let g:pandoc#command#templates_file=expand("$HOME")."/.config/nvim/settings/vim-pandoc-templates" ]]
 vim.cmd [[ let g:pandoc#spell#enabled = 0 ]]
+
+require "config.plugins.treesitter"
+require "config.lsp"
+require "config.plugins.cmp"
+-- require "config.plugins.compe"
+require "config.plugins.telescope"
+require "config.plugins.vimtex"

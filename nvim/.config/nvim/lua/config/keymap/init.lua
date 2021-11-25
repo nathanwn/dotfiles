@@ -62,6 +62,8 @@ keys.map('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspa
 keys.map('n', '<Leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 keys.map('n', '<Leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
+keys.map('n', '<Leader>g*', '<cmd>lua vim.cmd("e"..vim.lsp.get_log_path())<CR>')
+
 
 ----------
 -- Settings
@@ -78,7 +80,7 @@ keys.map('n', 'e', 'he')
 
 -- Terminal
 keys.map('n', '<Leader>vt', ':vsplit | terminal<CR>')
-keys.map('n', '<Leader>vts', ':split | terminal<CR>')
+keys.map('n', '<Leader>vT', ':split | terminal<CR>')
 keys.map('t', '<C-[>', '<C-\\><C-n>')
 
 -- Resize splits
@@ -86,3 +88,7 @@ keys.map('n', '<C-s><C-k>', ':resize -1<CR>')
 keys.map('n', '<C-s><C-j>', ':resize +1<CR>')
 keys.map('n', '<C-s><C-h>', ':vertical resize -1<CR>')
 keys.map('n', '<C-s><C-l>', ':vertical resize +1<CR>')
+
+-- Remap for word wrap
+keys.map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+keys.map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })

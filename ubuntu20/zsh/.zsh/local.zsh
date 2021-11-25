@@ -7,6 +7,8 @@ export PATH="$HOME/.local/bin:$PATH"
 # Shell programs
 # exa
 export PATH="$HOME/bin/exa/exa-linux-x86_64-v0.10.0/bin:$PATH"
+# nvim
+export PATH="$HOME/bin/nvim-linux64/bin:$PATH"
 
 # Languages & Tools
 # c++
