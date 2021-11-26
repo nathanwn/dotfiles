@@ -15,7 +15,7 @@ local languages = {
   html = { formatters.prettierd },
   scss = { formatters.prettierd },
   css = { formatters.prettierd },
-  python = { formatters.python_black },
+  python = { formatters.python_black310 },
 }
 
 return function(default_on_attach)
