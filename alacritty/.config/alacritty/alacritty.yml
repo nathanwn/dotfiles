@@ -1,18 +1,28 @@
 # https://www.nerdfonts.com/font-downloads
 font:
   normal:
-    family: "InconsolataGo Nerd Font Mono"
+    # family: "JetbrainsMono Nerd Font"
+    family: "CaskaydiaCove Nerd Font"
     style: Regular
   bold:
-    family: "InconsolataGo Nerd Font Mono"
+    family: "CaskaydiaCove Nerd Font"
     style: Bold
   italic:
-    family: "InconsolataGo Nerd Font Mono"
+    family: "CaskaydiaCove Nerd Font"
     style: Italic
   bold_italic:
-    family: "InconsolataGo Nerd Font Mono"
+    family: "CaskaydiaCove Nerd Font"
     style: Bold Italic
-  size: 16
+  size: 12
+
+window:
+  padding:
+    x: 5
+    y: 0
+
+scrolling:
+  history: 10000
+  multiplier: 10
 
 # Theme: Papercolor Light
 colors:

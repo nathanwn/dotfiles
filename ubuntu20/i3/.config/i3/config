@@ -213,5 +213,6 @@ bar {
 }
 
 # Wallpaper
-set $wallpaper = "/usr/share/backgrounds/warty-final-ubuntu.png"
+# set $wallpaper = "/usr/share/backgrounds/warty-final-ubuntu.png"
+set $wallpaper = "$HOME/wallpapers/hatches.jpg"
 exec_always [ -f $wallpaper ] || feh --bg-scale $wallpaper

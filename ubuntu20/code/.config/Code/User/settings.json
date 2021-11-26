@@ -2,7 +2,8 @@
   "editor.fontFamily": "'CaskaydiaCove Nerd Font','JetbrainsMono Nerd Font','Jetbrains Mono', 'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
   "editor.detectIndentation": false,
   "editor.minimap.enabled": false,
-  "workbench.colorTheme": "papercolor-vscode-light",
+  "editor.lineHeight": 1.6,
+  "workbench.colorTheme": "Default Light+",
   "workbench.panel.defaultLocation": "right",
   "window.zoomLevel": 1,
   "[bibtex]": {
