@@ -1,54 +1,46 @@
 # https://www.nerdfonts.com/font-downloads
 font:
   normal:
-    # family: "JetbrainsMono Nerd Font"
-    family: "CaskaydiaCove Nerd Font"
+    family: "InconsolataGo Nerd Font Mono"
     style: Regular
   bold:
-    family: "CaskaydiaCove Nerd Font"
+    family: "InconsolataGo Nerd Font Mono"
     style: Bold
   italic:
-    family: "CaskaydiaCove Nerd Font"
+    family: "InconsolataGo Nerd Font Mono"
     style: Italic
   bold_italic:
-    family: "CaskaydiaCove Nerd Font"
+    family: "InconsolataGo Nerd Font Mono"
     style: Bold Italic
-  size: 12
+  size: 16
 
-window:
-  padding:
-    x: 5
-    y: 0
-
-scrolling:
-  history: 10000
-  multiplier: 10
-
-# Colors (Solarized Dark)
+# Theme: Papercolor Light
 colors:
-  # Default colors
   primary:
-    background: '0x002b36'
-    foreground: '0x839496'
+    background: "#eeeeee"
+    foreground: "#444444"
 
-  # Normal colors
+  cursor:
+    text: "#eeeeee"
+    cursor: "#444444"
+
   normal:
-    black:   '0x073642'
-    red:     '0xdc322f'
-    green:   '0x859900'
-    yellow:  '0xb58900'
-    blue:    '0x268bd2'
-    magenta: '0xd33682'
-    cyan:    '0x2aa198'
-    white:   '0xeee8d5'
+    black: "#eeeeee"
+    red: "#af0000"
+    green: "#008700"
+    yellow: "#5f8700"
+    blue: "#0087af"
+    magenta: "#8700af"
+    cyan: "#005f87"
+    white: "#878787"
 
-  # Bright colors
   bright:
-    black:   '0x002b36'
-    red:     '0xcb4b16'
-    green:   '0x586e75'
-    yellow:  '0x657b83'
-    blue:    '0x839496'
-    magenta: '0x6c71c4'
-    cyan:    '0x93a1a1'
-    white:   '0xfdf6e3'
+    black: "#bcbcbc"
+    red: "#af0000"
+    green: "#008700"
+    yellow: "#5f8700"
+    blue: "#0087af"
+    magenta: "#8700af"
+    cyan: "#005f87"
+    white: "#eeeeee"
+
