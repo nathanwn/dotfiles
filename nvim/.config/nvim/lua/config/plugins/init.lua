@@ -36,6 +36,8 @@ vim.fn['plug#begin']()
   vim.cmd [[ Plug 'NLKNguyen/papercolor-theme' ]]
   vim.cmd [[ Plug 'monsonjeremy/onedark.nvim' ]]
   vim.cmd [[ Plug 'lifepillar/vim-solarized8' ]]
+  vim.cmd [[ Plug 'nanotech/jellybeans.vim' ]]
+  vim.cmd [[ Plug 'tomasiser/vim-code-dark' ]]
   vim.cmd [[ Plug 'hoob3rt/lualine.nvim' ]]
 
   -- FUZZY-FINDING
@@ -107,7 +109,7 @@ require('nvim-tree').setup({
 })
 
 -- theme
-require('config.themes.papercolor-light')
+require('config.themes.code-dark')
 
 -- rooter
 vim.g.rooter_patterns = {
