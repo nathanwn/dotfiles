@@ -109,7 +109,7 @@ require('nvim-tree').setup({
 })
 
 -- theme
-require('config.themes.code-dark')
+require('config.themes.papercolor-light')
 
 -- rooter
 vim.g.rooter_patterns = {
