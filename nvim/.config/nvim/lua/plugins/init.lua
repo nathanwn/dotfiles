@@ -56,6 +56,9 @@ return require('packer').startup(function(use)
     requires = { 'scalameta/nvim-metals' },
     config = require('lsp')
   }
+  use { 'scalameta/nvim-metals',
+    requires = { "nvim-lua/plenary.nvim" }
+  }
 
   -- AUTOCOMPLETE
   -- use { 'hrsh7th/nvim-compe' }
