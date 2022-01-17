@@ -1,4 +1,4 @@
-local utils = require('config.lsp.utils');
+local utils = require('lsp.utils');
 
 return function(default_on_attach)
   return {
