@@ -1,5 +1,5 @@
-local formatters = require('lsp.formatters');
-local linters = require('lsp.linters');
+local formatters = require('lsp.formatters')
+local linters = require('lsp.linters')
 
 local languages = {
   -- lua = {luafmt},
@@ -17,7 +17,7 @@ local languages = {
   python = { formatters.python_black310 },
 }
 
-return function()
+return function(default_on_attach)
   return {
     filetypes = vim.tbl_keys(languages),
     init_options = {
@@ -28,5 +28,8 @@ return function()
       lintDebounce = 500,
       languages = languages
     },
+    on_attach = function(client, bufnr)
+      default_on_attach(client, bufnr)
+    end
   }
 end

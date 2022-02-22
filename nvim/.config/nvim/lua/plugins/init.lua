@@ -8,8 +8,11 @@ return require('packer').startup(function(use)
   use { 'nvim-lua/plenary.nvim' }
   use { 'kyazdani42/nvim-web-devicons' }
   -- Git
-  use { 'tpope/vim-fugitive' }
+  use { 'tpope/vim-fugitive',
+    event = 'VimEnter *',
+  }
   use { 'lewis6991/gitsigns.nvim',
+    event = 'BufEnter *',
     requires = { 'nvim-lua/plenary.nvim' },
     config = require('plugins/gitsigns'),
   }
@@ -76,7 +79,7 @@ return require('packer').startup(function(use)
   }
 
   -- LSP
-  -- Lsp
+  -- LspConfig
   use { 'neovim/nvim-lspconfig',
     requires = { 'scalameta/nvim-metals' },
     config = require('lsp')
@@ -119,7 +122,9 @@ return require('packer').startup(function(use)
     config = require('plugins/vim-go')
   }
   -- Markdown
-  use { 'plasticboy/vim-markdown' }
+  use { 'plasticboy/vim-markdown',
+    ft = { 'markdown' },
+  }
   -- Pandoc
   use { 'vim-pandoc/vim-pandoc',
     requires = { 'vim-pandoc/vim-pandoc-syntax' },
