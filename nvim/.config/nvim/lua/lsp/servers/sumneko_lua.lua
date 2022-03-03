@@ -1,6 +1,12 @@
 -- Custom server
 local sumneko_root_path = vim.fn.getenv("HOME").."/bin/lang-servers/lua-language-server"
-local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
+local os = nil
+if vim.loop.os_uname().sysname == "Darwin" then
+  os = "macOS"
+else
+  os = "Linux"
+end
+local sumneko_binary = sumneko_root_path .. '/bin/'..os..'/lua-language-server'
 
 -- Make runtime files discoverable to the server
 local runtime_path = vim.split(package.path, ';')

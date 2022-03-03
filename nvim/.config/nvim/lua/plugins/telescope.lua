@@ -1,7 +1,5 @@
 return function()
-  require('telescope').load_extension('fzf')
-
-  require('telescope').setup{
+  require('telescope').setup {
     defaults = {
       sorting_strategy = 'ascending',
       layout_config = {
@@ -9,7 +7,7 @@ return function()
       },
       file_ignore_patterns = {
         ".git",
-      }
+      },
     },
     extensions = {
       fzf = {
@@ -20,4 +18,5 @@ return function()
       }
     }
   }
+  require('telescope').load_extension('fzf')
 end

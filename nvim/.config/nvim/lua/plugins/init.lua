@@ -12,7 +12,6 @@ return require('packer').startup(function(use)
     event = 'VimEnter *',
   }
   use { 'lewis6991/gitsigns.nvim',
-    event = 'BufEnter *',
     requires = { 'nvim-lua/plenary.nvim' },
     config = require('plugins/gitsigns'),
   }
@@ -66,28 +65,31 @@ return require('packer').startup(function(use)
   }
   use { 'NLKNguyen/papercolor-theme',
     requires = { 'nvim-lualine/lualine.nvim' },
-    config = require('themes/papercolor-light')
+    config = require('themes/papercolor-light'),
   }
 
   -- FUZZY-FINDING
-  use { 'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
-    config = require('plugins/telescope')
+  use { 'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
   }
-  use { "nvim-telescope/telescope-fzf-native.nvim",
-    run = "make"
+  use { 'nvim-telescope/telescope.nvim',
+    requires = {
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim' },
+    },
+    config = require('plugins/telescope'),
   }
 
   -- LSP
   -- LspConfig
   use { 'neovim/nvim-lspconfig',
     requires = { 'scalameta/nvim-metals' },
-    config = require('lsp')
+    config = require('lsp'),
   }
   -- Rust
   use { 'simrat39/rust-tools.nvim',
     requires = 'neovim/nvim-lspconfig',
-    config = require('plugins/rust-tools')
+    config = require('plugins/rust-tools'),
   }
   -- Scala
   use { 'scalameta/nvim-metals',
