@@ -28,6 +28,8 @@ export PATH="$HOME/apps/Qt/5.12.6/clang_64/bin:$PATH"
 export PATH="/usr/local/Cellar/gcc/10.2.0/bin:$PATH"
 # rust
 FILE="$HOME/.cargo/env" && test -f $FILE && source $FILE
+# scala
+export PATH="$HOME/bin/coursier:$PATH"
 
 # LLVM stuff
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
