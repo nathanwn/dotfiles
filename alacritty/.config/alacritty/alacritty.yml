@@ -1,18 +1,28 @@
 # https://www.nerdfonts.com/font-downloads
 font:
   normal:
-    family: "InconsolataGo Nerd Font Mono"
+    # family: "CaskaydiaCove Nerd Font"
+    family: "JetbrainsMono Nerd Font"
     style: Regular
   bold:
-    family: "InconsolataGo Nerd Font Mono"
+    family: "JetbrainsMono Nerd Font"
     style: Bold
   italic:
-    family: "InconsolataGo Nerd Font Mono"
+    family: "JetbrainsMono Nerd Font"
     style: Italic
   bold_italic:
-    family: "InconsolataGo Nerd Font Mono"
+    family: "JetbrainsMono Nerd Font"
     style: Bold Italic
-  size: 16
+  size: 12
+
+window:
+  padding:
+    x: 5
+    y: 0
+
+scrolling:
+  history: 10000
+  multiplier: 10
 
 # Theme: Papercolor Light
 colors:
@@ -44,3 +54,37 @@ colors:
     cyan: "#005f87"
     white: "#eeeeee"
 
+
+# Jellybeans
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x1E1E1E'
+#     foreground: '0xD4D4D4'
+#
+#   # Cursor colors
+#   cursor:
+#     text:   '0x000000'
+#     cursor: '0xAEAFAD'
+#
+#   # Normal colors
+#   normal:
+#     blue:    '0x569CD6'
+#     red:     '0xF44747'
+#     green:   '0x6A9955'
+#     yellow:  '0xCE9178'
+#     black:   '0x929292'
+#     magenta: '0xe1c0fa'
+#     cyan:    '0x00988e'
+#     white:   '0xdedede'
+#
+#   # Bright colors
+#   bright:
+#     blue:    '0x9CDCFE'
+#     red:     '0xD16969'
+#     green:   '0xB5CEA8'
+#     yellow:  '0xDCDCAA'
+#     black:   '0xbdbdbd'
+#     magenta: '0xfbdaff'
+#     cyan:    '0x1ab2a8'
+#     white:   '0xffffff'

@@ -26,7 +26,7 @@ vim.opt.scrolloff = 8
 -- Undo files
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = vim.fn.getenv("HOME")..'/.config/nvim/undodir'
+vim.opt.undodir = vim.fn.getenv("HOME")..'/.local/share/nvim/undodir'
 vim.opt.undofile = true
 -- Wrap
 vim.opt.linebreak = true

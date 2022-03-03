@@ -1,6 +1,5 @@
-local formatters = require('config.lsp.formatters');
-local linters = require('config.lsp.linters');
-local utils = require('config.lsp.utils');
+local formatters = require('lsp.formatters')
+local linters = require('lsp.linters')
 
 local languages = {
   -- lua = {luafmt},
@@ -15,7 +14,7 @@ local languages = {
   html = { formatters.prettierd },
   scss = { formatters.prettierd },
   css = { formatters.prettierd },
-  python = { formatters.python_black },
+  python = { formatters.python_black310 },
 }
 
 return function(default_on_attach)
@@ -30,8 +29,7 @@ return function(default_on_attach)
       languages = languages
     },
     on_attach = function(client, bufnr)
-      default_on_attach(client, bufnr);
-      utils.setFormatOnSave(client);
+      default_on_attach(client, bufnr)
     end
   }
 end

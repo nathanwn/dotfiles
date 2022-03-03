@@ -31,4 +31,10 @@ M.python_black = {
   formatStdin = true
 }
 
+-- python
+M.python_black310 = {
+  formatCommand = "python3 -m black --quiet --target-version py310 -",
+  formatStdin = true
+}
+
 return M;
