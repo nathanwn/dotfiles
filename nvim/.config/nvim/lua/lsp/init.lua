@@ -43,7 +43,7 @@ return function()
     buf_set_keymap('n', '<Leader>gt', "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 
     buf_set_keymap('n', '<Leader>rn', [[<cmd>lua vim.lsp.buf.rename()<CR>]], opts)
-    buf_set_keymap("n", '<Leader>fm', [[<cmd>lua vim.lsp.buf.formatting()<CR>]], opts)
+    buf_set_keymap("n", '<Leader>fm', [[<cmd>lua vim.lsp.buf.formatting_sync()<CR>]], opts)
 
     -- if client.server_capabilities.codeActionProvider then
     buf_set_keymap('n', '<Leader>ca', [[<cmd>lua vim.lsp.buf.code_action()<CR>]], opts)

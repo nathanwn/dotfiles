@@ -27,13 +27,7 @@ M.prettierd = {
 
 -- python
 M.python_black = {
-  formatCommand = "python3 -m black --quiet -",
-  formatStdin = true
-}
-
--- python
-M.python_black310 = {
-  formatCommand = "python3 -m black --quiet --target-version py310 -",
+  formatCommand = "black --quiet -",
   formatStdin = true
 }
 
