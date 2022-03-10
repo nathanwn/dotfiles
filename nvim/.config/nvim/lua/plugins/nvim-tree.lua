@@ -2,9 +2,11 @@ return function()
   require('nvim-tree').setup({
     filters = {
       custom = {
-          '.git',
+        '.git',
         -- python
-        '__pycache__',
+        '.venv', '__pycache__',
+        '*.egg-info',
+        '.pytest_cache',
         -- latex
         '*.aux', '*.bbl', '*.blg', '*.bcf',
         '*.fdb_latexmk', '*.fls', '*.glo', '*.ist',
