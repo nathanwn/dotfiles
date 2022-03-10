@@ -31,4 +31,9 @@ M.python_black = {
   formatStdin = true
 }
 
+M.python_isort = {
+  formatCommand = "isort --quiet -",
+  formatStdin = true
+}
+
 return M;
