@@ -1,5 +1,5 @@
-local formatters = require('lsp.formatters')
-local linters = require('lsp.linters')
+local formatters = require('lsp.servers.efm.formatters')
+local linters = require('lsp.servers.efm.linters')
 
 local languages = {
   -- lua = {luafmt},
