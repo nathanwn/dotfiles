@@ -10,15 +10,22 @@ return require('packer').startup(function(use)
   -- Git
   use { 'tpope/vim-fugitive',
     event = 'VimEnter *',
+    config = require('plugins/fugitive'),
   }
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = require('plugins/gitsigns'),
   }
   -- Tmux
-  use { 'christoomey/vim-tmux-navigator' }
+  use { 'christoomey/vim-tmux-navigator',
+    -- event = 'VimEnter *',
+    config = require('plugins/tmux-navigator'),
+  }
   -- Undo
-  use { 'mbbill/undotree' }
+  use { 'mbbill/undotree',
+    -- event = 'VimEnter *',
+    config = require('plugins/undotree')
+  }
   -- Outline
   use { 'simrat39/symbols-outline.nvim' }
   -- Explorer Tree
@@ -31,32 +38,11 @@ return require('packer').startup(function(use)
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = require('plugins/treesitter')
+    config = require('plugins/treesitter'),
   }
   use { 'nvim-treesitter/playground',
     requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require "nvim-treesitter.configs".setup {
-        playground = {
-          enable = true,
-          disable = {},
-          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-          persist_queries = false, -- Whether the query persists across vim sessions
-          keybindings = {
-            toggle_query_editor = 'o',
-            toggle_hl_groups = 'i',
-            toggle_injected_languages = 't',
-            toggle_anonymous_nodes = 'a',
-            toggle_language_display = 'I',
-            focus_language = 'f',
-            unfocus_language = 'F',
-            update = 'R',
-            goto_node = '<cr>',
-            show_help = '?',
-          },
-        }
-      }
-    end
+    config = require('plugins/treesitter-playground'),
   }
 
   -- THEMES
@@ -69,15 +55,15 @@ return require('packer').startup(function(use)
   }
 
   -- FUZZY-FINDING
-  use { 'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make',
-  }
   use { 'nvim-telescope/telescope.nvim',
     requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim' },
     },
-    config = require('plugins/telescope'),
+    config = require('plugins/telescope')
+  }
+  use { 'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
   }
 
   -- LSP

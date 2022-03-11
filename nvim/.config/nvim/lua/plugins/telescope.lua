@@ -19,4 +19,15 @@ return function()
     }
   }
   require('telescope').load_extension('fzf')
+
+  local keys = require('utils').keys;
+  keys.map('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files({ previewer=false })<CR>]])
+  keys.map('n', '<Leader>fF', [[<cmd>lua require('telescope.builtin').find_files({ previewer=false, hidden=true })<CR>]])
+  keys.map('n', '<Leader>fb', [[<cmd>lua require('telescope.builtin').buffers({ previewer=false })<CR>]])
+  keys.map('n', '<Leader>fc', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
+  keys.map('n', '<Leader>fg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
+  keys.map('n', '<Leader>fG', [[<cmd>lua require('telescope.builtin').live_grep({ hidden=true })<CR>]])
+  keys.map('n', '<Leader>fH', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
+  keys.map('n', '<Leader>fK', [[<cmd>lua require('telescope.builtin').keymaps()<CR>]])
+  keys.map('n', '<Leader>f.', [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles", hidden=true })<CR>]])
 end
