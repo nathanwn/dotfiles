@@ -1,8 +1,8 @@
-vim.opt.background = 'dark'
-vim.cmd [[ colorscheme jellybeans ]]
+vim.opt.background = "dark"
+vim.cmd([[ colorscheme jellybeans ]])
 
-require('lualine').setup {
+require("lualine").setup({
   options = {
-    theme = 'jellybeans'
-  }
-}
+    theme = "jellybeans",
+  },
+})

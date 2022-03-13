@@ -1,8 +1,8 @@
-vim.opt.background = 'dark'
-vim.cmd [[ colorscheme codedark ]]
+vim.opt.background = "dark"
+vim.cmd([[ colorscheme codedark ]])
 
-require('lualine').setup {
+require("lualine").setup({
   options = {
-    theme = 'codedark'
-  }
-}
+    theme = "codedark",
+  },
+})

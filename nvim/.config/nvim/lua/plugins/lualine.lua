@@ -1,7 +1,7 @@
 return function(theme)
-  require('lualine').setup {
+  require("lualine").setup({
     options = {
-      theme = theme
-    }
-  }
+      theme = theme,
+    },
+  })
 end

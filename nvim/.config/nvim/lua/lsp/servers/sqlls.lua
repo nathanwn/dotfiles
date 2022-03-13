@@ -1,5 +1,5 @@
 return function()
   return {
-    cmd = {"sql-language-server", "up", "--method", "stdio"};
+    cmd = { "sql-language-server", "up", "--method", "stdio" },
   }
 end

@@ -1,20 +1,20 @@
-local M = {};
+local M = {}
 
 M.luafmt = {
   formatCommand = "luafmt ${-i:tabWidth} --stdin",
-  formatStdin = true
+  formatStdin = true,
 }
 
-M.prettier  = {
+M.prettier = {
   formatCommand = "prettier --stdin --stdin-filepath ${INPUT}",
-  formatStdin = true
+  formatStdin = true,
 }
 
 -- npm add --global prettier_d_slim
 -- Doesn't work for some reason...
-M.prettier_d  = {
+M.prettier_d = {
   formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",
-  formatStdin = true
+  formatStdin = true,
 }
 
 M.prettierd = {
@@ -28,12 +28,12 @@ M.prettierd = {
 -- python
 M.python_black = {
   formatCommand = "black --quiet -",
-  formatStdin = true
+  formatStdin = true,
 }
 
 M.python_isort = {
   formatCommand = "isort --quiet -",
-  formatStdin = true
+  formatStdin = true,
 }
 
-return M;
+return M

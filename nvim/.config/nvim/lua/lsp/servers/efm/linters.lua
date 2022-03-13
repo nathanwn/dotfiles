@@ -1,4 +1,4 @@
-local M = {};
+local M = {}
 
 -- To install, run `npm add --global eslint_d`
 M.eslint_d = {
@@ -6,15 +6,15 @@ M.eslint_d = {
   -- lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintIgnoreExitCode = true,
   lintStdin = true,
-  lintFormats = {"%f(%l,%c): %tarning %m", "%f(%l,%c): %rror %m"},
+  lintFormats = { "%f(%l,%c): %tarning %m", "%f(%l,%c): %rror %m" },
   formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-  formatStdin = true
+  formatStdin = true,
 }
 
 M.flake8 = {
   lintCommand = "flake8 --stdin-display-name ${INPUT} -",
   lintStdin = true,
-  lintFormats = {"%f:%l:%c: %m"}
+  lintFormats = { "%f:%l:%c: %m" },
 }
 
-return M;
+return M

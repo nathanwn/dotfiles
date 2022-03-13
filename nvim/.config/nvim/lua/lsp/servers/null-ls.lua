@@ -1,4 +1,4 @@
-local builtins = require('null-ls').builtins
+local builtins = require("null-ls").builtins
 
 return {
   sources = {
@@ -14,4 +14,5 @@ return {
     builtins.diagnostics.flake8,
     builtins.diagnostics.mypy,
   },
+  diagnostics_format = "#{m} (#{s})",
 }

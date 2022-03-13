@@ -1,10 +1,10 @@
-vim.opt.background = 'dark'
-vim.cmd [[ colorscheme solarized8 ]]
+vim.opt.background = "dark"
+vim.cmd([[ colorscheme solarized8 ]])
 
-require('lualine').setup {
+require("lualine").setup({
   options = {
-    theme = 'solarized'
-  }
-}
+    theme = "solarized",
+  },
+})
 
 -- vim.g.solarized_contrast = 'low'

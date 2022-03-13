@@ -1,6 +1,6 @@
-require('onedark').setup()
-require('lualine').setup {
+require("onedark").setup()
+require("lualine").setup({
   options = {
-    theme = 'onedark'
-  }
-}
+    theme = "onedark",
+  },
+})
