@@ -1,3 +1,4 @@
+local default = require('lsp.default')
 local formatters = require('lsp.servers.efm.formatters')
 local linters = require('lsp.servers.efm.linters')
 
@@ -17,19 +18,17 @@ local languages = {
   python = { formatters.python_black, formatters.python_isort, linters.flake8 },
 }
 
-return function(default_on_attach)
-  return {
-    filetypes = vim.tbl_keys(languages),
-    init_options = {
-      documentFormatting = true
-    },
-    settings = {
-      rootMarkers = { "package.json", ".git" },
-      lintDebounce = 500,
-      languages = languages
-    },
-    on_attach = function(client, bufnr)
-      default_on_attach(client, bufnr)
-    end
-  }
-end
+return {
+  filetypes = vim.tbl_keys(languages),
+  init_options = {
+    documentFormatting = true
+  },
+  settings = {
+    rootMarkers = { "package.json", ".git" },
+    lintDebounce = 500,
+    languages = languages
+  },
+  on_attach = function(client, bufnr)
+    default.on_attach(client, bufnr)
+  end
+}

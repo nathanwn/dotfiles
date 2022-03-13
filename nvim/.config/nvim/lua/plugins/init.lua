@@ -1,3 +1,13 @@
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local packer_bootstrap = nil
+
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  packer_bootstrap = vim.fn.system({
+    'git', 'clone', '--depth', '1',
+    'https://github.com/wbthomason/packer.nvim', install_path
+  })
+end
+
 return require('packer').startup(function(use)
   -- Packer manages itself
   use { 'wbthomason/packer.nvim' }
@@ -69,12 +79,18 @@ return require('packer').startup(function(use)
   -- LSP
   -- LspConfig
   use { 'neovim/nvim-lspconfig',
-    requires = { 'scalameta/nvim-metals' },
+    requires = {
+      { 'scalameta/nvim-metals' },
+      { 'jose-elias-alvarez/null-ls.nvim' },
+    },
     config = require('lsp'),
+  }
+  use { 'jose-elias-alvarez/null-ls.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
   }
   -- Rust
   use { 'simrat39/rust-tools.nvim',
-    requires = 'neovim/nvim-lspconfig',
+    requires = { 'neovim/nvim-lspconfig' },
     config = require('plugins/rust-tools'),
   }
   -- Scala
