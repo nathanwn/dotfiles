@@ -1,5 +1,5 @@
 return {
   cmd = {
-    vim.fn.getenv("HOME") .. "/.py/nvim/bin/cmake-language-server",
+    require("utils").python_venv .. "/bin/cmake-language-server",
   },
 }

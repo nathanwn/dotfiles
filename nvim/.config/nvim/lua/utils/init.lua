@@ -8,4 +8,7 @@ function M.editor.set_buf_indent(tabsize)
   vim.bo.softtabstop = tabsize
 end
 
+M.local_dir_path = vim.fn.getenv("HOME") .. "/.local/share/nvim"
+M.python_venv = vim.fn.getenv("HOME") .. "/.local/share/nvim/venv"
+
 return M

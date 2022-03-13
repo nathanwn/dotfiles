@@ -1,3 +1,4 @@
 pynvim
 neovim-remote
 cmake-language-server
+debugpy
