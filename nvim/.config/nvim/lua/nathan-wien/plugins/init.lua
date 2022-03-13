@@ -116,9 +116,18 @@ return require("packer").startup(function(use)
     config = lrequire("dap/ui"),
   })
   use({
+    "nvim-telescope/telescope-dap.nvim",
+    requires = { "mfussenegger/nvim-dap", "nvim-telescope/telescope.nvim" },
+  })
+  use({
     "mfussenegger/nvim-dap-python",
     requires = { "mfussenegger/nvim-dap" },
     config = lrequire("dap/python"),
+  })
+  use({
+    "theHamsta/nvim-dap-virtual-text",
+    requires = { "mfussenegger/nvim-dap" },
+    config = lrequire("dap/virtual-text"),
   })
 
   -- AUTOCOMPLETE

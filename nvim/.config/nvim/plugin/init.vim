@@ -75,8 +75,9 @@ function! SynStackPrevLine()
   endif
   echo map(synstack(line('.')-1, col('.')), 'synIDattr(v:val, "name")')
 endfunc
-nnoremap <F7> :call SynStack()<CR>
-nnoremap <F8> :call SynStackPrevLine()<CR>
+" TODO: change these into commands
+" nnoremap <F7> :call SynStack()<CR>
+" nnoremap <F8> :call SynStackPrevLine()<CR>
 
 function SyntaxTex()
   call SetIndentSize(2)

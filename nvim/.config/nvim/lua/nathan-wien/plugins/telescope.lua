@@ -18,14 +18,15 @@ return function()
       },
     },
   })
+
   require("telescope").load_extension("fzf")
+  require("telescope").load_extension("dap")
 
   local telescope_builtin = require("telescope.builtin")
 
-  -- vim.keymap.set("n", "<Leader>ff", function()
-  --   telescope_builtin.find_files({ previewer = false })
-  -- end)
-  vim.keymap.set("n", "<Leader>ff", telescope_builtin.find_files)
+  vim.keymap.set("n", "<Leader>ff", function()
+    telescope_builtin.find_files({ previewer = false })
+  end)
   vim.keymap.set("n", "<Leader>fF", function()
     telescope_builtin.find_files({ previewer = false, hidden = true })
   end)
