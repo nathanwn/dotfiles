@@ -22,9 +22,10 @@ return function()
 
   local telescope_builtin = require("telescope.builtin")
 
-  vim.keymap.set("n", "<Leader>ff", function()
-    telescope_builtin.find_files({ previewer = false })
-  end)
+  -- vim.keymap.set("n", "<Leader>ff", function()
+  --   telescope_builtin.find_files({ previewer = false })
+  -- end)
+  vim.keymap.set("n", "<Leader>ff", telescope_builtin.find_files)
   vim.keymap.set("n", "<Leader>fF", function()
     telescope_builtin.find_files({ previewer = false, hidden = true })
   end)
@@ -39,6 +40,9 @@ return function()
   vim.keymap.set("n", "<Leader>fH", telescope_builtin.help_tags)
   vim.keymap.set("n", "<Leader>fK", telescope_builtin.keymaps)
   vim.keymap.set("n", "<Leader>f.", function()
-    telescope_builtin.find_files({ cwd = vim.fn.getenv("HOME") .. "/dotfiles", hidden = true })
+    telescope_builtin.find_files({
+      cwd = vim.fn.getenv("HOME") .. "/dotfiles",
+      hidden = true,
+    })
   end)
 end

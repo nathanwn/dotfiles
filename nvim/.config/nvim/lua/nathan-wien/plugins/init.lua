@@ -1,5 +1,6 @@
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local packer_bootstrap = nil
+local lrequire = require("nathan-wien.utils").local_require
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   packer_bootstrap = vim.fn.system({
@@ -22,48 +23,58 @@ return require("packer").startup(function(use)
   use({ "nvim-lua/plenary.nvim" })
   use({ "kyazdani42/nvim-web-devicons" })
   -- Git
-  use({ "tpope/vim-fugitive", event = "VimEnter *", config = require("plugins/fugitive") })
+  use({
+    "tpope/vim-fugitive",
+    event = "VimEnter *",
+    config = lrequire("plugins/fugitive"),
+  })
   use({
     "lewis6991/gitsigns.nvim",
     requires = { "nvim-lua/plenary.nvim" },
-    config = require("plugins/gitsigns"),
+    config = lrequire("plugins/gitsigns"),
   })
   -- Tmux
   use({
     "christoomey/vim-tmux-navigator",
     -- event = 'VimEnter *',
-    config = require("plugins/tmux-navigator"),
+    config = lrequire("plugins/tmux-navigator"),
   })
   -- Undo
   use({
     "mbbill/undotree",
-    -- event = 'VimEnter *',
-    config = require("plugins/undotree"),
+    config = lrequire("plugins/undotree"),
   })
   -- Outline
-  use({ "simrat39/symbols-outline.nvim" })
+  use({ "simrat39/symbols-outline.nvim", config = lrequire("plugins/outline") })
   -- Explorer Tree
   use({
     "kyazdani42/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    config = require("plugins/nvim-tree"),
+    config = lrequire("plugins/nvim-tree"),
   })
   -- Colorizer
   use({ "chrisbra/Colorizer" })
   -- Treesitter
-  use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = require("plugins/treesitter") })
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = lrequire("plugins/treesitter"),
+  })
   use({
     "nvim-treesitter/playground",
     requires = { "nvim-treesitter/nvim-treesitter" },
-    config = require("plugins/treesitter-playground"),
+    config = lrequire("plugins/treesitter-playground"),
   })
 
   -- THEMES
-  use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons", opt = true } })
+  use({
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+  })
   use({
     "NLKNguyen/papercolor-theme",
     requires = { "nvim-lualine/lualine.nvim" },
-    config = require("themes/papercolor-light"),
+    config = lrequire("themes/papercolor-light"),
   })
 
   -- FUZZY-FINDING
@@ -73,7 +84,7 @@ return require("packer").startup(function(use)
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim" },
     },
-    config = require("plugins/telescope"),
+    config = lrequire("plugins/telescope"),
   })
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
@@ -85,20 +96,32 @@ return require("packer").startup(function(use)
       { "scalameta/nvim-metals" },
       { "jose-elias-alvarez/null-ls.nvim" },
     },
-    config = require("lsp"),
+    config = lrequire("lsp"),
   })
   use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
   -- Rust
   use({
     "simrat39/rust-tools.nvim",
     requires = { "neovim/nvim-lspconfig" },
-    config = require("plugins/rust-tools"),
+    config = lrequire("plugins/rust-tools"),
   })
   -- Scala
   use({ "scalameta/nvim-metals", requires = { "nvim-lua/plenary.nvim" } })
 
+  -- DAP
+  use({ "mfussenegger/nvim-dap" })
+  use({
+    "rcarriga/nvim-dap-ui",
+    requires = { "mfussenegger/nvim-dap" },
+    config = lrequire("dap/ui"),
+  })
+  use({
+    "mfussenegger/nvim-dap-python",
+    requires = { "mfussenegger/nvim-dap" },
+    config = lrequire("dap/python"),
+  })
+
   -- AUTOCOMPLETE
-  -- use { 'hrsh7th/nvim-compe' }
   use({
     "hrsh7th/nvim-cmp",
     requires = {
@@ -112,7 +135,7 @@ return require("packer").startup(function(use)
       { "hrsh7th/vim-vsnip" },
       { "rafamadriz/friendly-snippets" },
     },
-    config = require("plugins/cmp"),
+    config = lrequire("plugins/cmp"),
   })
 
   -- LANGUAGE-SPECIFIC
@@ -122,14 +145,14 @@ return require("packer").startup(function(use)
   -- Emmet
   use({ "mattn/emmet-vim" })
   -- Go
-  use({ "fatih/vim-go", config = require("plugins/vim-go") })
+  use({ "fatih/vim-go", config = lrequire("plugins/vim-go") })
   -- Markdown
   use({ "plasticboy/vim-markdown", ft = { "markdown" } })
   -- Pandoc
   use({
     "vim-pandoc/vim-pandoc",
     requires = { "vim-pandoc/vim-pandoc-syntax" },
-    config = require("plugins/vim-pandoc"),
+    config = lrequire("plugins/vim-pandoc"),
   })
   -- Prisma
   use({ "pantharshit00/vim-prisma", ft = { "prisma" } })

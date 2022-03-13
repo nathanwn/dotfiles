@@ -1,4 +1,4 @@
-local default = require("lsp.default")
+local default = require("nathan-wien.lsp.default")
 
 return {
   on_attach = function(client, bufnr)

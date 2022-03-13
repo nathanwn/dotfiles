@@ -1,5 +1,6 @@
 -- Custom server
-local sumneko_root_path = vim.fn.getenv("HOME") .. "/bin/lang-servers/lua-language-server"
+local sumneko_root_path = vim.fn.getenv("HOME")
+  .. "/bin/lang-servers/lua-language-server"
 local os = nil
 if vim.loop.os_uname().sysname == "Darwin" then
   os = "macOS"

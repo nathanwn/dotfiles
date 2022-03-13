@@ -1,30 +1,34 @@
 return function()
   local nvim_lsp = require("lspconfig")
-  local default = require("lsp.default")
+  local lrequire = require("nathan-wien.utils").local_require
+  local default = lrequire("lsp.default")
 
   -- Make diagnostics less aggressive
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = {
-      spacing = 8,
-      -- severity_limit = 'Error',
-    },
-    signs = false,
-    update_in_insert = false,
-  })
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      underline = true,
+      virtual_text = {
+        spacing = 8,
+        -- severity_limit = 'Error',
+      },
+      signs = false,
+      update_in_insert = false,
+    }
+  )
 
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   local configs = {
     -- C++
     clangd = {},
-    cmake = require("lsp.servers.cmake"),
+    cmake = lrequire("lsp.servers.cmake"),
     -- JS, TS
-    tsserver = require("lsp.servers.tsserver"),
+    tsserver = lrequire("lsp.servers.tsserver"),
     -- Lua
-    sumneko_lua = require("lsp.servers.sumneko_lua"),
+    sumneko_lua = lrequire("lsp.servers.sumneko_lua"),
     -- JSON
-    -- jsonls = require('lsp.servers.jsonls'),
+    -- jsonls = lrequire('lsp.servers.jsonls'),
     -- Prisma
     prismals = {},
     -- Python
@@ -32,7 +36,7 @@ return function()
     -- yaml
     yamlls = {},
     -- Formatting
-    -- efm = require('lsp.servers.efm'),
+    -- efm = lrequire('lsp.servers.efm'),
   }
 
   local servers = {}
@@ -48,7 +52,7 @@ return function()
   -- Standalone servers
   table.insert(servers, {
     instance = require("null-ls"),
-    config = require("lsp.servers.null-ls"),
+    config = lrequire("lsp.servers.null-ls"),
   })
 
   for _, server in ipairs(servers) do
