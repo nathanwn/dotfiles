@@ -1,5 +1,3 @@
 return function()
-  -- outline
-  local keys = require("utils").keys
-  keys.map("n", "<Leader>vo", ":SymbolsOutline<CR>")
+  vim.keymap.set("n", "<Leader>vo", require("symbols-outline").toggle_outline)
 end

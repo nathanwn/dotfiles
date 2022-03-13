@@ -1,5 +1,3 @@
 return function()
-  -- undotree
-  local keys = require("utils").keys
-  keys.map("n", "<Leader>vu", ":UndotreeToggle<CR>")
+  vim.keymap.set("n", "<Leader>vu", ":UndotreeToggle<CR>")
 end

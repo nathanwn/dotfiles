@@ -1,29 +1,24 @@
-local keys = require("utils").keys
-
-----------
--- Settings
-----------
 -- Reload init.lua
-keys.map("n", "<F12>", ":luafile ~/.config/nvim/init.lua<CR>")
+vim.keymap.set("n", "<F12>", ":luafile ~/.config/nvim/init.lua<CR>")
 
 -- Indentation
-keys.map("v", "<", "<gv")
-keys.map("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
 -- Ensure `a` in normal-mode to work properly
-keys.map("n", "e", "he")
+vim.keymap.set("n", "e", "he")
 
 -- Terminal
-keys.map("n", "<Leader>vt", ":vsplit | terminal<CR>")
-keys.map("n", "<Leader>vT", ":split | terminal<CR>")
-keys.map("t", "<C-[>", "<C-\\><C-n>")
+vim.keymap.set("n", "<Leader>vt", ":vsplit | terminal<CR>")
+vim.keymap.set("n", "<Leader>vT", ":split | terminal<CR>")
+vim.keymap.set("t", "<C-[>", "<C-\\><C-n>")
 
 -- Resize splits
-keys.map("n", "<C-s><C-k>", ":resize -1<CR>")
-keys.map("n", "<C-s><C-j>", ":resize +1<CR>")
-keys.map("n", "<C-s><C-h>", ":vertical resize -1<CR>")
-keys.map("n", "<C-s><C-l>", ":vertical resize +1<CR>")
+vim.keymap.set("n", "<C-s><C-k>", ":resize -1<CR>")
+vim.keymap.set("n", "<C-s><C-j>", ":resize +1<CR>")
+vim.keymap.set("n", "<C-s><C-h>", ":vertical resize -1<CR>")
+vim.keymap.set("n", "<C-s><C-l>", ":vertical resize +1<CR>")
 
 -- Remap for word wrap
-keys.map("n", "k", "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
-keys.map("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

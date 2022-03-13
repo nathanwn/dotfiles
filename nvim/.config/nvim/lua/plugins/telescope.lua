@@ -20,22 +20,25 @@ return function()
   })
   require("telescope").load_extension("fzf")
 
-  local keys = require("utils").keys
-  keys.map("n", "<Leader>ff", [[<cmd>lua require('telescope.builtin').find_files({ previewer=false })<CR>]])
-  keys.map(
-    "n",
-    "<Leader>fF",
-    [[<cmd>lua require('telescope.builtin').find_files({ previewer=false, hidden=true })<CR>]]
-  )
-  keys.map("n", "<Leader>fb", [[<cmd>lua require('telescope.builtin').buffers({ previewer=false })<CR>]])
-  keys.map("n", "<Leader>fc", [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]])
-  keys.map("n", "<Leader>fg", [[<cmd>lua require('telescope.builtin').live_grep()<CR>]])
-  keys.map("n", "<Leader>fG", [[<cmd>lua require('telescope.builtin').live_grep({ hidden=true })<CR>]])
-  keys.map("n", "<Leader>fH", [[<cmd>lua require('telescope.builtin').help_tags()<CR>]])
-  keys.map("n", "<Leader>fK", [[<cmd>lua require('telescope.builtin').keymaps()<CR>]])
-  keys.map(
-    "n",
-    "<Leader>f.",
-    [[<cmd>lua require('telescope.builtin').find_files({ cwd=vim.fn.getenv("HOME").."/dotfiles", hidden=true })<CR>]]
-  )
+  local telescope_builtin = require("telescope.builtin")
+
+  vim.keymap.set("n", "<Leader>ff", function()
+    telescope_builtin.find_files({ previewer = false })
+  end)
+  vim.keymap.set("n", "<Leader>fF", function()
+    telescope_builtin.find_files({ previewer = false, hidden = true })
+  end)
+  vim.keymap.set("n", "<Leader>fb", function()
+    telescope_builtin.buffers({ previewer = false })
+  end)
+  vim.keymap.set("n", "<Leader>fc", telescope_builtin.current_buffer_fuzzy_find)
+  vim.keymap.set("n", "<Leader>fg", telescope_builtin.live_grep)
+  vim.keymap.set("n", "<Leader>fG", function()
+    telescope_builtin.live_grep({ hidden = true })
+  end)
+  vim.keymap.set("n", "<Leader>fH", telescope_builtin.help_tags)
+  vim.keymap.set("n", "<Leader>fK", telescope_builtin.keymaps)
+  vim.keymap.set("n", "<Leader>f.", function()
+    telescope_builtin.find_files({ cwd = vim.fn.getenv("HOME") .. "/dotfiles", hidden = true })
+  end)
 end

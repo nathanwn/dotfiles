@@ -1,9 +1,6 @@
 return function()
-  -- keymap
-  local keys = require("utils").keys
-  keys.map("n", "<Leader>ve", ":NvimTreeToggle<CR>")
+  vim.keymap.set("n", "<Leader>ve", ":NvimTreeToggle<CR>")
 
-  -- settings
   require("nvim-tree").setup({
     filters = {
       custom = {
