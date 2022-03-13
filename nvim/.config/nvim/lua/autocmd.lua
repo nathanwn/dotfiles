@@ -1,12 +1,10 @@
-vim.cmd [[
-  function! PackerAutoCompile()
-    exec "luafile $MYVIMRC"
-    exec "PackerCompile"
-  endfunction
-
-  augroup packer_compile
-    autocmd BufWritePost */.config/nvim/*.lua call PackerAutoCompile()
-  augroup END
-]]
-
--- autocmd BufWritePost ~/.config/nvim/lua/*.lua call PackerAutoCompile()
+-- vim.cmd [[
+--   function! PackerAutoCompile()
+--     exec "luafile $MYVIMRC"
+--     exec "PackerCompile"
+--   endfunction
+--
+--   augroup packer_compile
+--     autocmd BufWritePost */.config/nvim/*.lua call PackerAutoCompile()
+--   augroup END
+-- ]]
