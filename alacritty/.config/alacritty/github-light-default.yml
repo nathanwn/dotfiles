@@ -1,29 +1,3 @@
-# https://www.nerdfonts.com/font-downloads
-font:
-  normal:
-    # family: "CaskaydiaCove Nerd Font"
-    family: "JetbrainsMono Nerd Font"
-    style: Regular
-  bold:
-    family: "JetbrainsMono Nerd Font"
-    style: Bold
-  italic:
-    family: "JetbrainsMono Nerd Font"
-    style: Italic
-  bold_italic:
-    family: "JetbrainsMono Nerd Font"
-    style: Bold Italic
-  size: 12
-
-window:
-  padding:
-    x: 5
-    y: 0
-
-scrolling:
-  history: 10000
-  multiplier: 10
-
 # github Alacritty Colors
 colors:
   # Default colors
