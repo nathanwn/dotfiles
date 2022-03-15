@@ -74,7 +74,21 @@ return require("packer").startup(function(use)
   use({
     "NLKNguyen/papercolor-theme",
     requires = { "nvim-lualine/lualine.nvim" },
-    config = lrequire("themes/papercolor-light"),
+  })
+  use({
+    "sainnhe/sonokai",
+    config = function()
+      vim.g.sonokai_style = "default"
+      vim.cmd([[colorscheme sonokai]])
+      require("lualine").setup({
+        options = {
+          theme = "sonokai",
+        },
+      })
+    end,
+  })
+  use({
+    "rktjmp/lush.nvim",
   })
 
   -- FUZZY-FINDING
