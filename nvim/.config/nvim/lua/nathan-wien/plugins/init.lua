@@ -98,7 +98,24 @@ return require("packer").startup(function(use)
     },
     config = lrequire("lsp"),
   })
+  -- Formatting & Linting
   use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
+  -- UI
+  use({
+    "folke/trouble.nvim",
+    requires = {
+      { "kyazdani42/nvim-web-devicons" },
+      { "folke/lsp-colors.nvim" },
+    },
+    config = lrequire("plugins/trouble"),
+  })
+  use({
+    "folke/lsp-colors.nvim",
+    requires = {
+      { "neovim/nvim-lspconfig" },
+    },
+    config = lrequire("plugins/lsp-colors"),
+  })
   -- Rust
   use({
     "simrat39/rust-tools.nvim",

@@ -1,7 +1,7 @@
 vim.cmd([[
   function! PackerAutoCompile()
-    exec "luafile $MYVIMRC"
     exec "PackerCompile"
+    exec "luafile $MYVIMRC"
   endfunction
 
   augroup packer_compile
