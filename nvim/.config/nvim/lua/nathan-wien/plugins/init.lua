@@ -72,24 +72,16 @@ return require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
   use({
-    "NLKNguyen/papercolor-theme",
+    -- "NLKNguyen/papercolor-theme",
+    "~/work/neovim/papercolor-theme", -- use my fork for now
     requires = { "nvim-lualine/lualine.nvim" },
+    config = lrequire("themes/papercolor-light"),
   })
-  use({
-    "sainnhe/sonokai",
-    config = function()
-      vim.g.sonokai_style = "default"
-      vim.cmd([[colorscheme sonokai]])
-      require("lualine").setup({
-        options = {
-          theme = "sonokai",
-        },
-      })
-    end,
-  })
-  use({
-    "rktjmp/lush.nvim",
-  })
+  -- use({
+  --   "sainnhe/sonokai",
+  --   config = lrequire("themes/solokai"),
+  -- })
+  -- use({ "rktjmp/lush.nvim" })
 
   -- FUZZY-FINDING
   use({
