@@ -14,5 +14,5 @@ return {
     builtins.diagnostics.flake8,
     builtins.diagnostics.mypy,
   },
-  diagnostics_format = "#{m} (#{s})",
+  diagnostics_format = "[#{c}] #{m} (#{s})",
 }
