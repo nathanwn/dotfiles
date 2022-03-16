@@ -1,6 +1,4 @@
 return function()
-  vim.keymap.set("n", "<Leader>ve", ":NvimTreeToggle<CR>")
-
   require("nvim-tree").setup({
     filters = {
       custom = {

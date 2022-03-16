@@ -43,14 +43,20 @@ return require("packer").startup(function(use)
   use({
     "mbbill/undotree",
     config = lrequire("plugins/undotree"),
+    cmd = { "UndotreeToggle" },
   })
   -- Outline
-  use({ "simrat39/symbols-outline.nvim", config = lrequire("plugins/outline") })
+  use({
+    "simrat39/symbols-outline.nvim",
+    config = lrequire("plugins/outline"),
+    cmd = { "SymbolsOutline" },
+  })
   -- Explorer Tree
   use({
     "kyazdani42/nvim-tree.lua",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = lrequire("plugins/nvim-tree"),
+    cmd = { "NvimTreeToggle" },
   })
   -- Colorizer
   use({ "chrisbra/Colorizer" })
