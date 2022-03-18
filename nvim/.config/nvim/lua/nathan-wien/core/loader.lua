@@ -8,4 +8,4 @@ vim.keymap.set("n", "<Leader>vo", ":SymbolsOutline<CR>")
 vim.keymap.set("n", "<Leader>vu", ":UndotreeToggle<CR>")
 
 -- DAP
-require("nathan-wien/dap")
+require("nathan-wien/dap").load()

@@ -78,8 +78,8 @@ return require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
   use({
-    -- "NLKNguyen/papercolor-theme",
-    "~/work/neovim/papercolor-theme", -- use my fork for now
+    "NLKNguyen/papercolor-theme",
+    -- "~/work/neovim/papercolor-theme",
     requires = { "nvim-lualine/lualine.nvim" },
     config = lrequire("themes/papercolor-light"),
   })
