@@ -3,7 +3,6 @@
   "editor.detectIndentation": false,
   "editor.minimap.enabled": false,
   "editor.lineHeight": 1.6,
-  "workbench.colorTheme": "Default Light+",
   "workbench.panel.defaultLocation": "right",
   "window.zoomLevel": 1,
   "[bibtex]": {
@@ -16,7 +15,8 @@
   "[html]": {
     "editor.suggest.insertMode": "replace",
     "editor.tabSize": 2,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[javascript]": {
     "editor.tabSize": 2,
@@ -188,5 +188,6 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.fontSize": 12
+  "editor.fontSize": 12,
+  "workbench.colorTheme": "Default Light+"
 }

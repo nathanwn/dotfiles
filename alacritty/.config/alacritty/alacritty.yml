@@ -24,67 +24,35 @@ scrolling:
   history: 10000
   multiplier: 10
 
-# Theme: Papercolor Light
+# github Alacritty Colors
 colors:
+  # Default colors
   primary:
-    background: "#eeeeee"
-    foreground: "#444444"
+    background: "0xffffff"
+    foreground: "0x0E1116"
 
-  cursor:
-    text: "#eeeeee"
-    cursor: "#444444"
-
+  # Normal colors
   normal:
-    black: "#eeeeee"
-    red: "#af0000"
-    green: "#008700"
-    yellow: "#5f8700"
-    blue: "#0087af"
-    magenta: "#8700af"
-    cyan: "#005f87"
-    white: "#878787"
+    black: "0x24292f"
+    red: "0xcf222e"
+    green: "0x116329"
+    yellow: "0x4d2d00"
+    blue: "0x0969da"
+    magenta: "0x8250df"
+    cyan: "0x1b7c83"
+    white: "0x6e7781"
 
+  # Bright colors
   bright:
-    black: "#bcbcbc"
-    red: "#af0000"
-    green: "#008700"
-    yellow: "#5f8700"
-    blue: "#0087af"
-    magenta: "#8700af"
-    cyan: "#005f87"
-    white: "#eeeeee"
+    black: "0x57606a"
+    red: "0xa40e26"
+    green: "0x1a7f37"
+    yellow: "0x633c01"
+    blue: "0x218bff"
+    magenta: "0xa475f9"
+    cyan: "0x3192aa"
+    white: "0x8c959f"
 
-
-# Jellybeans
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x1E1E1E'
-#     foreground: '0xD4D4D4'
-#
-#   # Cursor colors
-#   cursor:
-#     text:   '0x000000'
-#     cursor: '0xAEAFAD'
-#
-#   # Normal colors
-#   normal:
-#     blue:    '0x569CD6'
-#     red:     '0xF44747'
-#     green:   '0x6A9955'
-#     yellow:  '0xCE9178'
-#     black:   '0x929292'
-#     magenta: '0xe1c0fa'
-#     cyan:    '0x00988e'
-#     white:   '0xdedede'
-#
-#   # Bright colors
-#   bright:
-#     blue:    '0x9CDCFE'
-#     red:     '0xD16969'
-#     green:   '0xB5CEA8'
-#     yellow:  '0xDCDCAA'
-#     black:   '0xbdbdbd'
-#     magenta: '0xfbdaff'
-#     cyan:    '0x1ab2a8'
-#     white:   '0xffffff'
+  indexed_colors:
+    - { index: 16, color: "0xd18616" }
+    - { index: 17, color: "0xa40e26" }

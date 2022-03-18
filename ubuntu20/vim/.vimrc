@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   " Themes
   Plug 'NLKNguyen/papercolor-theme'
+  Plug 'nanotech/jellybeans.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   " FZF
