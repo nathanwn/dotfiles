@@ -61,3 +61,6 @@ keys.map('n', '<C-s><C-l>', ':vertical resize +1<CR>')
 -- Remap for word wrap
 keys.map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 keys.map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
+-- CRLF issue
+keys.map('n', '\\lf', ':<cmd>%s/\r//g<CR>')

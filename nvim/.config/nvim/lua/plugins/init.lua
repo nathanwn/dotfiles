@@ -66,7 +66,12 @@ return require('packer').startup(function(use)
   }
   use { 'NLKNguyen/papercolor-theme',
     requires = { 'nvim-lualine/lualine.nvim' },
-    config = require('themes/papercolor-light')
+    config = function() end
+    -- config = require('themes/papercolor-light')
+  }
+  use { 'rafamadriz/neon',
+    requires = { 'nvim-lualine/lualine.nvim' },
+    config = require('themes/neon')
   }
 
   -- FUZZY-FINDING
