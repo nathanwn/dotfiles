@@ -81,12 +81,12 @@ return require("packer").startup(function(use)
     "NLKNguyen/papercolor-theme",
     -- "~/work/neovim/papercolor-theme",
     requires = { "nvim-lualine/lualine.nvim" },
-    -- config = lrequire("themes/papercolor-light"),
+    config = lrequire("themes/papercolor-light"),
   })
   use({
     "rafamadriz/neon",
     requires = { "nvim-lualine/lualine.nvim" },
-    config = lrequire("themes/neon")
+    -- config = lrequire("themes/neon")
   })
   -- use({
   --   "sainnhe/sonokai",

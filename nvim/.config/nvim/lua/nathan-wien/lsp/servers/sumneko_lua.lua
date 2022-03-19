@@ -4,6 +4,8 @@ local sumneko_root_path = vim.fn.getenv("HOME")
 local os = nil
 if vim.loop.os_uname().sysname == "Darwin" then
   os = "macOS"
+elseif string.find(vim.loop.os_uname().release, "WSL2") then
+  os = ""
 else
   os = "Linux"
 end
