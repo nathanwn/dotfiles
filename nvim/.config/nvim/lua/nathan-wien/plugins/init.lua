@@ -33,6 +33,10 @@ return require("packer").startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
     config = lrequire("plugins/gitsigns"),
   })
+  use({
+    "ThePrimeagen/git-worktree.nvim",
+    config = lrequire("plugins/git-worktree"),
+  })
   -- Tmux
   use({
     "christoomey/vim-tmux-navigator",
