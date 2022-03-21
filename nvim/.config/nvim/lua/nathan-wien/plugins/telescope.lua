@@ -1,5 +1,8 @@
 return function()
-  require("telescope").setup({
+  local telescope = require("telescope")
+  local telescope_builtin = require("telescope.builtin")
+
+  telescope.setup({
     defaults = {
       sorting_strategy = "ascending",
       layout_config = {
@@ -19,10 +22,9 @@ return function()
     },
   })
 
-  require("telescope").load_extension("fzf")
-  require("telescope").load_extension("dap")
-
-  local telescope_builtin = require("telescope.builtin")
+  telescope.load_extension("fzf")
+  telescope.load_extension("dap")
+  telescope.load_extension("git_worktree")
 
   vim.keymap.set("n", "<Leader>ff", function()
     telescope_builtin.find_files({ previewer = false })
@@ -46,4 +48,5 @@ return function()
       hidden = true,
     })
   end)
+  vim.keymap.set("n", "<Leader>fw", telescope.extensions.git_worktree.git_worktrees)
 end
