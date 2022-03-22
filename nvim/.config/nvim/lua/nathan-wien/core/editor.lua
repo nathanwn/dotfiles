@@ -46,3 +46,5 @@ vim.opt.termguicolors = true
 vim.opt.hidden = true
 -- Latex
 vim.g.tex_flavor = "latex"
+-- Syntax-highlight lua in vimscript
+vim.g.vimsyn_embed = "l"

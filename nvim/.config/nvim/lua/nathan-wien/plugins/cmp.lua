@@ -20,7 +20,9 @@ return function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<CR>"] = cmp.mapping.confirm({
+        select = false, -- only complete on Enter if one option has been selected intentionally
+      }),
       ["<Tab>"] = function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
@@ -38,7 +40,7 @@ return function()
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
-      -- { name = "vsnip" }, -- For vsnip users.
+      { name = "vsnip" }, -- For vsnip users.
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
