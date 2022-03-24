@@ -75,6 +75,14 @@ return require("packer").startup(function(use)
     requires = { "nvim-treesitter/nvim-treesitter" },
     config = lrequire("plugins/treesitter-playground"),
   })
+  -- Docstring
+  use({
+    "kkoomen/vim-doge",
+    run = ":call doge#install()",
+    config = lrequire("plugins/vim-doge"),
+  })
+  -- Grammar checker
+  use({ "rhysd/vim-grammarous" })
 
   -- THEMES
   use({
@@ -83,14 +91,15 @@ return require("packer").startup(function(use)
   })
   use({
     "NLKNguyen/papercolor-theme",
-    -- "~/work/neovim/papercolor-theme",
+    -- "~/work/neovim/plugins/papercolor-theme.git/branches/???",
+    as = "papercolor-theme",
     requires = { "nvim-lualine/lualine.nvim" },
     config = lrequire("themes/papercolor-light"),
   })
   use({
     "rafamadriz/neon",
     requires = { "nvim-lualine/lualine.nvim" },
-    -- config = lrequire("themes/neon")
+    -- config = lrequire("themes/neon"),
   })
   -- use({
   --   "sainnhe/sonokai",
@@ -205,9 +214,6 @@ return require("packer").startup(function(use)
   use({ "pantharshit00/vim-prisma", ft = { "prisma" } })
   -- Tex
   use({ "lervag/vimtex", ft = { "tex" } })
-
-  -- GRAMMAR CHECKER
-  use({ "rhysd/vim-grammarous" })
 
   -- Auto-install
   if packer_bootstrap then

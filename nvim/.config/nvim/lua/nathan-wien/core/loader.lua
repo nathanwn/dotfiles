@@ -1,11 +1,11 @@
 -- nvim-tree
-vim.keymap.set("n", "<Leader>ve", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<Leader>ve", "<cmd>NvimTreeToggle<CR>")
 
 -- outline
-vim.keymap.set("n", "<Leader>vo", ":SymbolsOutline<CR>")
+vim.keymap.set("n", "<Leader>vo", "<cmd>SymbolsOutline<CR>")
 
 -- undotree
-vim.keymap.set("n", "<Leader>vu", ":UndotreeToggle<CR>")
+vim.keymap.set("n", "<Leader>vu", "<cmd>UndotreeToggle<CR>")
 
 -- DAP
 require("nathan-wien/dap").load()
