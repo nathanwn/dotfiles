@@ -4,6 +4,9 @@
 # PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# scripts
+export PATH="$HOME/bin/scripts:$PATH"
+
 # Shell programs
 # exa
 export PATH="$HOME/bin/exa/exa-linux-x86_64-v0.10.0/bin:$PATH"
@@ -44,6 +47,12 @@ alias gpath="pwd | xclip -selection clipboard"
 
 function zath() { nohup zathura $1 > /dev/null & disown & }
 function imgview() { nohup sxiv $1 > /dev/null & disown & }
+
+# -----------------------------------------------------------------------------
+#                               Key bindings
+# -----------------------------------------------------------------------------
+# tldr
+bindkey -s "^F" "tldrf^[^M"
 
 # -----------------------------------------------------------------------------
 #                               Auto-generated
