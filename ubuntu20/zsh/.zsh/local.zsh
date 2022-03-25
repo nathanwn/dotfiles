@@ -52,7 +52,7 @@ function imgview() { nohup sxiv $1 > /dev/null & disown & }
 #                               Key bindings
 # -----------------------------------------------------------------------------
 # tldr
-bindkey -s "^F" "tldrf^[^M"
+bindkey -s "^T" "tldrf^[^M"
 
 # -----------------------------------------------------------------------------
 #                               Auto-generated

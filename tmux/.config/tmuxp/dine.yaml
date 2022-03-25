@@ -3,9 +3,14 @@ windows:
   - window_name: dotfiles
     shell_command_before:
       - cd ~/dotfiles
-  - window_name: nvim
+  - window_name: dine-nvim
     shell_command_before:
       - cd ~/work/dine
       - source .venv/bin/activate
       - nvim
     focus: True
+  - window_name: dine-zsh
+    shell_command_before:
+      - cd ~/work/dine
+      - source .venv/bin/activate
+  - window_name: zsh
