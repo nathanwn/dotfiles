@@ -1,0 +1,25 @@
+- name: apt - Install system packages
+  become: true
+  apt:
+    name:
+      - build-essential
+      - cmake
+  tags:
+    - core
+
+- name: apt - Install core packages
+  become: true
+  apt:
+    name:
+      - curl
+      - fzf
+      - geany
+      - xclip
+      - ripgrep
+      - stow
+      - tmux
+      - valgrind
+      - zathura
+      - zsh
+  tags:
+    - core

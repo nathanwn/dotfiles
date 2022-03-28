@@ -1,0 +1,17 @@
+- name: dotfiles - Install cross-platform dotfiles
+  shell:
+    chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
+    cmd: "stow {{ item }}"
+  loop:
+    - alacritty
+    - fzf
+    - kitty
+    - nvim
+    - pandoc
+    - scripts
+    - starship
+    - stow
+    - zathura
+    - zsh
+  tags:
+    - core

@@ -1,0 +1,43 @@
+- name: cargo - Install rustup and cargo for WSL
+  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  when: is_wsl
+  tags:
+    - core
+    - cargo
+
+- name: cargo - Install rustup and cargo for Unix
+  shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
+  when: not is_wsl
+  tags:
+    - core
+    - cargo
+
+- name: cargo - Install starship
+  community.general.cargo:
+    name: starship
+  tags:
+    - core
+    - cargo
+    - neovim
+
+- name: cargo - Install exa
+  community.general.cargo:
+    name: exa
+  tags:
+    - core
+    - cargo
+
+- name: cargo - Install bat
+  community.general.cargo:
+    name: bat
+  tags:
+    - core
+    - cargo
+
+- name: cargo - Install stylua
+  community.general.cargo:
+    name: stylua
+  tags:
+    - core
+    - cargo
+    - neovim

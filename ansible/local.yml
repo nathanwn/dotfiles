@@ -1,0 +1,73 @@
+---
+- hosts: localhost
+
+  pre_tasks:
+    - name: Update apt
+      become: true
+      apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
+      tags:
+        - install
+        - core
+        - ubuntu
+      when:
+        - ansible_fact['distribution'] == 'Ubuntu'
+          # - ansible_fact['distribution_version'] == '20.04'
+          # - ansible_fact['distribution_major_version'] == '20'
+
+  tasks:
+    - name: Detect WSL
+      become: true
+      shell: grep -qi microsoft /proc/version && echo wsl || /bin/true
+      register: detect_wsl_result
+      tags:
+        - core
+
+    - name: Setup git
+      import_tasks: tasks/git-setup.yml
+      tags:
+        - core
+
+    - name: Install core packages - Ubuntu
+      import_tasks: tasks/apt-core-packages.yml
+      when:
+        - ansible_fact['distribution'] == 'Ubuntu'
+          # - ansible_fact['distribution_version'] == '20.04'
+          # - ansible_fact['distribution_major_version'] == '20'
+      tags:
+        - core
+        - ubuntu
+        - wsl
+
+    # - name: Install core packages - Mac
+    #   tags:
+    #     - mac
+
+    - name: Setup dotfiles
+      import_tasks: "tasks/dotfiles.yml"
+      tags:
+        - core
+
+    - name: Install pip and python packages
+      import_tasks: tasks/pip-packages.yml
+      tags:
+        - core
+
+    - name: Install cargo and rust packages
+      import_tasks: tasks/cargo-packages.yml
+      vars:
+        is_wsl: '{{ detect_wsl_result.stdout == "wsl" }}'
+      tags:
+        - core
+
+    - name: Install nvm and npm packages
+      import_tasks: tasks/nvm-setup.yml
+      tags:
+        - core
+
+    - name: Install neovim
+      import_tasks: tasks/neovim-setup.yml
+      tags:
+        - core

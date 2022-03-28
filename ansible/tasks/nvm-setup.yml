@@ -1,0 +1,113 @@
+- name: nvm - Install nvm
+  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Install npm lts
+  shell: /usr/bin/env zsh -c "source ~/.zshrc && nvm install --lts"
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Choose npm version
+  shell: /usr/bin/env bash -c "source ~/.zshrc && nvm use --lts"
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Get npm version
+  shell: /usr/bin/env zsh -c "source ~/.zshrc && nvm current"
+  register: nvm_version
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Print version
+  debug:
+    msg: "{{ nvm_version }}"
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Symlink npm
+  become: true
+  shell: >
+    sudo ln -s "{{ lookup('env', 'HOME') }}"/.nvm/versions/node/{{ nvm_version.stdout }}/bin/npm /usr/bin/npm && sudo chmod a+rx /usr/bin/npm
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Symlink node
+  become: true
+  shell: >
+    sudo ln -s "{{ lookup('env', 'HOME') }}"/.nvm/versions/node/{{ nvm_version.stdout }}/bin/node /usr/bin/node && sudo chmod a+rx /usr/bin/node
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Install typescript
+  community.general.npm:
+    global: true
+    name: typescript
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Install tsserver
+  community.general.npm:
+    global: true
+    name: typescript-language-server
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Install yaml language server
+  community.general.npm:
+    global: true
+    name: yaml-language-server
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Install prettierd
+  community.general.npm:
+    global: true
+    name: "@fsouza/prettierd"
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
+
+- name: nvm - Install pyright
+  community.general.npm:
+    global: true
+    name: pyright
+  tags:
+    - install
+    - core
+    - nvm
+    - npm
