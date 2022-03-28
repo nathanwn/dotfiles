@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# TODO: make this work
+ldfn ~/.config/tmuxp | fzf --prompt '[tmuxp] -> '

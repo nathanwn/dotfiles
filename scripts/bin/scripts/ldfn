@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: ldfn <dir>"
+fi
+
+find "$1/" | awk -F '/' '{print $NF}' | awk -F '.' '{print $1}' | awk NF | sort

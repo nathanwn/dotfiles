@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-cat ~/bin/scripts/tldr.d/entries.txt | fzf | xargs tldr
+cat ~/bin/scripts/tldr.d/entries.txt | fzf --prompt '[tldr] -> ' | xargs tldr
