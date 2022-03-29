@@ -97,6 +97,11 @@ return require("packer").startup(function(use)
     config = lrequire("themes/papercolor-light"),
   })
   use({
+    "joshdick/onedark.vim",
+    requires = { "nvim-lualine/lualine.nvim" },
+    config = lrequire("themes/onedark"),
+  })
+  use({
     "rafamadriz/neon",
     requires = { "nvim-lualine/lualine.nvim" },
     -- config = lrequire("themes/neon"),
