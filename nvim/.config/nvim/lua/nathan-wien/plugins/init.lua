@@ -94,7 +94,7 @@ return require("packer").startup(function(use)
     -- "~/work/neovim/plugins/papercolor-theme.git/branches/???",
     as = "papercolor-theme",
     requires = { "nvim-lualine/lualine.nvim" },
-    config = lrequire("themes/papercolor-light"),
+    -- config = lrequire("themes/papercolor-light"),
   })
   use({
     "joshdick/onedark.vim",
