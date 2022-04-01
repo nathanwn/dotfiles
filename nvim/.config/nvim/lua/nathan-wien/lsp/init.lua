@@ -23,6 +23,8 @@ return function()
     -- C++
     clangd = {},
     cmake = lrequire("lsp.servers.cmake"),
+    -- Go
+    gopls = {},
     -- JS, TS
     tsserver = lrequire("lsp.servers.tsserver"),
     -- Lua
@@ -33,7 +35,7 @@ return function()
     prismals = {},
     -- Python
     pyright = {},
-    -- yaml
+    -- Yaml
     yamlls = {},
     -- Formatting
     -- efm = lrequire('lsp.servers.efm'),

@@ -1,0 +1,35 @@
+- name: go - Create installation directory
+  ansible.builtin.command:
+    cmd: "mkdir -p {{ lookup('env', 'HOME') }}/install/go"
+  tags:
+    - core
+    - go
+    - debug
+
+- name: go - Download go (linux)
+  ansible.builtin.shell:
+    chdir: "{{ lookup('env', 'HOME') }}/install/go"
+    cmd: curl -OL https://go.dev/dl/go1.18.linux-amd64.tar.gz
+  tags:
+    - core
+    - go
+    - debug
+
+- name: go - Install go (linux)
+  become: true
+  ansible.builtin.shell:
+    chdir: "{{ lookup('env', 'HOME') }}/install/go"
+    cmd: rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
+  tags:
+    - core
+    - go
+    - debug
+
+- name: go - Install gopls
+  ansible.builtin.command:
+    cmd: >
+      go install golang.org/x/tools/gopls@latest
+  tags:
+    - core
+    - go
+    - debug

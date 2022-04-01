@@ -18,7 +18,6 @@
   tags:
     - core
     - cargo
-    - neovim
 
 - name: cargo - Install exa
   community.general.cargo:

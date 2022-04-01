@@ -205,8 +205,6 @@ return require("packer").startup(function(use)
   use({ "peitalin/vim-jsx-typescript" })
   -- Emmet
   use({ "mattn/emmet-vim" })
-  -- Go
-  use({ "fatih/vim-go", config = lrequire("plugins/vim-go") })
   -- Markdown
   use({ "plasticboy/vim-markdown", ft = { "markdown" } })
   -- Pandoc
