@@ -6,20 +6,26 @@
   tags:
     - neovim
 
+- name: Install neovim - debug nvimdir
+  debug:
+    msg: "{{ nvimdir }}"
+  tags:
+    - neovim
+
 - name: Install neovim - clone
   ansible.builtin.git:
     repo: "https://github.com/neovim/neovim.git"
     dest: "{{ lookup('env', 'HOME') }}/install/neovim"
     version: nightly
-    tags:
-      - neovim
-  when: nvimdir is not defined
+  tags:
+    - neovim
+  when: not nvimdir.stat.exists
 
 - name: Install neovim - checkout master
   ansible.builtin.command:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
     cmd: "git checkout master"
-  when: nvimdir is defined
+  when: nvimdir.stat.exists
   tags:
     - neovim
 
@@ -27,7 +33,7 @@
   ansible.builtin.command:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
     cmd: "git pull"
-  when: nvimdir is defined
+  when: nvimdir.stat.exists
   tags:
     - neovim
 
