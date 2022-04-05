@@ -20,11 +20,13 @@ return function()
   vim.api.nvim_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   local configs = {
+    -- Bash
+    bashls = lrequire("lsp.servers.bashls"),
     -- C++
     clangd = {},
     cmake = lrequire("lsp.servers.cmake"),
     -- Go
-    gopls = {},
+    gopls = lrequire("lsp.servers.gopls"),
     -- JS, TS
     tsserver = lrequire("lsp.servers.tsserver"),
     -- Lua

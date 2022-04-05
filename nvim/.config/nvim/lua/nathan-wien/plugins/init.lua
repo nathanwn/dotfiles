@@ -94,12 +94,16 @@ return require("packer").startup(function(use)
     -- "~/work/neovim/plugins/papercolor-theme.git/branches/???",
     as = "papercolor-theme",
     requires = { "nvim-lualine/lualine.nvim" },
-    config = lrequire("themes/papercolor-light"),
+    -- config = lrequire("themes/papercolor-light"),
   })
   use({
     "joshdick/onedark.vim",
     requires = { "nvim-lualine/lualine.nvim" },
-    -- config = lrequire("themes/onedark"),
+    config = lrequire("themes/onedark"),
+  })
+  use({
+    "sainnhe/gruvbox-material",
+    -- config = lrequire("themes/gruvbox-material"),
   })
   use({
     "rafamadriz/neon",
@@ -180,6 +184,10 @@ return require("packer").startup(function(use)
     "theHamsta/nvim-dap-virtual-text",
     requires = { "mfussenegger/nvim-dap" },
     config = lrequire("dap/virtual-text"),
+  })
+  use({
+    "leoluz/nvim-dap-go",
+    config = lrequire("dap/go"),
   })
 
   -- AUTOCOMPLETE
