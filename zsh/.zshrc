@@ -1,17 +1,19 @@
+function source_if_exists () {
+  FILE=$1 && test -f $FILE && source $FILE
+}
+
 # -----------------------------------------------------------------------------
 #                               Local Configs
 # -----------------------------------------------------------------------------
-FILE="$HOME/.zsh/local.zsh" && test -f $FILE && source $FILE
+# FILE="$HOME/.zsh/local.zsh" && test -f $FILE && source $FILE
+source_if_exists "$HOME/.zsh/local.zsh"
 
 # -----------------------------------------------------------------------------
-#                                   Shell
+#                              Shell settings
 # -----------------------------------------------------------------------------
 # tab-complete hidden items
 _comp_options+=(globdots)
-
-# -----------------------------------------------------------------------------
-#                                   Editor
-# -----------------------------------------------------------------------------
+# editor
 if [ -x "nvim" ] ; then
    export EDITOR=nvim
 else
@@ -23,22 +25,21 @@ fi
 # -----------------------------------------------------------------------------
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+# vi-mode (disable in nvim terminal)
+env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
+# fzf
+source_if_exists "$HOME/.config/fzf/completion.zsh"
+source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
+# mcfly
+FILE="$HOME/.config/zsh/mcfly.zsh" && test -f $FILE && source $FILE
+
 
 # -----------------------------------------------------------------------------
 #                                  Aliases
 # -----------------------------------------------------------------------------
-# [ -x "$(command -v nvim)" ] && alias vim="nvim";
-[ -x "$(command -v exa)"  ] && alias ls="exa";
-[ -x "$(command -v bat)"  ] && alias cat="bat";
-
-# -----------------------------------------------------------------------------
-#                                Key-bindings
-# -----------------------------------------------------------------------------
-# vi-mode (disable in nvim terminal)
-env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
-# fzf
-FILE="$HOME/.config/fzf/completion.zsh"   && test -f $FILE && source $FILE
-FILE="$HOME/.config/fzf/key-bindings.zsh" && test -f $FILE && source $FILE
+# [ -x "$(command -v nvim)" ] && alias vim="nvim"
+[ -x "$(command -v exa)"  ] && alias ls="exa"
+[ -x "$(command -v bat)"  ] && alias cat="bat"
 
 # -----------------------------------------------------------------------------
 #                                   Theme
