@@ -70,7 +70,7 @@
       tags:
         - core
 
-    - name: Install neovim
-      import_tasks: tasks/neovim-setup.yml
+    - name: Install apps
+      import_tasks: tasks/apps.yml
       tags:
         - core

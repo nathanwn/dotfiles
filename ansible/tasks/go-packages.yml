@@ -4,7 +4,6 @@
   tags:
     - core
     - go
-    - debug
 
 - name: go - Download go (linux)
   ansible.builtin.shell:
@@ -13,7 +12,6 @@
   tags:
     - core
     - go
-    - debug
 
 - name: go - Install go (linux)
   become: true
@@ -23,7 +21,6 @@
   tags:
     - core
     - go
-    - debug
 
 - name: go - Install gopls
   ansible.builtin.command:
@@ -32,4 +29,11 @@
   tags:
     - core
     - go
-    - debug
+
+- name: go - Install delve
+  ansible.builtin.command:
+    cmd: >
+      go install github.com/go-delve/delve/cmd/dlv@latest
+  tags:
+    - core
+    - go

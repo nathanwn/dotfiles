@@ -1,0 +1,29 @@
+---
+- name: Install mcfly - check for local repo copy
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/install/mcfly"
+  register: mcflydir
+  tags:
+    - mcfly
+
+- name: Install mcfly - debug mcflydir
+  debug:
+    msg: "{{ mcflydir }}"
+  tags:
+    - mcfly
+
+- name: Install mcfly - clone
+  ansible.builtin.git:
+    repo: "https://github.com/cantino/mcfly.git"
+    dest: "{{ lookup('env', 'HOME') }}/install/mcfly"
+    version: v0.6.0
+  tags:
+    - mcfly
+  when: not mcflydir.stat.exists
+
+- name: Install mcfly - build
+  ansible.builtin.command:
+    chdir: "{{ lookup('env', 'HOME') }}/install/mcfly"
+    cmd: cargo install --path .
+  tags:
+    - mcfly

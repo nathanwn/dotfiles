@@ -1,0 +1,9 @@
+- name: Install app - neovim
+  import_tasks: apps/neovim.yml
+  tags:
+    - core
+
+- name: Install app - mcfly
+  import_tasks: apps/mcfly.yml
+  tags:
+    - core

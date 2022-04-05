@@ -62,52 +62,56 @@
     - nvm
     - npm
 
-- name: nvm - Install typescript
-  community.general.npm:
-    global: true
-    name: typescript
-  tags:
-    - install
-    - core
-    - nvm
-    - npm
+      # - name: nvm - Install typescript
+      #   community.general.npm:
+      #     global: true
+      #     name: typescript
+      #   tags:
+      #     - install
+      #     - core
+      #     - nvm
+      #     - npm
+      #
+      # - name: nvm - Install tsserver
+      #   community.general.npm:
+      #     global: true
+      #     name: typescript-language-server
+      #   tags:
+      #     - install
+      #     - core
+      #     - nvm
+      #     - npm
+      #
+      # - name: nvm - Install yaml language server
+      #   community.general.npm:
+      #     global: true
+      #     name: yaml-language-server
+      #   tags:
+      #     - install
+      #     - core
+      #     - nvm
+      #     - npm
+      #
+      # - name: nvm - Install prettierd
+      #   community.general.npm:
+      #     global: true
+      #     name: "@fsouza/prettierd"
+      #   tags:
+      #     - install
+      #     - core
+      #     - nvm
+      #     - npm
 
-- name: nvm - Install tsserver
+- name: nvm - Install language servers
   community.general.npm:
     global: true
-    name: typescript-language-server
+    name: "{{ item }}"
+  loop:
+    - typescript-language-server
+    - typescript
+    - "@fsouza/prettierd"
+    - pyright
+    - yaml-language-server
+    - bash-language-server
   tags:
-    - install
-    - core
-    - nvm
-    - npm
-
-- name: nvm - Install yaml language server
-  community.general.npm:
-    global: true
-    name: yaml-language-server
-  tags:
-    - install
-    - core
-    - nvm
-    - npm
-
-- name: nvm - Install prettierd
-  community.general.npm:
-    global: true
-    name: "@fsouza/prettierd"
-  tags:
-    - install
-    - core
-    - nvm
-    - npm
-
-- name: nvm - Install pyright
-  community.general.npm:
-    global: true
-    name: pyright
-  tags:
-    - install
-    - core
-    - nvm
-    - npm
+    - lsp
