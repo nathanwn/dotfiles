@@ -37,3 +37,11 @@
   tags:
     - core
     - go
+
+- name: go - Install golangci-lint
+  ansible.builtin.command:
+    cmd: |
+      go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2
+  tags:
+    - core
+    - go

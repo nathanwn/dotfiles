@@ -25,6 +25,8 @@ return {
     builtins.formatting.isort,
     builtins.diagnostics.flake8,
     builtins.diagnostics.mypy,
+    -- Go
+    builtins.diagnostics.golangci_lint,
   },
   diagnostics_format = "[#{c}] #{m} (#{s})",
   should_attach = should_attach,

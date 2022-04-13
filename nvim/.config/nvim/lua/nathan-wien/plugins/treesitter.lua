@@ -1,7 +1,20 @@
 return function()
   -- Functionalities
   require("nvim-treesitter.configs").setup({
-    ensure_installed = "maintained",
+    ensure_installed = {
+      "bash",
+      "c",
+      "cpp",
+      "go",
+      "java",
+      "javascript",
+      "lua",
+      "python",
+      "rust",
+      "scala",
+      "tsx",
+      "typescript",
+    },
     highlight = { enable = true },
     indent = { enable = false },
   })
