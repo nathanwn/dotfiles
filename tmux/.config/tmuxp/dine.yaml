@@ -5,12 +5,12 @@ windows:
       - cd ~/dotfiles
   - window_name: dine-nvim
     shell_command_before:
-      - cd ~/work/dine
+      - cd ~/work/github.com/nathan-wien/dine
       - source .venv/bin/activate
       - nvim
     focus: True
   - window_name: dine-zsh
     shell_command_before:
-      - cd ~/work/dine
+      - cd ~/work/github.com/nathan-wien/dine
       - source .venv/bin/activate
   - window_name: zsh
