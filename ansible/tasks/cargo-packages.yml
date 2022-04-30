@@ -12,31 +12,31 @@
     - core
     - cargo
 
-- name: cargo - Install starship
-  community.general.cargo:
-    name: starship
-  tags:
-    - core
-    - cargo
+      # - name: cargo - Install starship
+      #   community.general.cargo:
+      #     name: starship
+      #   tags:
+      #     - core
+      #     - cargo
+      # 
+      #       - name: cargo - Install exa
+      #         community.general.cargo:
+      #           name: exa
+      #         tags:
+      #           - core
+      #           - cargo
 
-- name: cargo - Install exa
-  community.general.cargo:
-    name: exa
-  tags:
-    - core
-    - cargo
+      # - name: cargo - Install bat
+      #   community.general.cargo:
+      #     name: bat
+      #   tags:
+      #     - core
+      #     - cargo
 
-- name: cargo - Install bat
-  community.general.cargo:
-    name: bat
-  tags:
-    - core
-    - cargo
-
-- name: cargo - Install stylua
-  community.general.cargo:
-    name: stylua
-  tags:
-    - core
-    - cargo
-    - neovim
+      # - name: cargo - Install stylua
+      #   community.general.cargo:
+      #     name: stylua
+      #   tags:
+      #     - core
+      #     - cargo
+      #     - neovim

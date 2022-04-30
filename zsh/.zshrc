@@ -5,8 +5,7 @@ function source_if_exists () {
 # -----------------------------------------------------------------------------
 #                               Local Configs
 # -----------------------------------------------------------------------------
-# FILE="$HOME/.zsh/local.zsh" && test -f $FILE && source $FILE
-source_if_exists "$HOME/.zsh/local.zsh"
+source_if_exists "$HOME/.config/zsh/local.zsh"
 
 # -----------------------------------------------------------------------------
 #                              Shell settings
@@ -31,7 +30,7 @@ env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
 source_if_exists "$HOME/.config/fzf/completion.zsh"
 source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 # mcfly
-FILE="$HOME/.config/zsh/mcfly.zsh" && test -f $FILE && source $FILE
+source_if_exists "$HOME/.config/zsh/mcfly.zsh"
 
 
 # -----------------------------------------------------------------------------

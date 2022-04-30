@@ -8,7 +8,7 @@
 - name: go - Download go (linux)
   ansible.builtin.shell:
     chdir: "{{ lookup('env', 'HOME') }}/install/go"
-    cmd: curl -OL https://go.dev/dl/go1.18.linux-amd64.tar.gz
+    cmd: "curl -OL https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
   tags:
     - core
     - go
@@ -17,7 +17,7 @@
   become: true
   ansible.builtin.shell:
     chdir: "{{ lookup('env', 'HOME') }}/install/go"
-    cmd: rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.linux-amd64.tar.gz
+    cmd: rm -rf /usr/local/go && tar -C /usr/local -xzf "go{{ go_version }}.linux-amd64.tar.gz"
   tags:
     - core
     - go
@@ -38,10 +38,10 @@
     - core
     - go
 
-- name: go - Install golangci-lint
-  ansible.builtin.command:
-    cmd: |
-      go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2
-  tags:
-    - core
-    - go
+# - name: go - Install golangci-lint
+#   ansible.builtin.command:
+#     cmd: |
+#       "go install github.com/golangci/golangci-lint/cmd/golangci-lint@{{ golangci_lint_version }}"
+#   tags:
+#     - core
+#     - go

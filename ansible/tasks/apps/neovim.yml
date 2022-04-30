@@ -1,4 +1,23 @@
 ---
+- name: apt - Install neovim prerequisites
+  become: true
+  apt:
+    name:
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - curl
+      - doxygen
+  tags:
+    - neovim
+
 - name: Install neovim - check for local repo copy
   ansible.builtin.stat:
     path: "{{ lookup('env', 'HOME') }}/install/neovim"
@@ -37,10 +56,10 @@
   tags:
     - neovim
 
-- name: Install neovim - checkout nightly
+- name: Install neovim - checkout release
   ansible.builtin.command:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: "git checkout nightly"
+    cmd: "git checkout {{ nvim_release }}"
   tags:
     - neovim
 
