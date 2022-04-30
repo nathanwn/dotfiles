@@ -21,5 +21,8 @@
       - valgrind
       - zathura
       - zsh
+      - python3-venv
+      - bat
+      - exa
   tags:
     - core

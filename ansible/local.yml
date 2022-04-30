@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  vars_files:
+    - vars.yml
 
   pre_tasks:
     - name: Update apt
@@ -13,9 +15,9 @@
         - core
         - ubuntu
       when:
-        - ansible_fact['distribution'] == 'Ubuntu'
-          # - ansible_fact['distribution_version'] == '20.04'
-          # - ansible_fact['distribution_major_version'] == '20'
+        - ansible_facts['distribution'] == 'Ubuntu'
+          # - ansible_facts['distribution_version'] == '20.04'
+          # - ansible_facts['distribution_major_version'] == '20'
 
   tasks:
     - name: Detect WSL
@@ -33,9 +35,9 @@
     - name: Install core packages - Ubuntu
       import_tasks: tasks/apt-core-packages.yml
       when:
-        - ansible_fact['distribution'] == 'Ubuntu'
-          # - ansible_fact['distribution_version'] == '20.04'
-          # - ansible_fact['distribution_major_version'] == '20'
+        - ansible_facts['distribution'] == 'Ubuntu'
+          # - ansible_facts['distribution_version'] == '20.04'
+          # - ansible_facts['distribution_major_version'] == '20'
       tags:
         - core
         - ubuntu
@@ -57,6 +59,8 @@
 
     - name: Install go and go packages
       import_tasks: tasks/go-packages.yml
+      tags:
+        - core
 
     - name: Install cargo and rust packages
       import_tasks: tasks/cargo-packages.yml
@@ -74,3 +78,4 @@
       import_tasks: tasks/apps.yml
       tags:
         - core
+        - cont

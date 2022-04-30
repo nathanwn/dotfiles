@@ -1,0 +1,3 @@
+go_version: 1.18.1
+golangci_lint_version: v1.45.2
+nvim_release: v0.7.0
