@@ -12,10 +12,10 @@
   tags:
     - core
 
-- name: pip - Install virtualenv for neovim
-  pip:
-    requirements: "{{ lookup('env', 'HOME') }}/.local/share/nvim/requirements.txt"
-    virtualenv_command: "python3 -m venv"
-    virtualenv: "{{ lookup('env', 'HOME') }}/.local/share/nvim/venv"
-  tags:
-    - core
+# - name: pip - Install virtualenv for neovim
+#   pip:
+#     requirements: "{{ lookup('env', 'HOME') }}/.local/share/nvim/requirements.txt"
+#     virtualenv_command: "python3 -m venv"
+#     virtualenv: "{{ lookup('env', 'HOME') }}/.local/share/nvim/venv"
+#   tags:
+#     - core

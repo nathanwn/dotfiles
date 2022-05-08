@@ -24,7 +24,17 @@
       - exa
 
 - name: apt - Install DE
+  become: true
   apt:
     name:
       - i3
-      - i3status-rs
+  tags:
+    - full
+
+- name: apt - Install VM
+  become: true
+  apt:
+    name:
+      - dkms
+  tags:
+    - vm
