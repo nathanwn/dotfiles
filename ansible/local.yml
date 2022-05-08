@@ -13,6 +13,7 @@
       tags:
         - install
         - core
+        - full
         - ubuntu
       when:
         - ansible_facts['distribution'] == 'Ubuntu'
@@ -26,11 +27,13 @@
       register: detect_wsl_result
       tags:
         - core
+        - full
 
     - name: Setup git
       import_tasks: tasks/git-setup.yml
       tags:
         - core
+        - full
 
     - name: Install core packages - Ubuntu
       import_tasks: tasks/apt-core-packages.yml
@@ -42,6 +45,7 @@
         - core
         - ubuntu
         - wsl
+        - full
 
     # - name: Install core packages - Mac
     #   tags:
@@ -50,17 +54,19 @@
     - name: Setup dotfiles
       import_tasks: "tasks/dotfiles.yml"
       tags:
-        - core
+        - dotfiles
 
     - name: Install pip and python packages
       import_tasks: tasks/pip-packages.yml
       tags:
         - core
+        - full
 
     - name: Install go and go packages
       import_tasks: tasks/go-packages.yml
       tags:
         - core
+        - full
 
     - name: Install cargo and rust packages
       import_tasks: tasks/cargo-packages.yml
@@ -68,14 +74,17 @@
         is_wsl: '{{ detect_wsl_result.stdout == "wsl" }}'
       tags:
         - core
+        - full
 
     - name: Install nvm and npm packages
       import_tasks: tasks/nvm-setup.yml
       tags:
         - core
+        - full
 
     - name: Install apps
       import_tasks: tasks/apps.yml
       tags:
         - core
         - cont
+        - full

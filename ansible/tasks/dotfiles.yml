@@ -5,6 +5,7 @@
   loop:
     - alacritty
     - fzf
+    - git
     - kitty
     - nvim
     - pandoc

@@ -4,8 +4,6 @@
     name:
       - build-essential
       - cmake
-  tags:
-    - core
 
 - name: apt - Install core packages
   become: true
@@ -24,5 +22,9 @@
       - python3-venv
       - bat
       - exa
-  tags:
-    - core
+
+- name: apt - Install DE
+  apt:
+    name:
+      - i3
+      - i3status-rs
