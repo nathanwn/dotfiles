@@ -1,0 +1,4 @@
+- name: snap - Install packages
+  community.general.snap:
+    name:
+      - starship

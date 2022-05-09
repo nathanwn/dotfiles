@@ -4,13 +4,13 @@
     name:
       - python3-pip
   tags:
-    - core
+    - pip
 
 - name: pip - Install tldr
   pip:
     name: tldr
   tags:
-    - core
+    - pip
 
 # - name: pip - Install virtualenv for neovim
 #   pip:
@@ -18,4 +18,4 @@
 #     virtualenv_command: "python3 -m venv"
 #     virtualenv: "{{ lookup('env', 'HOME') }}/.local/share/nvim/venv"
 #   tags:
-#     - core
+#     - pip

@@ -2,7 +2,6 @@
   ansible.builtin.command:
     cmd: "mkdir -p {{ lookup('env', 'HOME') }}/install/go"
   tags:
-    - core
     - go
 
 - name: go - Download go (linux)
@@ -10,7 +9,6 @@
     chdir: "{{ lookup('env', 'HOME') }}/install/go"
     cmd: "curl -OL https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
   tags:
-    - core
     - go
 
 - name: go - Install go (linux)
@@ -19,7 +17,6 @@
     chdir: "{{ lookup('env', 'HOME') }}/install/go"
     cmd: rm -rf /usr/local/go && tar -C /usr/local -xzf "go{{ go_version }}.linux-amd64.tar.gz"
   tags:
-    - core
     - go
 
 - name: go - Install gopls
@@ -27,7 +24,6 @@
     cmd: >
       go install golang.org/x/tools/gopls@latest
   tags:
-    - core
     - go
 
 - name: go - Install delve
@@ -35,7 +31,6 @@
     cmd: >
       go install github.com/go-delve/delve/cmd/dlv@latest
   tags:
-    - core
     - go
 
 # - name: go - Install golangci-lint
@@ -43,5 +38,4 @@
 #     cmd: |
 #       "go install github.com/golangci/golangci-lint/cmd/golangci-lint@{{ golangci_lint_version }}"
 #   tags:
-#     - core
 #     - go

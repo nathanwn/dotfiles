@@ -6,7 +6,6 @@
   when:
     - ansible_fact['distribution'] == 'Ubuntu'
   tags:
-    - core
     - clangd
     - ubuntu
 
@@ -15,6 +14,5 @@
   when:
     - ansible_fact['distribution'] == 'Ubuntu'
   tags:
-    - core
     - clangd
     - ubuntu

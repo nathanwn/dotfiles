@@ -2,8 +2,22 @@
 - hosts: localhost
   vars_files:
     - vars.yml
+    - .env_vars.yml
+  environment: env_vars
 
   pre_tasks:
+    - name: Print distribution
+      ansible.builtin.debug:
+        msg: "os family: {{ ansible_os_family }} - distribution: {{ ansible_facts['distribution'] }}"
+      tags:
+        - core
+
+    - name: Github token
+      ansible.builtin.debug:
+        msg: "GH_TOKEN = {{ lookup('env', 'GH_TOKEN') }}"
+      tags:
+        - debug
+
     - name: Update apt
       become: true
       apt:
@@ -11,14 +25,9 @@
         update_cache: true
         state: present
       tags:
-        - install
         - core
-        - full
-        - ubuntu
       when:
-        - ansible_facts['distribution'] == 'Ubuntu'
-          # - ansible_facts['distribution_version'] == '20.04'
-          # - ansible_facts['distribution_major_version'] == '20'
+        - ansible_os_family == 'Debian'
 
   tasks:
     - name: Detect WSL
@@ -26,46 +35,51 @@
       shell: grep -qi microsoft /proc/version && echo wsl || /bin/true
       register: detect_wsl_result
       tags:
-        - core
         - full
 
-    - name: Setup git
-      import_tasks: tasks/git-setup.yml
-      tags:
-        - core
-        - full
+# - name: Setup git
+#   import_tasks: tasks/git-setup.yml
+#   tags:
+#     - full
 
-    - name: Install core packages - Ubuntu
-      import_tasks: tasks/apt-core-packages.yml
+    - name: apt - Install core packages - Debian-based
+      import_tasks: tasks/apt/core.yml
       when:
-        - ansible_facts['distribution'] == 'Ubuntu'
-          # - ansible_facts['distribution_version'] == '20.04'
-          # - ansible_facts['distribution_major_version'] == '20'
+        - ansible_os_family == 'Debian'
       tags:
         - core
-        - ubuntu
-        - wsl
         - full
 
-    # - name: Install core packages - Mac
-    #   tags:
-    #     - mac
+    - name: Install i3
+      import_tasks: tasks/apt/wm.yml
+      when:
+        - ansible_os_family == 'Debian'
+      tags:
+        - wm
+
+# - name: Install core packages - Mac
+#   tags:
+#     - mac
 
     - name: Setup dotfiles
       import_tasks: "tasks/dotfiles.yml"
       tags:
         - dotfiles
+        - full
+
+    - name: Install snap packages
+      import_tasks: tasks/snap-packages.yml
+      tags:
+        - full
 
     - name: Install pip and python packages
       import_tasks: tasks/pip-packages.yml
       tags:
-        - core
         - full
 
     - name: Install go and go packages
       import_tasks: tasks/go-packages.yml
       tags:
-        - core
         - full
 
     - name: Install cargo and rust packages
@@ -73,18 +87,14 @@
       vars:
         is_wsl: '{{ detect_wsl_result.stdout == "wsl" }}'
       tags:
-        - core
         - full
 
     - name: Install nvm and npm packages
       import_tasks: tasks/nvm-setup.yml
       tags:
-        - core
         - full
 
     - name: Install apps
       import_tasks: tasks/apps.yml
       tags:
-        - core
-        - cont
         - full

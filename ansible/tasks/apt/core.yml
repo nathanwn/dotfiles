@@ -1,0 +1,31 @@
+- name: apt - Install core packages 1
+  become: true
+  apt:
+    name:
+      - build-essential
+      - cmake
+      - snapd
+  tags:
+    - core
+
+- name: apt - Install core packages 2
+  become: true
+  apt:
+    name:
+      - bat
+      - curl
+      - exa
+      - fzf
+      - geany
+      - python3-venv
+      - ripgrep
+      - stow
+      - tmux
+      - valgrind
+      - vim
+      - wget
+      - xclip
+      - zathura
+      - zsh
+  tags:
+    - core
