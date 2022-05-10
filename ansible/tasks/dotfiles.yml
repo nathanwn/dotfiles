@@ -14,5 +14,10 @@
     - stow
     - zathura
     - zsh
-  tags:
-    - dotfiles
+
+- name: dotfiles - window manager
+  shell:
+    chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
+    cmd: "stow {{ item }}"
+  loop:
+    - i3

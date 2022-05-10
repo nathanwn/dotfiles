@@ -3,7 +3,7 @@
   vars_files:
     - vars.yml
     - .env_vars.yml
-  environment: env_vars
+  environment: "{{ env_vars }}"
 
   pre_tasks:
     - name: Print distribution
@@ -14,7 +14,7 @@
 
     - name: Github token
       ansible.builtin.debug:
-        msg: "GH_TOKEN = {{ lookup('env', 'GH_TOKEN') }}"
+        msg: "GH_TOKEN = {{ env_vars['GH_TOKEN'] }}"
       tags:
         - debug
 
@@ -37,11 +37,6 @@
       tags:
         - full
 
-# - name: Setup git
-#   import_tasks: tasks/git-setup.yml
-#   tags:
-#     - full
-
     - name: apt - Install core packages - Debian-based
       import_tasks: tasks/apt/core.yml
       when:
@@ -57,10 +52,6 @@
       tags:
         - wm
 
-# - name: Install core packages - Mac
-#   tags:
-#     - mac
-
     - name: Setup dotfiles
       import_tasks: "tasks/dotfiles.yml"
       tags:
@@ -71,6 +62,11 @@
       import_tasks: tasks/snap-packages.yml
       tags:
         - full
+
+    - name: Install fonts
+      import_tasks: tasks/fonts.yml
+      tags:
+        - fonts
 
     - name: Install pip and python packages
       import_tasks: tasks/pip-packages.yml

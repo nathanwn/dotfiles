@@ -1,11 +1,12 @@
-- name: neovim - Install neovim v0.7.0
+- name: neovim - Create download directory
+  file:
+   path: "{{ lookup('env', 'HOME') }}/install/neovim"
+   state: directory
+
+- name: neovim - Install neovim
   become: true
   shell:
+    chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
     cmd: |
-      mkdir ~/install
-      cd ~/install
-      gh release download --repo neovim/neovim v0.7.0 --pattern 'nvim-linux64.deb'
+      GH_TOKEN="{{ env_vars['GH_TOKEN'] }}" gh release download --repo neovim/neovim v{{ nvim_release }} --pattern 'nvim-linux64.deb'
       sudo dpkg -i nvim-linux64.deb
-  tags:
-    - neovim
-    - full

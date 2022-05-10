@@ -1,4 +1,7 @@
 - name: snap - Install packages
+  become: true
   community.general.snap:
     name:
       - starship
+  tags:
+    - snap

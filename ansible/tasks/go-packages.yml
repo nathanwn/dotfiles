@@ -36,6 +36,6 @@
 # - name: go - Install golangci-lint
 #   ansible.builtin.command:
 #     cmd: |
-#       "go install github.com/golangci/golangci-lint/cmd/golangci-lint@{{ golangci_lint_version }}"
+#       "go install github.com/golangci/golangci-lint/cmd/golangci-lint@v{{ golangci_lint_version }}"
 #   tags:
 #     - go

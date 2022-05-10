@@ -1,31 +1,35 @@
 - name: apt - Install core packages 1
   become: true
   apt:
-    name:
+    pkg:
       - build-essential
       - cmake
       - snapd
+    update_cache: yes
   tags:
     - core
 
 - name: apt - Install core packages 2
   become: true
   apt:
-    name:
+    pkg:
       - bat
       - curl
       - exa
       - fzf
       - geany
+      - htop
       - python3-venv
       - ripgrep
       - stow
       - tmux
+      - tmuxp
       - valgrind
       - vim
       - wget
       - xclip
       - zathura
       - zsh
+    update_cache: yes
   tags:
     - core

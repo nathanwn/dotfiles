@@ -1,0 +1,25 @@
+- name: fonts - Create download directory
+  file:
+   path: "{{ lookup('env', 'HOME') }}/install/fonts"
+   state: directory
+
+- name: fonts - Create installation directory
+  file:
+   path: "{{ lookup('env', 'HOME') }}/.fonts"
+   state: directory
+
+- name: fonts - Install fonts
+  become: true
+  shell:
+    chdir: "{{ lookup('env', 'HOME') }}/install/fonts"
+    cmd: |
+      GH_TOKEN="{{ env_vars['GH_TOKEN'] }}" gh release download --repo v{{ nerd_fonts_release }} --pattern '{{ item }}.zip'
+      unzip {{ item }}.zip -d {{ lookup('env', 'HOME') }}/.fonts/{{ item }}
+  loop:
+    - JetBrainsMono
+
+- name: fonts - Reset font cache
+  become: true
+  shell:
+    cmd: |
+      fc-cache -rv
