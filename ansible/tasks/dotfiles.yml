@@ -12,6 +12,7 @@
     - scripts
     - starship
     - stow
+    - tmux
     - zathura
     - zsh
 
