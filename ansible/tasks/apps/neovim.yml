@@ -1,12 +1,42 @@
-- name: neovim - Create download directory
-  file:
-   path: "{{ lookup('env', 'HOME') }}/install/neovim"
-   state: directory
-
-- name: neovim - Install neovim
+- name: neovim - Install build prerequisites
   become: true
+  apt:
+    pkg:
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - curl
+      - doxygen
+    update_cache: yes
+  tags:
+    - neovim
+
+- name: neovim - Create installation directory
+  file:
+   path: "{{ lookup('env', 'HOME') }}/install/go"
+   state: directory
+  tags:
+    - neovim
+
+- name: neovim - Get nightly
+  ansible.builtin.git:
+    repo: https://github.com/neovim/neovim
+    dest: "{{ lookup('env', 'HOME') }}/install/neovim"
+  tags:
+    - neovim
+
+- name: neovim - Install
   shell:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
     cmd: |
-      GH_TOKEN="{{ env_vars['GH_TOKEN'] }}" gh release download --repo neovim/neovim v{{ nvim_release }} --pattern 'nvim-linux64.deb'
-      sudo dpkg -i nvim-linux64.deb
+      make CMAKE_BUILD_TYPE=RelWithDebInfo
+      make CMAKE_INSTALL_PREFIX=$HOME/bin/nvim install
+  tags:
+    - neovim

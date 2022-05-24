@@ -15,7 +15,11 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="$HOME/.local/share/node-global-env/node_modules/.bin:$PATH"
 # rust
 FILE="$HOME/.cargo/env" && test -f $FILE && source $FILE
+
 # Applications
+# neovim
+export PATH="$HOME/bin/nvim/bin:$PATH"
+
 # spotifyd
 # export PATH="$HOME/bin/spotifyd/target/release:$PATH"
 # qpdf
