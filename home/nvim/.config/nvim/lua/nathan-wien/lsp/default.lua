@@ -86,7 +86,7 @@ M.on_attach = function(client, bufnr)
     vim.cmd("e" .. vim.lsp.get_log_path())
   end, { buffer = 0 })
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     vim.cmd([[
       augroup lsp_buf_format
           autocmd! * <buffer>
@@ -95,7 +95,7 @@ M.on_attach = function(client, bufnr)
     ]])
   end
 
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.cmd([[
       augroup lsp_document_highlight
         autocmd! * <buffer>
