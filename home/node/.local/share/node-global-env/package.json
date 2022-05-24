@@ -1,0 +1,14 @@
+{
+  "name": "node-global-env",
+  "version": "1.0.0",
+  "description": "global node environment",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fsouza/prettierd": "^0.20.0",
+    "pyright": "^1.1.248",
+    "typescript": "^4.6.4",
+    "typescript-language-server": "^0.10.1",
+    "yaml-language-server": "^1.7.0"
+  }
+}
