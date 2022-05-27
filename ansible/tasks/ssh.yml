@@ -1,0 +1,44 @@
+- name: ssh - Check if key pair already exists
+  ansible.builtin.command:
+    creates:  "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519.pub"
+    cmd: ssh-keygen -t ed25519 -C "nhat.nguyen.cs17@gmail.com" -f "$HOME/.ssh/id_ed25519" -q -N ""
+  tags:
+    - ssh
+
+- name: ssh - Add ssh key to github (Debian-based)
+  block:
+    - name: ssh - Get unique machine id (Debian-based)
+      shell: cat /etc/machine-id | cut -c -10
+      register: machineid
+
+    - debug:
+        msg: "machineid {{ machineid.stdout }}"
+
+    - name: ssh - Add ssh key to github
+      ansible.builtin.command:
+        cmd: gh ssh-key add $HOME/.ssh/id_ed25519.pub --title "{{ machineid.stdout }}"
+      tags:
+        - ssh
+  when:
+  - ansible_os_family == 'Debian'
+  tags:
+    - ssh
+
+- name: ssh - Add ssh key to github (macOS)
+  block:
+    - name: ssh - Get unique machine id (Debian-based)
+      shell: ioreg -rd1 -c IOPlatformExpertDevice | grep IOPlatformUUID | cut -c -10
+      register: machineid
+
+    - debug:
+        msg: "machineid {{ machineid.stdout }}"
+
+    - name: ssh - Add ssh key to github
+      ansible.builtin.command:
+        cmd: gh ssh-key add $HOME/.ssh/id_ed25519.pub --title "{{ machineid.stdout }}"
+      tags:
+        - ssh
+  when:
+  - ansible_os_family == 'Darwin'
+  tags:
+    - ssh

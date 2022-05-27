@@ -52,6 +52,9 @@
       tags:
         - wm
 
+    - name: Generate ssh keys
+      import_tasks: tasks/ssh.yml
+
     - name: Setup dotfiles
       import_tasks: "tasks/dotfiles.yml"
       tags:
