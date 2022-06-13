@@ -215,6 +215,8 @@ return require("packer").startup(function(use)
   use({ "mattn/emmet-vim" })
   -- Markdown
   use({ "plasticboy/vim-markdown", ft = { "markdown" } })
+  -- Nix
+  use({ "LnL7/vim-nix", ft = { "nix" } })
   -- Pandoc
   use({
     "vim-pandoc/vim-pandoc",

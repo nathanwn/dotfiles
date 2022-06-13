@@ -1,5 +1,5 @@
 function source_if_exists () {
-  FILE=$1 && test -f $FILE && source $FILE
+  FILE=$1 && test -e $FILE && source $FILE
 }
 
 # -----------------------------------------------------------------------------
@@ -29,9 +29,6 @@ env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
 # fzf
 source_if_exists "$HOME/.config/fzf/completion.zsh"
 source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
-# mcfly
-source_if_exists "$HOME/.config/zsh/mcfly.zsh"
-
 
 # -----------------------------------------------------------------------------
 #                                  Aliases
@@ -53,12 +50,6 @@ elif [ -d "$HOME/.oh-my-zsh" ] ; then
   plugins=(git)
   source $ZSH/oh-my-zsh.sh
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/nhat/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nhat/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/nhat/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nhat/google-cloud-sdk/completion.zsh.inc'; fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
