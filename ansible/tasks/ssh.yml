@@ -5,9 +5,9 @@
   tags:
     - ssh
 
-- name: ssh - Add ssh key to github (Debian-based)
+- name: ssh - Add ssh key to github (Linux)
   block:
-    - name: ssh - Get unique machine id (Debian-based)
+    - name: ssh - Get unique machine id (Linux)
       shell: cat /etc/machine-id | cut -c -10
       register: machineid
 
@@ -20,13 +20,13 @@
       tags:
         - ssh
   when:
-  - ansible_os_family == 'Debian'
+  - ansible_os_family != 'Darwin'
   tags:
     - ssh
 
 - name: ssh - Add ssh key to github (macOS)
   block:
-    - name: ssh - Get unique machine id (Debian-based)
+    - name: ssh - Get unique machine id (macOS)
       shell: ioreg -rd1 -c IOPlatformExpertDevice | grep IOPlatformUUID | cut -c -10
       register: machineid
 
