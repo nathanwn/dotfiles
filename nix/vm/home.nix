@@ -37,9 +37,6 @@
   # Programs --
   programs.alacritty = {
     enable = true;
-    # settings = {
-    #   font_family = "JetBrainsMono Nerd Font";
-    # };
   };
 
   programs.exa = {
@@ -66,6 +63,9 @@
     package = pkgs.neovim-nightly;
     withPython3 = true;
     extraPackages = with pkgs; [
+      # build dependencies
+      gnumake
+      gcc
       # formatters
       stylua                                    # lua
       nodePackages.prettier                     # js/ts
@@ -76,7 +76,11 @@
       nodePackages.pyright                      # py
       nodePackages.typescript-language-server   # ts
       nodePackages.vscode-langservers-extracted # html/css/js
+      cmake-language-server                     # cmake
     ];
+    extraPython3Packages = (ps: with ps; [
+      debugpy
+    ]);
   };
 
   programs.starship = {
