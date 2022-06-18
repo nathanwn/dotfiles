@@ -19,11 +19,11 @@
     - nvim
     - pandoc
     - scripts
-    - starship
+#   - starship
     - tmux
     - vim
     - zathura
-    - zsh
+#   - zsh
   tags:
     - dotfiles
 

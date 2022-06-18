@@ -1,5 +1,0 @@
-go_version: 1.18.2
-golangci_lint_version: 1.45.2
-nvim_release: 0.7.0
-kitty_release: 0.25.0
-nerd_fonts_release: 2.1.0
