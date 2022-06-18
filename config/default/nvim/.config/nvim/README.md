@@ -1,5 +1,14 @@
 # Nvim
 
+## Python dependencies
+
+```
+pynvim
+neovim-remote
+cmake-language-server
+debugpy
+```
+
 ## Language Servers
 
 ### Lua
