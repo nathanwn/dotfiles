@@ -1,5 +1,5 @@
 theme = "native"
-icons = "awesome5"
+# icons = "awesome5"
 
 [[block]]
 block = "disk_space"
