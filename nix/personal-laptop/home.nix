@@ -58,6 +58,10 @@
     userEmail = "nhat.nguyen.cs17@gmail.com";
   };
 
+  programs.i3status-rust = {
+    enable = true;
+  };
+
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -100,13 +104,13 @@
     prefix = "C-a";
   };
 
-  programs.vscode = {
-    enable = true;
-  };
-
   programs.vim = {
     enable = true;
     extraConfig = builtins.readFile ../extra/vim/.vimrc;
+  };
+
+  programs.vscode = {
+    enable = true;
   };
 
   programs.zathura = {

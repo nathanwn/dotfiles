@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   vars_files:
-    - versions.yml
+    # - versions.yml
     - .env_vars.yml
   environment: "{{ env_vars }}"
 
@@ -38,10 +38,10 @@
         - full
 
     - name: Generate ssh keys
-      import_tasks: tasks/ssh.yml
+      import_tasks: ansible/ssh.yml
 
     - name: Setup dotfiles
-      import_tasks: "tasks/dotfiles.yml"
+      import_tasks: ansible/dotfiles.yml
       tags:
         - dotfiles
         - full

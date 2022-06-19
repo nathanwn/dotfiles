@@ -5,14 +5,14 @@
 ### Add ssh key to github
 
 ```sh
-$ ansible-playbook -K -t"ssh" local.yml
+ansible-playbook -K -t"ssh" local.yml
 ```
 
 
 ### Change remote from HTTPS to SSH
 
 ```
-$ git remote set-url origin git@github.com:nathan-wien/dotfiles.git
+git remote set-url origin git@github.com:nathan-wien/dotfiles.git
 ```
 
 * Install core packages:
