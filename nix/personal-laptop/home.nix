@@ -9,16 +9,21 @@
   # Packages that should be installed to the user profile.
   home.packages = [
     pkgs.ansible
+    pkgs.discord
     pkgs.fzf
     pkgs.gcc
     pkgs.gdb
     pkgs.go_1_18
     pkgs.htop
+    pkgs.obs-studio
     pkgs.python310
+    pkgs.skypeforlinux
     pkgs.stow
     pkgs.tmuxp
     pkgs.tldr
     pkgs.ripgrep
+    pkgs.virtualbox
+    pkgs.zoom-us
   ];
 
   # This value determines the Home Manager release that your

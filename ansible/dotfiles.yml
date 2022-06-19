@@ -11,32 +11,32 @@
     cmd: "stow {{ item }}"
   loop:
     - alacritty
-    - bat
-    - fzf
-    - git
-    - kitty
-    - latexmk
+#   - bat
+#   - fzf
+#   - git
+#   - kitty
+#   - latexmk
     - nvim
-    - pandoc
-    - scripts
+#   - pandoc
+#   - scripts
 #   - starship
-    - tmux
-    - vim
-    - zathura
+#   - tmux
+#   - vim
+#   - zathura
 #   - zsh
   tags:
     - dotfiles
 
-- name: dotfiles - Install ubuntu dotfiles
+- name: dotfiles - Install linux dotfiles
   shell:
     chdir: "{{ lookup('env', 'HOME') }}/dotfiles/home_ubuntu"
     cmd: "stow {{ item }}"
   loop:
-    - code
+#   - code
     - i3
-    - zsh
+#   - zsh
   when:
-    - ansible_os_family == 'Debian'
+    - ansible_os_family != 'Debian'
   tags:
     - dotfiles
 

@@ -5,8 +5,8 @@
 set $mod Mod4
 
 # Monitors
-set $monitor_left "DP-1-1"
-set $monitor_right  "eDP-1-1"
+set $monitor_left "DP-1"
+set $monitor_right  "eDP-1"
 
 # ==============================================================================
 #                                   Fonts
