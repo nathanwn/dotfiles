@@ -8,22 +8,30 @@
 
   # Packages that should be installed to the user profile.
   home.packages = [
+    # dev
     pkgs.ansible
-    pkgs.discord
     pkgs.fzf
     pkgs.gcc
     pkgs.gdb
     pkgs.go_1_18
-    pkgs.htop
-    pkgs.obs-studio
     pkgs.python310
-    pkgs.skypeforlinux
     pkgs.stow
     pkgs.tmuxp
     pkgs.tldr
     pkgs.ripgrep
+    # apps
+    pkgs.discord
+    pkgs.obs-studio
+    pkgs.skypeforlinux
     pkgs.virtualbox
     pkgs.zoom-us
+    # ui
+    pkgs.pasystray # pulseaudio system tray
+    # utilities
+    pkgs.htop
+    pkgs.pavucontrol
+    pkgs.pulseaudio # has to be here, not in configuration.nix; enables pactl
+    pkgs.light      # backlight control
   ];
 
   # This value determines the Home Manager release that your

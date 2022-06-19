@@ -38,7 +38,15 @@
   time.timeZone = "Australia/Brisbane";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_AU.utf8";
+  i18n = {
+    defaultLocale = "en_AU.utf8";
+    inputMethod = {
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [
+        bamboo
+      ];
+    };
+  };
 
   # X11 windowing system.
   services.xserver = {
@@ -74,7 +82,10 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  sound = {
+    enable = true;
+    mediaKeys.enable = true;
+  };
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -116,6 +127,7 @@
     vim
     wget
     xorg.xmodmap
+    xorg.xbacklight
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -144,6 +156,10 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
+
+  # Virtualbox --
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "nhat" ];
 
   # Fonts --
   fonts.fonts = with pkgs; [
