@@ -19,6 +19,9 @@
     pkgs.tmuxp
     pkgs.tldr
     pkgs.ripgrep
+    # tools
+    pkgs.pandoc
+    pkgs.texlive.combined.scheme-medium
     # apps
     pkgs.discord
     pkgs.obs-studio
