@@ -36,6 +36,19 @@
             }
           ];
         };
+        personal-laptop = nixpkgs.lib.nixosSystem {
+          inherit system pkgs;
+          modules = [
+            ./nix/personal-laptop/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.nhat = {
+                imports = [ ./nix/personal-laptop/home.nix ];
+              };
+            }
+          ];
+        };
       };
       # homeConfigurations = {
       #   nix-vm = home-manager.lib.homeManagerConfiguration {
