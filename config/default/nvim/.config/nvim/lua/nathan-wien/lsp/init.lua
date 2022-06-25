@@ -37,6 +37,8 @@ return function()
     prismals = {},
     -- Python
     pyright = {},
+    -- Terraform
+    terraformls = {},
     -- Yaml
     yamlls = {},
     -- Formatting

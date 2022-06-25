@@ -13,7 +13,7 @@
   shell:
     chdir: "{{ lookup('env', 'HOME') }}/install/fonts"
     cmd: |
-      GH_TOKEN="{{ env_vars['GH_TOKEN'] }}" gh release download --repo v{{ nerd_fonts_release }} --pattern '{{ item }}.zip'
+      GH_TOKEN="{{ env_vars['GH_TOKEN'] }}" gh release download --repo https://github.com/ryanoasis/nerd-fonts v2.1.0 --pattern '{{ item }}.zip'
       unzip {{ item }}.zip -d {{ lookup('env', 'HOME') }}/.fonts/{{ item }}
   loop:
     - JetBrainsMono

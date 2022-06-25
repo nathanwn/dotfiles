@@ -19,7 +19,8 @@ return {
     -- JS/TS
     builtins.diagnostics.eslint_d,
     builtins.completion.spell,
-    builtins.formatting.prettierd,
+    builtins.formatting.prettier,
+    -- builtins.formatting.prettierd,
     -- Python
     builtins.formatting.black,
     builtins.formatting.isort,

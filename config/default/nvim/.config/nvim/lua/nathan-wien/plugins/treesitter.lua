@@ -8,6 +8,7 @@ return function()
       "go",
       "java",
       "javascript",
+      "hcl",
       "lua",
       "python",
       "rust",

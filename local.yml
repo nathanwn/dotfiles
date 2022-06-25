@@ -59,10 +59,10 @@
 #      tags:
 #        - full
 #    
-#    - name: Install fonts
-#      import_tasks: tasks/fonts.yml
-#      tags:
-#        - fonts
+    - name: Install fonts
+      import_tasks: ansible/fonts.yml
+      tags:
+        - fonts
 
 #     - name: Install pip and python packages
 #       import_tasks: tasks/pip-packages.yml
