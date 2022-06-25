@@ -5,10 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -16,13 +15,13 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  boot.initrd.secrets = { "/crypto_keyfile.bin" = null; };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-e83a79e0-688e-4a7d-857f-51a408d19b53".device = "/dev/disk/by-uuid/e83a79e0-688e-4a7d-857f-51a408d19b53";
-  boot.initrd.luks.devices."luks-e83a79e0-688e-4a7d-857f-51a408d19b53".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-e83a79e0-688e-4a7d-857f-51a408d19b53".device =
+    "/dev/disk/by-uuid/e83a79e0-688e-4a7d-857f-51a408d19b53";
+  boot.initrd.luks.devices."luks-e83a79e0-688e-4a7d-857f-51a408d19b53".keyFile =
+    "/crypto_keyfile.bin";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -42,9 +41,7 @@
     defaultLocale = "en_AU.utf8";
     inputMethod = {
       enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [
-        bamboo
-      ];
+      ibus.engines = with pkgs.ibus-engines; [ bamboo ];
     };
   };
 
@@ -69,9 +66,7 @@
     };
 
     # Use i3 as window manager
-    windowManager.i3 = {
-      enable = true;
-    };
+    windowManager.i3 = { enable = true; };
 
     # Configure keymap in X11
     layout = "us";
@@ -162,11 +157,8 @@
   users.extraGroups.vboxusers.members = [ "nhat" ];
 
   # Fonts --
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override {
-      fonts = [ "JetBrainsMono" ];
-    })
-  ];
+  fonts.fonts = with pkgs;
+    [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
   # Programs --
   users.defaultUserShell = pkgs.zsh;

@@ -20,9 +20,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
-          neovim-nightly-overlay.overlay
-        ];
+        overlays = [ neovim-nightly-overlay.overlay ];
       };
     in {
       nixosConfigurations = {
@@ -30,12 +28,11 @@
           inherit system pkgs;
           modules = [
             ./nix/vm/configuration.nix
-            home-manager.nixosModules.home-manager {
+            home-manager.nixosModules.home-manager
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.nhat = {
-                imports = [ ./nix/vm/home.nix ];
-              };
+              home-manager.users.nhat = { imports = [ ./nix/vm/home.nix ]; };
             }
           ];
         };
@@ -43,7 +40,8 @@
           inherit system pkgs;
           modules = [
             ./nix/personal-laptop/configuration.nix
-            home-manager.nixosModules.home-manager {
+            home-manager.nixosModules.home-manager
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.nhat = {
@@ -59,11 +57,7 @@
           username = "minhnngu";
           homeDirectory = "/home/minhnngu";
           stateVersion = "22.05";
-          configuration = {
-            imports = [
-              ./nix/ol-laptop/home.nix
-            ];
-          };
+          configuration = { imports = [ ./nix/ol-laptop/home.nix ]; };
         };
       };
     };

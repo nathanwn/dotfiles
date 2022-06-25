@@ -35,9 +35,7 @@
   programs.home-manager.enable = true;
 
   # Programs --
-  programs.alacritty = {
-    enable = true;
-  };
+  programs.alacritty = { enable = true; };
 
   programs.exa = {
     enable = true;
@@ -67,31 +65,29 @@
       gnumake
       gcc
       # formatters
-      stylua                                    # lua
-      nodePackages.prettier                     # js/ts
+      stylua # lua
+      nodePackages.prettier # js/ts
       # linters
       nodePackages.eslint_d
       # language servers
-      sumneko-lua-language-server               # lua
-      nodePackages.pyright                      # py
-      nodePackages.typescript-language-server   # ts
+      sumneko-lua-language-server # lua
+      nodePackages.pyright # py
+      nodePackages.typescript-language-server # ts
       nodePackages.vscode-langservers-extracted # html/css/js
-      cmake-language-server                     # cmake
+      cmake-language-server # cmake
     ];
-    extraPython3Packages = (ps: with ps; [
-      debugpy
-    ]);
+    extraPython3Packages = (ps: with ps; [ debugpy ]);
   };
 
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
     settings = {
-        character = {
-          success_symbol = "[λ](bold green)";
-          error_symbol = "[λ](bold red)";
-          vicmd_symbol = "[𝛎](bold green)";
-        };
+      character = {
+        success_symbol = "[λ](bold green)";
+        error_symbol = "[λ](bold red)";
+        vicmd_symbol = "[𝛎](bold green)";
+      };
     };
   };
 
@@ -100,9 +96,7 @@
     prefix = "C-a";
   };
 
-  programs.vscode = {
-    enable = true;
-  };
+  programs.vscode = { enable = true; };
 
   programs.vim = {
     enable = true;

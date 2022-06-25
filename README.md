@@ -36,3 +36,9 @@ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 ```sh
 sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system
 ```
+
+### Formatting all nix files
+
+```sh
+find . -name "*.nix" | xargs nixfmt
+```

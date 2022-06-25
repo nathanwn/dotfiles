@@ -76,55 +76,7 @@
     enable = true;
     enableAliases = true;
   };
-
-  programs.neovim = {
-    enable = true;
-    package = pkgs.neovim-nightly;
-    withPython3 = true;
-    extraPackages = with pkgs; [
-      # build dependencies
-      gnumake
-      gcc
-      # formatters
-      stylua                                    # lua
-      nodePackages.prettier                     # js/ts
-      # linters
-      nodePackages.eslint_d
-      # fuzzy finding
-      fd
-      # language servers
-      sumneko-lua-language-server               # lua
-      nodePackages.pyright                      # py
-      nodePackages.typescript-language-server   # ts
-      nodePackages.vscode-langservers-extracted # html/css/js
-      cmake-language-server                     # cmake
-      terraform-ls                              # terraform
-    ];
-    extraPython3Packages = (ps: with ps; [
-      debugpy
-    ]);
-    extraConfig = ''
-      luafile $HOME/.config/nvim/lua/nathan-wien/init.lua
-    '';
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-        character = {
-          success_symbol = "[λ](bold green)";
-          error_symbol = "[λ](bold red)";
-          vicmd_symbol = "[𝛎](bold green)";
-        };
-    };
-  };
-
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      james-yu.latex-workshop
-      yzhang.markdown-all-in-one
-    ];
-  };
+  programs.neovim = import ../programs/neovim.nix;
+  programs.starship = import ../programs/starship.nix;
+  programs.vscode = import ../programs/vscode.nix;
 }
