@@ -21,6 +21,8 @@
     pkgs.ansible
     pkgs.cargo
     pkgs.cmake
+    pkgs.docker
+    pkgs.docker-compose
     pkgs.fzf
     pkgs.gcc
     pkgs.gdb
