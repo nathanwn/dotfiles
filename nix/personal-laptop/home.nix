@@ -7,34 +7,39 @@
   home.homeDirectory = "/home/nhat";
 
   # Packages that should be installed to the user profile.
-  home.packages = [
+  home.packages = with pkgs; [
     # dev
-    pkgs.ansible
-    pkgs.fzf
-    pkgs.gcc
-    pkgs.gdb
-    pkgs.go_1_18
-    pkgs.python310
-    pkgs.stow
-    pkgs.tmuxp
-    pkgs.tldr
-    pkgs.ripgrep
+    ansible
+    fzf
+    gcc
+    gdb
+    gnumake
+    go_1_18
+    python310
+    stow
+    terraform
+    tmux
+    tmuxp
+    tldr
+    ripgrep
     # tools
-    pkgs.pandoc
-    pkgs.texlive.combined.scheme-medium
+    pandoc
+    texlive.combined.scheme-medium
+    nixfmt
     # apps
-    pkgs.discord
-    pkgs.obs-studio
-    pkgs.skypeforlinux
-    pkgs.virtualbox
-    pkgs.zoom-us
+    discord
+    obs-studio
+    slack
+    skypeforlinux
+    virtualbox
+    zoom-us
     # ui
-    pkgs.pasystray # pulseaudio system tray
+    pasystray # pulseaudio system tray
     # utilities
-    pkgs.htop
-    pkgs.pavucontrol
-    pkgs.pulseaudio # has to be here, not in configuration.nix; enables pactl
-    pkgs.light      # backlight control
+    htop
+    pavucontrol
+    pulseaudio # has to be here, not in configuration.nix; enables pactl
+    light # backlight control
   ];
 
   # This value determines the Home Manager release that your
@@ -51,9 +56,7 @@
   programs.home-manager.enable = true;
 
   # Programs --
-  programs.alacritty = {
-    enable = true;
-  };
+  programs.alacritty = { enable = true; };
 
   programs.exa = {
     enable = true;
@@ -74,72 +77,28 @@
     userEmail = "nhat.nguyen.cs17@gmail.com";
   };
 
-  programs.i3status-rust = {
-    enable = true;
-  };
+  programs.i3status-rust = { enable = true; };
 
-  programs.neovim = {
-    enable = true;
-    package = pkgs.neovim-nightly;
-    withPython3 = true;
-    extraPackages = with pkgs; [
-      # build dependencies
-      gnumake
-      gcc
-      # formatters
-      stylua                                    # lua
-      nodePackages.prettier                     # js/ts
-      # linters
-      nodePackages.eslint_d
-      # language servers
-      sumneko-lua-language-server               # lua
-      nodePackages.pyright                      # py
-      nodePackages.typescript-language-server   # ts
-      nodePackages.vscode-langservers-extracted # html/css/js
-      cmake-language-server                     # cmake
-    ];
-    extraPython3Packages = (ps: with ps; [
-      debugpy
-    ]);
-  };
+  programs.kitty = { enable = true; };
 
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-        character = {
-          success_symbol = "[λ](bold green)";
-          error_symbol = "[λ](bold red)";
-          vicmd_symbol = "[𝛎](bold green)";
-        };
-    };
-  };
+  programs.neovim = import ../programs/neovim.nix { pkgs = pkgs; };
+  programs.starship = import ../programs/starship.nix;
 
-  programs.tmux = {
-    enable = true;
-    prefix = "C-a";
-  };
+  # programs.tmux = {
+  #   enable = true;
+  # };
 
   programs.vim = {
     enable = true;
     extraConfig = builtins.readFile ../extra/vim/.vimrc;
   };
 
-  programs.vscode = {
-    enable = true;
-  };
+  programs.vscode = import ../programs/vscode.nix { pkgs = pkgs; };
 
   programs.zathura = {
     enable = true;
     # programs.zathura.extraConfig = builtins.readFile ../extra
   };
 
-  programs.zsh = {
-    enable = true;
-    enableSyntaxHighlighting = true;
-    envExtra = ''
-      bindkey -v
-      export LIBGL_ALWAYS_SOFTWARE=1
-    '';
-  };
+  programs.zsh = import ../programs/zsh.nix;
 }
