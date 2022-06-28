@@ -24,8 +24,6 @@
     pkgs.docker
     pkgs.docker-compose
     pkgs.fzf
-    pkgs.gcc
-    pkgs.gdb
     pkgs.go_1_18
     pkgs.i3status-rust
     pkgs.python310
@@ -78,7 +76,7 @@
     enable = true;
     enableAliases = true;
   };
-  programs.neovim = import ../programs/neovim.nix;
+  programs.neovim = import ../programs/neovim.nix { pkgs = pkgs; };
   programs.starship = import ../programs/starship.nix;
-  programs.vscode = import ../programs/vscode.nix;
+  programs.vscode = import ../programs/vscode.nix { pkgs = pkgs; };
 }

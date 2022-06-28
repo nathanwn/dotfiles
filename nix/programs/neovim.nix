@@ -18,6 +18,7 @@
     nodePackages.pyright # py
     nodePackages.typescript-language-server # ts
     nodePackages.vscode-langservers-extracted # html/css/js
+    nodePackages.yaml-language-server # yaml
     cmake-language-server # cmake
     terraform-ls # terraform
   ];
