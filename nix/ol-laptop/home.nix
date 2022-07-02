@@ -19,6 +19,7 @@
   home.packages = [
     # dev
     pkgs.ansible
+    pkgs.bat
     pkgs.cargo
     pkgs.cmake
     pkgs.docker
@@ -36,25 +37,10 @@
     # tools
     pkgs.bitwarden-cli
     pkgs.pandoc
-    pkgs.texlive.combined.scheme-medium
-    # pkgs.zathura
+    pkgs.texlive.combined.scheme-full
     # apps
-    # pkgs.alacritty
-    # pkgs.discord
-    # pkgs.mendeley
-    # pkgs.obs-studio
-    # pkgs.slack
-    # pkgs.skypeforlinux
-    # pkgs.virtualbox
-    # pkgs.vscode
-    # pkgs.zoom-us
-    # ui
-    # pkgs.pasystray # pulseaudio system tray
     # utilities
     pkgs.htop
-    # pkgs.pavucontrol
-    # pkgs.pulseaudio # has to be here, not in configuration.nix; enables pactl
-    # pkgs.light      # backlight control
     # font
   ];
 

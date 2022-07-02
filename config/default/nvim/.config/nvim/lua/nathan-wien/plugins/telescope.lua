@@ -32,6 +32,11 @@ return function()
   vim.keymap.set("n", "<Leader>fF", function()
     telescope_builtin.find_files({ previewer = false, hidden = true })
   end, { desc = "[telescope] Find files (hidden files included)" })
+
+  vim.keymap.set("n", "<Leader>fP", function()
+    telescope_builtin.find_files()
+  end, { desc = "[telescope] Find files with previewer" })
+
   vim.keymap.set("n", "<Leader>fb", function()
     telescope_builtin.buffers({ previewer = false })
   end, { desc = "[telescope] List buffers" })
