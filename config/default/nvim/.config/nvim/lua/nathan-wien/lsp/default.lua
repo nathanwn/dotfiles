@@ -38,7 +38,7 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set(
     "n",
     "<Leader>fm",
-    vim.lsp.buf.formatting_sync,
+    vim.lsp.buf.format,
     { buffer = 0, desc = "[lsp] Format" }
   )
   vim.keymap.set(
@@ -90,7 +90,7 @@ M.on_attach = function(client, bufnr)
     vim.cmd([[
       augroup lsp_buf_format
           autocmd! * <buffer>
-          autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()
+          autocmd BufWritePre <buffer> :lua vim.lsp.buf.format()
       augroup END
     ]])
   end

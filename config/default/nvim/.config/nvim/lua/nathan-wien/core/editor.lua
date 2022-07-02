@@ -50,3 +50,6 @@ vim.g.tex_flavor = "latex"
 vim.g.vimsyn_embed = "l"
 -- For gitsigns and diagnostics
 vim.opt.signcolumn = "auto:2"
+-- New features
+vim.opt.laststatus = 3
+vim.opt.winbar = " %f %m"
