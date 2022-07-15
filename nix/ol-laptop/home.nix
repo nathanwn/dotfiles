@@ -18,30 +18,19 @@
 
   home.packages = [
     # dev
-    pkgs.ansible
-    pkgs.bat
     pkgs.cargo
     pkgs.cmake
-    pkgs.docker
-    pkgs.docker-compose
+    pkgs.fd
     pkgs.fzf
     pkgs.go_1_18
+    pkgs.golangci-lint
     pkgs.i3status-rust
-    pkgs.python310
-    pkgs.stow
-    pkgs.terraform
+    pkgs.nodejs
     pkgs.tmux
     pkgs.tmuxp
     pkgs.tldr
     pkgs.ripgrep
-    # tools
-    pkgs.bitwarden-cli
     pkgs.pandoc
-    pkgs.texlive.combined.scheme-full
-    # apps
-    # utilities
-    pkgs.htop
-    # font
   ];
 
   # This value determines the Home Manager release that your
@@ -58,11 +47,46 @@
   programs.home-manager.enable = true;
 
   # Programs
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "GitHub";
+    };
+  };
   programs.exa = {
     enable = true;
     enableAliases = true;
   };
-  programs.neovim = import ../programs/neovim.nix { pkgs = pkgs; };
+  # programs.neovim = import ../programs/neovim.nix { pkgs = pkgs; };
   programs.starship = import ../programs/starship.nix;
-  programs.vscode = import ../programs/vscode.nix { pkgs = pkgs; };
+  # programs.vscode = import ../programs/vscode.nix { pkgs = pkgs; };
+  programs.zsh = {
+    enable = true;
+    enableSyntaxHighlighting = true;
+    enableAutosuggestions = true;
+    envExtra = ''
+      export XDG_CONFIG_HOME="$HOME/.config"
+      export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
+      export PATH="$JAVA_HOME/bin:$PATH"
+      export PATH="$HOME/bin/nvim/bin:$PATH"
+      alias switchjava="sudo update-alternatives --config java"
+
+      # pip
+      export PATH="$HOME/.local/bin:$PATH"
+
+      # cargo
+      export PATH="$HOME/.cargo/bin:$PATH"
+
+      # vivid colors
+      export LS_COLORS="$(vivid -m 8-bit generate one-light)"
+
+      # vi mode
+      bindkey -v
+      bindkey '^Y' forward-char
+
+      # cht.sh
+      export CHTSH_CONF="$XDG_CONFIG_HOME/cht.sh/cht.sh.conf"
+    ''
+    ;
+  };
 }
