@@ -8,6 +8,7 @@
     update_cache: yes
   tags:
     - core
+    - apt-core
 
 - name: apt - Install core packages 2
   become: true
@@ -16,12 +17,15 @@
       - bat
       - curl
       - exa
+      - fd-find
       - fzf
       - geany
       - htop
+      - pandoc
       - python3-venv
       - ripgrep
       - stow
+      - texlive-latex-extra
       - tmux
       - tmuxp
       - valgrind
@@ -33,3 +37,19 @@
     update_cache: yes
   tags:
     - core
+    - apt-core
+
+- name: apt - Install java dev env
+  become: true
+  apt:
+    pkg:
+      - maven
+      - default-jdk
+      - default-jre
+      - openjdk-8-jdk
+      - openjdk-8-jre
+      - openjdk-17-jdk
+      - openjdk-17-jre
+    update_cache: yes
+  tags:
+    - apt-java

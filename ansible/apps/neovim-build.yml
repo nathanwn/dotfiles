@@ -80,7 +80,7 @@
 - name: Install neovim - build
   ansible.builtin.command:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: make install
+    cmd: make install # here
   tags:
     - neovim-build
 

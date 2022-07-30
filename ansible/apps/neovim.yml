@@ -20,7 +20,7 @@
 
 - name: neovim - Create installation directory
   file:
-   path: "{{ lookup('env', 'HOME') }}/install/go"
+   path: "{{ lookup('env', 'HOME') }}/install/neovim"
    state: directory
   tags:
     - neovim
