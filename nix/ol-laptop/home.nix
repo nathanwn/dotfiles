@@ -19,18 +19,10 @@
   home.packages = [
     # dev
     pkgs.cargo
-    pkgs.cmake
-    pkgs.fd
-    pkgs.fzf
     pkgs.go_1_18
     pkgs.golangci-lint
     pkgs.i3status-rust
-    pkgs.nodejs
-    pkgs.tmux
-    pkgs.tmuxp
-    pkgs.tldr
-    pkgs.ripgrep
-    pkgs.pandoc
+    pkgs.texlive.combined.scheme-medium
   ];
 
   # This value determines the Home Manager release that your
@@ -47,16 +39,16 @@
   programs.home-manager.enable = true;
 
   # Programs
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "GitHub";
-    };
-  };
-  programs.exa = {
-    enable = true;
-    enableAliases = true;
-  };
+  # programs.bat = {
+  #   enable = true;
+  #   config = {
+  #     theme = "GitHub";
+  #   };
+  # };
+  # programs.exa = {
+  #   enable = true;
+  #   enableAliases = true;
+  # };
   # programs.neovim = import ../programs/neovim.nix { pkgs = pkgs; };
   programs.starship = import ../programs/starship.nix;
   # programs.vscode = import ../programs/vscode.nix { pkgs = pkgs; };
@@ -65,17 +57,28 @@
     enableSyntaxHighlighting = true;
     enableAutosuggestions = true;
     envExtra = ''
+      # export {http,https,ftp}_proxy=http://www-proxy-syd.au.oracle.com:80
+      # export no_proxy='localhost,127.0.0.1,*.zoom.us,::1,192.168.0.0/16,10.0.0.0/8,.oracle.com,.oraclecorp.com,.oraclevcn.com,.oraclevpn.com'
+
       export XDG_CONFIG_HOME="$HOME/.config"
-      export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
+
+      # java
+      export JAVA_HOME="$(dirname $(dirname $(readlink -f /usr/bin/java)))"
       export PATH="$JAVA_HOME/bin:$PATH"
-      export PATH="$HOME/bin/nvim/bin:$PATH"
+
       alias switchjava="sudo update-alternatives --config java"
 
       # pip
       export PATH="$HOME/.local/bin:$PATH"
 
+      # go
+      export PATH="$(go env GOPATH)/bin:$PATH"
+
       # cargo
       export PATH="$HOME/.cargo/bin:$PATH"
+
+      # nvim
+      export PATH="$HOME/bin/nvim/bin:$PATH"
 
       # vivid colors
       export LS_COLORS="$(vivid -m 8-bit generate one-light)"

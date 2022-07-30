@@ -27,25 +27,25 @@
         nix-vm = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           modules = [
-            ./nix/vm/configuration.nix
+            ./vm/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.nhat = { imports = [ ./nix/vm/home.nix ]; };
+              home-manager.users.nhat = { imports = [ ./vm/home.nix ]; };
             }
           ];
         };
         personal-laptop = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           modules = [
-            ./nix/personal-laptop/configuration.nix
+            ./personal-laptop/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.nhat = {
-                imports = [ ./nix/personal-laptop/home.nix ];
+                imports = [ ./personal-laptop/home.nix ];
               };
             }
           ];
@@ -57,7 +57,7 @@
           username = "minhnngu";
           homeDirectory = "/home/minhnngu";
           stateVersion = "22.05";
-          configuration = { imports = [ ./nix/ol-laptop/home.nix ]; };
+          configuration = { imports = [ ./ol-laptop/home.nix ]; };
         };
       };
     };

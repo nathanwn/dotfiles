@@ -15,12 +15,12 @@
     fd
     # language servers
     sumneko-lua-language-server # lua
-    nodePackages.pyright # py
-    nodePackages.typescript-language-server # ts
-    nodePackages.vscode-langservers-extracted # html/css/js
-    nodePackages.yaml-language-server # yaml
-    cmake-language-server # cmake
-    terraform-ls # terraform
+    # nodePackages.pyright # py
+    # nodePackages.typescript-language-server # ts
+    # nodePackages.vscode-langservers-extracted # html/css/js
+    # nodePackages.yaml-language-server # yaml
+    # cmake-language-server # cmake
+    # terraform-ls # terraform
   ];
   extraPython3Packages = (ps: with ps; [ debugpy ]);
   extraConfig = ''
