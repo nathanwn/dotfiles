@@ -6,6 +6,7 @@ function source_if_exists () {
 #                               Local Configs
 # -----------------------------------------------------------------------------
 source_if_exists "$HOME/.config/zsh/local.zsh"
+source_if_exists "$HOME/.config/zsh/proxy.sh"
 
 # -----------------------------------------------------------------------------
 #                              Shell settings
@@ -22,13 +23,24 @@ fi
 # -----------------------------------------------------------------------------
 #                                App settings
 # -----------------------------------------------------------------------------
+# vi-mode (disable in nvim terminal)
+# env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
+
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-# vi-mode (disable in nvim terminal)
-env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
-# fzf
 source_if_exists "$HOME/.config/fzf/completion.zsh"
 source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
+
+# vivid
+if [ -x "vivid" ] ; then
+  export LS_COLORS="$(vivid -m 8-bit generate one-light)"
+fi
+
+# zsh
+source_if_exists "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_if_exists "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+bindkey '^Y' autosuggest-accept
+bindkey -v
 
 # -----------------------------------------------------------------------------
 #                                  Aliases
@@ -43,12 +55,6 @@ source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 if [ -x "$(command -v starship)" ] ; then
   # Starship: https://github.com/starship/starship
   eval "$(starship init zsh)"
-elif [ -d "$HOME/.oh-my-zsh" ] ; then
-  # oh-my-zsh
-  export ZSH="$HOME/.oh-my-zsh"
-  ZSH_THEME="kphoen"
-  plugins=(git)
-  source $ZSH/oh-my-zsh.sh
 fi
 
 export NVM_DIR="$HOME/.nvm"
