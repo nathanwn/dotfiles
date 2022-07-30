@@ -12,7 +12,7 @@ font:
   bold_italic:
     family: "JetbrainsMono Nerd Font"
     style: Bold Italic
-  size: 10
+  size: 10.5
 
 window:
   padding:
@@ -52,4 +52,3 @@ colors:
     magenta: "#8700af"
     cyan: "#005f87"
     white: "#eeeeee"
-
