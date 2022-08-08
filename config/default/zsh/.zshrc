@@ -6,7 +6,8 @@ function source_if_exists () {
 #                               Local Configs
 # -----------------------------------------------------------------------------
 source_if_exists "$HOME/.config/zsh/local.zsh"
-source_if_exists "$HOME/.config/zsh/proxy.sh"
+source_if_exists "$HOME/.config/zsh/proxy.zsh"
+source_if_exists "$HOME/.config/zsh/private.zsh"
 
 # -----------------------------------------------------------------------------
 #                              Shell settings
