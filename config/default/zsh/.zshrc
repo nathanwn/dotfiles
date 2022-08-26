@@ -47,8 +47,9 @@ bindkey -v
 #                                  Aliases
 # -----------------------------------------------------------------------------
 # [ -x "$(command -v nvim)" ] && alias vim="nvim"
-[ -x "$(command -v exa)"  ] && alias ls="exa"
-[ -x "$(command -v bat)"  ] && alias cat="bat"
+[ -x "$(command -v exa)" ] && alias ls="exa"
+[ -x "$(command -v bat)" ] && alias cat="bat"
+[ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 
 # -----------------------------------------------------------------------------
 #                                   Theme
@@ -57,7 +58,3 @@ if [ -x "$(command -v starship)" ] ; then
   # Starship: https://github.com/starship/starship
   eval "$(starship init zsh)"
 fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
