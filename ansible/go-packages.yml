@@ -1,48 +1,37 @@
-- name: go - Create installation directory
+- name: go - create installation directory
   file:
    path: "{{ lookup('env', 'HOME') }}/install/go"
    state: directory
-  tags:
-    - go
 
-- name: go - Download go (linux)
+- name: go - download go (linux)
   get_url:
     url: "https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz"
     dest: "{{ lookup('env', 'HOME') }}/install/go"
-  tags:
-    - go
 
-- name: go - Uninstall previous version of go
+- name: go - uninstall previous version of go
   become: true
   file:
     path: "/usr/local/go"
     state: absent
 
-- name: go - Install go (linux)
+- name: go - install go (linux)
   ansible.builtin.shell:
     chdir: "{{ lookup('env', 'HOME') }}/install/go"
     cmd: tar -C /usr/local -xzf "go{{ go_version }}.linux-amd64.tar.gz"
-  tags:
-    - go
 
-- name: go - Install gopls
+- name: go - install gopls
   ansible.builtin.command:
     cmd: >
       go install golang.org/x/tools/gopls@latest
-  tags:
-    - go
 
-- name: go - Install delve
+- name: go - install delve
   ansible.builtin.command:
     cmd: >
       go install github.com/go-delve/delve/cmd/dlv@latest
-  tags:
-    - go
 
-- name: go - Install golangci-lint
+- name: go - install golangci-lint
   ansible.builtin.command:
     cmd: |
       go install github.com/golangci/golangci-lint/cmd/golangci-lint@v{{ golangci_lint_version }}
   tags:
-    - go
     - golangci
