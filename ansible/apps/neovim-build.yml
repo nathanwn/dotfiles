@@ -1,5 +1,5 @@
 ---
-- name: apt - Install neovim prerequisites
+- name: neovim - install prerequisites with apt
   become: true
   apt:
     name:
@@ -15,78 +15,31 @@
       - unzip
       - curl
       - doxygen
-  tags:
-    - neovim-build
 
-- name: Install neovim - check for local repo copy
-  ansible.builtin.stat:
-    path: "{{ lookup('env', 'HOME') }}/install/neovim"
-  register: nvimdir
-  tags:
-    - neovim-build
-
-- name: Install neovim - debug nvimdir
-  debug:
-    msg: "{{ nvimdir }}"
-  tags:
-    - neovim-build
-
-- name: Install neovim - clone
+- name: neovim - checkout version
   ansible.builtin.git:
     repo: "https://github.com/neovim/neovim.git"
     dest: "{{ lookup('env', 'HOME') }}/install/neovim"
-    version: nightly
-  tags:
-    - neovim-build
-  when: not nvimdir.stat.exists
+    version: "48e060f648f4da94f4e1394068186e2709e4a5f4"
 
-- name: Install neovim - checkout master
+- name: neovim - remove previous build
   ansible.builtin.command:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: "git checkout master"
-  when: nvimdir.stat.exists
-  tags:
-    - neovim-build
+    cmd: |
+      make distclean
 
-- name: Install neovim - pull updates
+- name: neovim - configure
   ansible.builtin.command:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: "git pull"
-  when: nvimdir.stat.exists
-  tags:
-    - neovim-build
+    cmd: |
+      make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/bin/nvim"
 
-- name: Install neovim - checkout release
+- name: neovim - install
   ansible.builtin.command:
     chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: "git checkout {{ nvim_release }}"
-  tags:
-    - neovim-build
+    cmd: |
+      make -j install
 
-- name: Install neovim - clean up previous build
+- name: neovim - install packages
   ansible.builtin.command:
-    chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: rm -rf build/
-  tags:
-    - neovim-build
-
-- name: Install neovim - configure
-  ansible.builtin.command:
-    chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/bin/nvim"
-  tags:
-    - neovim-build
-
-- name: Install neovim - build
-  ansible.builtin.command:
-    chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
-    cmd: make install # here
-  tags:
-    - neovim-build
-
-- name: Install neovim - install packages
-  ansible.builtin.command:
-    chdir: "{{ lookup('env', 'HOME') }}/install/neovim"
     cmd: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  tags:
-    - neovim-build

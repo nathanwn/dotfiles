@@ -1,33 +1,33 @@
 ---
 - hosts: localhost
   # vars_files:
-  #   # - versions.yml
-  #   - .env_vars.yml
+  # - versions.yml
+  # - .env_vars.yml
   # environment: "{{ env_vars }}"
 
-  # pre_tasks:
+  pre_tasks:
   # - name: Print distribution
   #   ansible.builtin.debug:
   #     msg: "os family: {{ ansible_os_family }} - distribution: {{ ansible_facts['distribution'] }}"
   #   tags:
   #     - core
 
-  # - name: Github token
-  #   ansible.builtin.debug:
-  #     msg: "GH_TOKEN = {{ env_vars['GH_TOKEN'] }}"
-  #   tags:
-  #     - debug
+    # - name: Github token
+    #   ansible.builtin.debug:
+    #     msg: "GH_TOKEN = {{ env_vars['GH_TOKEN'] }}"
+    #   tags:
+    #     - debug
 
-  # - name: Update apt
-  #   become: true
-  #   apt:
-  #     force_apt_get: true
-  #     update_cache: true
-  #     state: present
-  #   tags:
-  #     - core
-  #   when:
-  #     - ansible_os_family == 'Debian'
+  - name: Update apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+      - core
+    when:
+      - ansible_os_family == 'Debian'
 
   tasks:
     - name: Detect WSL
@@ -70,21 +70,32 @@
     #      import_tasks: tasks/snap-packages.yml
     #      tags:
     #        - full
-    #
-    - name: Install fonts
+
+    - name: fonts - install fonts
       import_tasks: ansible/fonts.yml
       tags:
         - fonts
+
+    - name: pipx - install global python binaries
+      import_tasks: ansible/pipx-packages.yml
+      tags:
+        - pipx
+
 #     - name: Install pip and python packages
-#       import_tasks: tasks/pip-packages.yml
+#       import_tasks: ansible/pip-packages.yml
 #       tags:
 #         - pip
 #         - full
 
-#   - name: Install go and go packages
-#     import_tasks: tasks/go-packages.yml
-#     tags:
-#       - full
+    - name: Install go and go packages
+      import_tasks: ansible/go-packages.yml
+      tags:
+       - go
+
+    - name: neovim - build
+      import_tasks: ansible/apps/neovim-build.yml
+      tags:
+        - nvim
 
 #   - name: Install cargo and rust packages
 #     import_tasks: tasks/cargo-packages.yml
@@ -98,7 +109,6 @@
 #     tags:
 #       - full
 
-#
 #   - name: Install i3
 #     import_tasks: tasks/apt/wm.yml
 #     when:

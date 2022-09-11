@@ -23,6 +23,7 @@
       - htop
       - pandoc
       - python3-venv
+      - python3-pip
       - ripgrep
       - stow
       - texlive-latex-extra
