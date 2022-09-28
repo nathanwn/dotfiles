@@ -7,6 +7,7 @@ function source_if_exists () {
 # -----------------------------------------------------------------------------
 source_if_exists "$HOME/.config/zsh/local.zsh"
 source_if_exists "$HOME/.config/zsh/proxy.zsh"
+# source_if_exists "$HOME/.config/zsh/proxy.zsh"
 source_if_exists "$HOME/.config/zsh/private.zsh"
 
 # -----------------------------------------------------------------------------
@@ -15,7 +16,7 @@ source_if_exists "$HOME/.config/zsh/private.zsh"
 # tab-complete hidden items
 _comp_options+=(globdots)
 # editor
-if [ -x "nvim" ] ; then
+if [ -x "$(command -v nvim)" ]; then
    export EDITOR=nvim
 else
    export EDITOR=vim
@@ -33,9 +34,7 @@ source_if_exists "$HOME/.config/fzf/completion.zsh"
 source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 
 # vivid
-if [ -x "vivid" ] ; then
-  export LS_COLORS="$(vivid -m 8-bit generate one-light)"
-fi
+[ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-light)"
 
 # zsh
 source_if_exists "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -55,7 +54,5 @@ bindkey -v
 # -----------------------------------------------------------------------------
 #                                   Theme
 # -----------------------------------------------------------------------------
-if [ -x "$(command -v starship)" ] ; then
-  # Starship: https://github.com/starship/starship
-  eval "$(starship init zsh)"
-fi
+# Starship: https://github.com/starship/starship
+[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
