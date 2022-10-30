@@ -21,6 +21,7 @@ i3xrocks.value.font: JetbrainsMono Nerd Font 10
 i3xrocks.label.cpu: cpu
 i3xrocks.label.memory: ram
 i3xrocks.label.wifi: wifi
+i3xrocks.label.disk: disk
 
 ## active workspace indicator
 ## following https://i3wm.org/docs/userguide.html#_changing_colors

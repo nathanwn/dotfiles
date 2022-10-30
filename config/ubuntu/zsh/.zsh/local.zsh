@@ -26,7 +26,8 @@ FILE="$HOME/.cargo/env" && test -f $FILE && source $FILE
 
 alias gpath="pwd | xclip -selection clipboard"
 
-function zath() { nohup zathura $1 > /dev/null & disown & }
+function run_and_disown() { nohup $1 $2 > /dev/null & disown & }
+function zath() { run_and_disown zathura $1 }
 function imgview() { nohup sxiv $1 > /dev/null & disown & }
 
 # -----------------------------------------------------------------------------
