@@ -1,7 +1,9 @@
 ---
 - hosts: localhost
-  # vars_files:
-  # - versions.yml
+
+  vars_files:
+  - versions.yml
+
   # - .env_vars.yml
   # environment: "{{ env_vars }}"
 
@@ -12,11 +14,11 @@
   #   tags:
   #     - core
 
-    # - name: Github token
-    #   ansible.builtin.debug:
-    #     msg: "GH_TOKEN = {{ env_vars['GH_TOKEN'] }}"
-    #   tags:
-    #     - debug
+  # - name: Github token
+  #   ansible.builtin.debug:
+  #     msg: "GH_TOKEN = {{ env_vars['GH_TOKEN'] }}"
+  #   tags:
+  #     - debug
 
   - name: Update apt
     become: true
@@ -81,16 +83,21 @@
       tags:
         - pipx
 
-#     - name: Install pip and python packages
-#       import_tasks: ansible/pip-packages.yml
-#       tags:
-#         - pip
-#         - full
+    # - name: Install pip and python packages
+    #   import_tasks: ansible/pip-packages.yml
+    #   tags:
+    #     - pip
+    #     - full
 
-    - name: Install go and go packages
+    - name: scala
+      import_tasks: ansible/scala.yml
+      tags:
+        - scala
+
+    - name: go
       import_tasks: ansible/go-packages.yml
       tags:
-       - go
+        - go
 
     - name: neovim - build
       import_tasks: ansible/apps/neovim-build.yml

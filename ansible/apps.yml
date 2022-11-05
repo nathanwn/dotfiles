@@ -1,8 +1,3 @@
-- name: Install app - neovim
-  import_tasks: apps/neovim-build.yml
-  tags:
-    - neovim-build
-
 - name: Install app - mcfly
   import_tasks: apps/mcfly.yml
   tags:

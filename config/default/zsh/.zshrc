@@ -7,7 +7,6 @@ function source_if_exists () {
 # -----------------------------------------------------------------------------
 source_if_exists "$HOME/.config/zsh/local.zsh"
 source_if_exists "$HOME/.config/zsh/proxy.zsh"
-# source_if_exists "$HOME/.config/zsh/proxy.zsh"
 source_if_exists "$HOME/.config/zsh/private.zsh"
 
 # -----------------------------------------------------------------------------
@@ -39,6 +38,9 @@ source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 # zsh
 source_if_exists "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source_if_exists "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ -d "$HOME/.zsh/zsh-completions/src" ]; then
+  fpath=("$HOME/.zsh/zsh-completions/src" $fpath)
+fi
 bindkey '^Y' autosuggest-accept
 bindkey -v
 

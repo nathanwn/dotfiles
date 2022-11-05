@@ -1,4 +1,4 @@
-- name: apt - Install core packages 1
+- name: apt - core packages 1
   become: true
   apt:
     pkg:
@@ -10,7 +10,7 @@
     - core
     - apt-core
 
-- name: apt - Install core packages 2
+- name: apt - core packages 2
   become: true
   apt:
     pkg:
@@ -26,7 +26,6 @@
       - python3-pip
       - ripgrep
       - stow
-      - texlive-latex-extra
       - tmux
       - tmuxp
       - valgrind
@@ -40,7 +39,7 @@
     - core
     - apt-core
 
-- name: apt - Install java dev env
+- name: apt - java dev env
   become: true
   apt:
     pkg:
@@ -54,3 +53,13 @@
     update_cache: yes
   tags:
     - apt-java
+
+- name: apt - texlive
+  become: true
+  apt:
+    pkg:
+      - texlive-latex-extra
+      - texlive-science
+      - texlive-fonts-extra
+  tags:
+    - apt-tex
