@@ -1,23 +1,27 @@
+" Leader key
 let mapleader=" "
 
+" Lsp-equivalent functionalities
 nmap <Leader>gd <Action>(GotoDeclaration)
 nmap <Leader>gi <Action>(GotoImplementation)
 nmap <Leader>gt <Action>(GotoTypeDeclaration)
-nmap <Leader>gr <Action>(ShowUsages)
-nmap <Leader>rn <Action>(RenameElement)
+nmap <Leader>gu <Action>(ShowUsages)
+nmap <Leader>gr <Action>(RenameElement)
 nmap <Leader>gc <Action>(Generate)
-nmap <Leader>ca <Action>(ProblemsView.QuickFixes)
+nmap <Leader>ga <Action>(ProblemsView.QuickFixes)
 nmap K <Action>(QuickJavaDoc)
-nmap <Leader>[d <Action>(GotoPreviousError)
-nmap <Leader>]d <Action>(GotoNextError)
+nmap <Leader>[e <Action>(GotoPreviousError)
+nmap <Leader>]e <Action>(GotoNextError)
 nmap <Leader>dt <Action>(RunClass)
 
-nmap <C-o> <Action>(Back)
-nmap <C-i> <Action>(Forward)
-
+" Telescope-equivalent functionalities
 nmap <Leader>ff <Action>(GotoFile)
 nmap <Leader>fg <Action>(FindInPath)
 nmap <Leader>fb <Action>(Switcher)
+
+" Common navigation movements
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
 
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l

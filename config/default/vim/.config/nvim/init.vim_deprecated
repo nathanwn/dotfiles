@@ -1,3 +1,70 @@
 " set runtimepath^=~/.vim runtimepath+=~/.vim/after
 " let &packpath=&runtimepath
 " source ~/.vimrc
+
+" " Stuff that I have not been able to convert to lua
+" function RemoveTrailingWhitespace()
+"   let l:save = winsaveview()
+"   keeppatterns %s/\s\+$//e
+"   call winrestview(l:save)
+" endfunction
+"
+" function GetCharUnderCursor()
+"   return matchstr(getline('.'), '\%' . col('.') . 'c.')
+" endfunction
+"
+" function VisualLength()
+"   exe 'normal "xy'
+"   return strlen(@x)
+" endfunction
+"
+" function AlignCenter(end_col)
+"   exe 'normal 0'
+"   if GetCharUnderCursor() == ' '
+"     exe 'normal w'
+"   endif
+"   " select the text
+"   exe 'normal wv$'
+"   " calculate selected length
+"   let select_len = VisualLength()
+"   " put the cursor at the first comment character
+"   exe 'normal 0'
+"   if GetCharUnderCursor() == ' '
+"     exe 'normal w'
+"   endif
+"   " jump to the next <SPACE> after the comment characters
+"   exe 'normal f '
+"   " delete spaces before the text
+"   exe 'normal dw'
+"   " calculate the number of spaces to insert
+"   let num_spaces = (a:end_col - col('.') + 1) / 2 - (select_len / 2) - 1
+"   " pad spaces
+"   exe 'normal ' . string(num_spaces) . 'i '
+"   echo "Aligned to center!"
+" endfunction
+"
+" function GetCurrentPathToClipboard()
+"   let @+=expand("%:p")
+"   echo "Path copied!"
+" endfunction
+"
+" autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
+"
+" " autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * call RemoveTrailingWhitespace()
+"
+" " Enter Paste Mode
+" set pastetoggle=<F3>
+"
+" " Centering selected text
+" nnoremap \ac "xy:call AlignCenter(80)<CR>
+"
+" " Execute selected shell command
+" vnoremap \ex :w !bash<CR>
+"
+" " Copy path to clipboard
+" nnoremap \cp :call GetCurrentPathToClipboard()<CR>
+
+" call SetIndentSize(2)
+" setlocal omnifunc=pandoc#completion#Complete
+" nnoremap <buffer> <silent> <Leader>pdn :execute 'Pandoc pdf --defaults='.expand('$HOME').'/.config/pandoc/notes.yaml --resource-path=.:'.expand('$HOME').'/.config/pandoc --citeproc -H '.expand('$HOME').'/.config/pandoc/disablefloat.tex'<CR>
