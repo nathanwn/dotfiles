@@ -31,6 +31,7 @@ fi
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 source_if_exists "$HOME/.config/fzf/completion.zsh"
 source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # vivid
 [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-light)"
