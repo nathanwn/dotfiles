@@ -3,16 +3,12 @@
 font:
   normal:
     family: "JetbrainsMono Nerd Font"
-    style: Regular
   bold:
     family: "JetbrainsMono Nerd Font"
-    style: Bold
   italic:
     family: "JetbrainsMono Nerd Font"
-    style: Italic
   bold_italic:
     family: "JetbrainsMono Nerd Font"
-    style: Bold Italic
   size: 10
 
 window:
