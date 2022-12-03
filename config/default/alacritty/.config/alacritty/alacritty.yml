@@ -9,7 +9,7 @@ font:
     family: "JetbrainsMono Nerd Font"
   bold_italic:
     family: "JetbrainsMono Nerd Font"
-  size: 10
+  size: 12
 
 window:
   padding:
