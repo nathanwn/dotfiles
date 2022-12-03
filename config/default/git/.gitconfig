@@ -1,5 +1,13 @@
-[user]
-	email = nhat.nguyen.cs17@gmail.com
-	name = nathan-wien
-[init]
-	defaultBranch = main
+[includeIf "gitdir:~/dev/ol/"]
+    path = ~/.config/git/.gitconfig-ol
+
+[includeIf "gitdir:~/dev/personal/"]
+    path = ~/.config/git/.gitconfig-personal
+
+[core]
+    editor = nvim
+    excludesFile = ~/.gitignore
+
+[alias]
+    ds = diff --staged
+    lt = log --graph --oneline --all

@@ -50,7 +50,7 @@ bindkey -v
 # -----------------------------------------------------------------------------
 # [ -x "$(command -v nvim)" ] && alias vim="nvim"
 [ -x "$(command -v exa)" ] && alias ls="exa"
-[ -x "$(command -v bat)" ] && alias cat="bat"
+# [ -x "$(command -v bat)" ] && alias cat="bat"
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 [ -x "$(command -v xclip)" ] && alias gpath="pwd | xclip -sel clip"
 
