@@ -81,7 +81,7 @@ vicmd_symbol = "[|](bold green)"
 truncation_length = 10
 truncate_to_repo = false
 [directory.substitutions]
-"~/work/" = ""
+"~/dev/" = ""
 
 [java]
 symbol = " "
