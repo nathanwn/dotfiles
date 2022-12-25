@@ -18,8 +18,9 @@ if [[ $# -eq 2 ]]; then
   selected_path=$1
 else
   workspaces=($tmux_sessioniser_workspaces) # space delimited string to array
-  find_in_ws_cmd="find ${workspaces[@]} -mindepth 1 -maxdepth 1 -type d"
-  selected_path=$(bash -c "($find_in_ws_cmd && list_directories_to_lines;) | fzf --no-height --tac")
+  find_cmd = "find $HOME/dev -maxdepth 5 -type d -name .git | xargs dirname"
+  # selected_path=$(bash -c "($find_cmd && list_directories_to_lines;) | fzf --no-height --tac")
+  selected_path=$(bash -c "find $HOME/dev -maxdepth 5 -type d -name .git | xargs dirname | fzf --no-height --tac")
 fi
 
 # Get the dir name.
