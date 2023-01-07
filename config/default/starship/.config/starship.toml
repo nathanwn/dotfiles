@@ -83,7 +83,7 @@ truncate_to_repo = false
 [directory.substitutions]
 "~/dev/" = ""
 
-[go]
+[golang]
 symbol = ""
 
 [java]
@@ -92,7 +92,7 @@ symbol = ""
 [lua]
 symbol = ""
 
-[node]
+[nodejs]
 symbol = ""
 
 [python]
