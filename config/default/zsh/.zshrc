@@ -8,6 +8,7 @@ function source_if_exists () {
 source_if_exists "$HOME/.config/zsh/local.zsh"
 source_if_exists "$HOME/.config/zsh/proxy.zsh"
 source_if_exists "$HOME/.config/zsh/private.zsh"
+source_if_exists "$HOME/.config/zsh/env.zsh"
 
 # -----------------------------------------------------------------------------
 #                              Shell settings
@@ -25,7 +26,7 @@ fi
 #                                App settings
 # -----------------------------------------------------------------------------
 # vi-mode (disable in nvim terminal)
-# env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
+env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
 
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -37,10 +38,11 @@ source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-light)"
 
 # zsh
-source_if_exists "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source_if_exists "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-if [ -d "$HOME/.zsh/zsh-completions/src" ]; then
-  fpath=("$HOME/.zsh/zsh-completions/src" $fpath)
+export ZSH_PLUGINS_DIR="$HOME/.local/share/zsh"
+source_if_exists "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_if_exists "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ -d "$ZSH_PLUGINS_DIR/zsh-completions/src" ]; then
+  fpath=("$ZSH_PLUGINS_DIR/zsh-completions/src" $fpath)
 fi
 bindkey '^Y' autosuggest-accept
 bindkey -v
@@ -53,6 +55,10 @@ bindkey -v
 # [ -x "$(command -v bat)" ] && alias cat="bat"
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 [ -x "$(command -v xclip)" ] && alias gpath="pwd | xclip -sel clip"
+
+# Alacritty issue in VirtualBox
+# See: https://github.com/archlinux/archinstall/issues/1104#issuecomment-1370096003
+# export  LIBGL_ALWAYS_SOFTWARE=true
 
 # -----------------------------------------------------------------------------
 #                                   Theme
