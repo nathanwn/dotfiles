@@ -83,26 +83,45 @@ truncate_to_repo = false
 [directory.substitutions]
 "~/dev/" = ""
 
+[c]
+format = '| [$name $version]($style) '
+
+[docker_context]
+format = '| [$symbol$context]($style) '
+symbol = ''
+
 [golang]
+format = '| [$symbol($version )]($style) '
 symbol = ""
 
 [java]
+format = '| [$symbol($version )]($style) '
 symbol = ""
 
 [lua]
+format = '| [$symbol($version )]($style) '
 symbol = ""
 
 [nodejs]
+format = '| [$symbol($version )]($style) '
 symbol = ""
 
+[package]
+format = 'ver [$symbol$version]($style)'
+symbol = ""
+
 [python]
+format = '| [$symbol($version )]($style) '
 symbol = ""
 
 [rust]
+format = '| [$symbol($version )]($style) '
 symbol = ""
 
 [scala]
+format = '| [$symbol($version )]($style) '
 symbol = ""
 
 [terraform]
+format = '| [$symbol($version )]($style) '
 symbol = ""
