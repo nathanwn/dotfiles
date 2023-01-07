@@ -83,11 +83,26 @@ truncate_to_repo = false
 [directory.substitutions]
 "~/dev/" = ""
 
+[go]
+symbol = ""
+
 [java]
-symbol = " "
+symbol = ""
 
 [lua]
-symbol = " "
+symbol = ""
+
+[node]
+symbol = ""
 
 [python]
-symbol = " "
+symbol = ""
+
+[rust]
+symbol = ""
+
+[scala]
+symbol = ""
+
+[terraform]
+symbol = ""
