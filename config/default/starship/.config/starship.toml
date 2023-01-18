@@ -107,11 +107,11 @@ format = '| [$symbol($version )]($style) '
 symbol = ""
 
 [package]
-format = 'ver [$symbol$version]($style)'
+format = 'ver [$symbol$version]($style) '
 symbol = ""
 
 [python]
-format = '| [$symbol($version )]($style) '
+format = '| [${symbol}${pyenv_prefix}(${version})(\[$virtualenv\] )]($style)'
 symbol = ""
 
 [rust]
