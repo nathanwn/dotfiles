@@ -6,8 +6,9 @@
 
 [core]
     editor = nvim
-    excludesFile = ~/.gitignore
+    excludesFile = ~/.config/git/gitignore
 
 [alias]
-    ds = diff --staged
-    lt = log --graph --oneline --all
+    ds    = diff --staged
+    lt    = log --graph --oneline --all
+    pullr = pull --recurse-submodules
