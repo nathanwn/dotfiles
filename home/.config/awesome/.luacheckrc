@@ -1,0 +1,5 @@
+std = {
+  globals = {
+    "awesome",
+  },
+}

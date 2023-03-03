@@ -1,9 +1,0 @@
-- name: Install app - mcfly
-  import_tasks: apps/mcfly.yml
-  tags:
-    - mcfly
-
-- name: Install app - kitty
-  import_tasks: apps/kitty.yml
-  tags:
-    - kitty

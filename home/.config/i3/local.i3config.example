@@ -1,0 +1,47 @@
+# Monitors
+# > work
+# set $monitor_lap  "eDP-1"
+# set $monitor_h "HDMI-1"
+# set $monitor_v "DP-2"
+# > home
+set $monitor_h "DP-2"
+set $monitor_lap "eDP-1"
+set $monitor_v "eDP-1"
+
+# Bind workspaces to monitors
+# 1.
+workspace $ws1 output $monitor_h
+# 2. terminal
+workspace $ws2 output $monitor_h
+# 3. chrome
+workspace $ws3 output $monitor_h
+# 4. chrome
+workspace $ws4 output $monitor_h
+# 5. chrome - doc/code review
+workspace $ws5 output $monitor_h
+# 6. outlook
+workspace $ws6 output $monitor_v
+# 7. slack
+workspace $ws7 output $monitor_v
+# 8.
+workspace $ws8 output $monitor_lap
+# 9. quick programs (e.g. vpn)
+workspace $ws9 output $monitor_lap
+# 10. chrome - personal
+workspace $ws10 output $monitor_lap
+
+# Define the behavior of different programs
+assign [class="obsidian"] $ws5
+assign [class="Chromium"] $ws6
+# assign [class="Slack"] $ws7
+# assign [class="zoom "] $ws8
+assign [class="Com.cisco.anyconnect.gui"] $ws9
+# assign [class="Google-chrome"] $ws10
+for_window [class="zoom "] floating enable
+for_window [class="Skype"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Blueman-manager"] floating enable
+
+# Wallpaper
+# set $wallpaper = "/usr/share/backgrounds/warty-final-ubuntu.png"
+# exec_always [ -f $wallpaper ] || feh --bg-scale $wallpaper

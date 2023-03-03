@@ -1,0 +1,113 @@
+# Terminal
+bindsym $mod+Return exec wez
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Launcher
+bindsym $mod+space exec --no-startup-id "rofi -show drun -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $mod+Shift+space exec --no-startup-id "rofi -show run -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+
+# Change focus
+bindsym $mod+h               focus left
+bindsym $mod+j               focus down
+bindsym $mod+k               focus up
+bindsym $mod+l               focus right
+
+bindsym $mod+Left            focus left
+bindsym $mod+Down            focus down
+bindsym $mod+Up              focus up
+bindsym $mod+Right           focus right
+
+# Move focused window
+bindsym $mod+Shift+h         move left
+bindsym $mod+Shift+j         move down
+bindsym $mod+Shift+k         move up
+bindsym $mod+Shift+l         move right
+
+# Split in vertical orientation
+bindsym $mod+u split v
+
+# Split in horizontal orientation
+bindsym $mod+o split h
+
+# Toggle split orientation between horizontal/vertical
+# bindsym $mod+o split toggle
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Toggle tiling / floating
+bindsym $mod+w floating toggle
+
+# Change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+# bindsym $mod+d focus child
+
+# moving workspaces between screens/monitors
+bindsym $mod+comma move workspace to output left
+bindsym $mod+period move workspace to output right
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym h     resize shrink width  5 px or 5 ppt
+    bindsym j     resize grow   height 5 px or 5 ppt
+    bindsym k     resize shrink height 5 px or 5 ppt
+    bindsym l     resize grow   width  5 px or 5 ppt
+
+    bindsym Left  resize shrink width  5 px or 5 ppt
+    bindsym Down  resize grow   height 5 px or 5 ppt
+    bindsym Up    resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow   width  5 px or 5 ppt
+
+    # Return to normal
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10

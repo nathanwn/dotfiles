@@ -48,11 +48,6 @@
         - dotfiles
         - full
 
-    - name: Install apps
-      import_tasks: ansible/apps.yml
-      tags:
-        - full
-
           # - name: apt - Install core packages - Debian-based
           #   import_tasks: ansible/apt/dev.yml
           #   when:
