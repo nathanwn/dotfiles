@@ -1,7 +1,0 @@
-- name: apt - Install WM
-  become: true
-  apt:
-    name:
-      - i3
-  tags:
-    - wm
