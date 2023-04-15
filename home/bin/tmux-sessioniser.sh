@@ -3,24 +3,11 @@
 # Originally github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessioniser,
 # with adjustments to fit my workflow.
 
-list_directories_to_lines() {
-  directories=($tmux_sessioniser_directories)
-  for i in "${directories[@]}"
-  do
-     echo "$i"
-  done
-}
-
-export -f list_directories_to_lines
-
 # Get the path.
 if [[ $# -eq 2 ]]; then
   selected_path=$1
 else
-  workspaces=($tmux_sessioniser_workspaces) # space delimited string to array
-  find_cmd = "find $HOME/dev -maxdepth 5 -type d -name .git | xargs dirname"
-  # selected_path=$(bash -c "($find_cmd && list_directories_to_lines;) | fzf --no-height --tac")
-  selected_path=$(bash -c "find $HOME/dev -maxdepth 5 -type d -name .git | xargs dirname | fzf --no-height --tac")
+  selected_path=$(bash -c "find $HOME/dev -maxdepth 7 -type d -name .git | xargs dirname | fzf --no-height --tac")
 fi
 
 # Get the dir name.
