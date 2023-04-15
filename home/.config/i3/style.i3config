@@ -20,6 +20,9 @@ bar {
     }
 }
 
+# Polybar
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 # Colors
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #244872 #ffffff #2e9ef4   #285577

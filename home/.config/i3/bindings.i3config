@@ -1,5 +1,5 @@
 # Terminal
-bindsym $mod+Return exec wez
+bindsym $mod+Return exec alacritty
 
 # Kill focused window
 bindsym $mod+Shift+q kill
