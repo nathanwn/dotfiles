@@ -13,4 +13,5 @@ fi
 exec netstat --tcp --udp --listening --program --numeric \
   | grep "$1" \
   | awk -F ' ' '{print $7}' \
-  | awk -F '/' '{print $1}'
+  | awk -F '/' '{print $1}' \
+  | xargs kill
