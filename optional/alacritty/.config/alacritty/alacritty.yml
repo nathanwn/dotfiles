@@ -2,14 +2,33 @@
 # https://www.nerdfonts.com/font-downloads
 font:
   normal:
-    family: "JetbrainsMono Nerd Font"
+    # family: "JetBrainsMono Nerd Font"
+    # family: "Cousine Nerd Font"
+    # family: "Inconsolata Nerd Font"
+    # family: "CaskaydiaCove Nerd Font"
+    # family: "BigBlue_TerminalPlus Nerd Font"
+    # family: "3270 Nerd Font"
+    # family: "BlexMono Nerd Font"
+    # family: "BigBlue_TerminalPlus Nerd Font"
+    # family: "3270 Nerd Font"
+    # family: "ProggyCleanTT Nerd Font"
+    # family: "NotoSans Nerd Font"
+    # family: "BigBlue_TerminalPlus Nerd Font"
+    family: "CaskaydiaCove Nerd Font"
   bold:
-    family: "JetbrainsMono Nerd Font"
+    family: "CaskaydiaCove Nerd Font"
   italic:
-    family: "JetbrainsMono Nerd Font"
+    family: "CaskaydiaCove Nerd Font"
   bold_italic:
-    family: "JetbrainsMono Nerd Font"
-  size: 12
+    family: "CaskaydiaCove Nerd Font"
+  size: 13
+  offset:
+    x: -1
+    y: 3
+
+cursor:
+  style:
+    shape: Underline
 
 window:
   padding:
@@ -20,32 +39,60 @@ scrolling:
   history: 10000
   multiplier: 10
 
-# Theme: Papercolor Light
+# # Theme: Papercolor Light
+# colors:
+#   primary:
+#     background: "#eeeeee"
+#     foreground: "#444444"
+#
+#   cursor:
+#     text: "#eeeeee"
+#     cursor: "#686868"
+#
+#   normal:
+#     black: "#eeeeee"
+#     red: "#af0000"
+#     green: "#008700"
+#     yellow: "#5f8700"
+#     blue: "#0087af"
+#     magenta: "#8700af"
+#     cyan: "#005f87"
+#     white: "#878787"
+#
+#   bright:
+#     black: "#bcbcbc"
+#     red: "#af0000"
+#     green: "#008700"
+#     yellow: "#5f8700"
+#     blue: "#0087af"
+#     magenta: "#8700af"
+#     cyan: "#005f87"
+#     white: "#eeeeee"
+
+# Theme: BSOL
 colors:
+  # Default colors
   primary:
-    background: "#eeeeee"
-    foreground: "#444444"
-
-  cursor:
-    text: "#eeeeee"
-    cursor: "#686868"
-
+    # background: '#000080'
+    background: '#101010'
+    foreground: '#ffffff'
+  # Normal colors
   normal:
-    black: "#eeeeee"
-    red: "#af0000"
-    green: "#008700"
-    yellow: "#5f8700"
-    blue: "#0087af"
-    magenta: "#8700af"
-    cyan: "#005f87"
-    white: "#878787"
-
+    black:   '#404040'
+    red:     '#FF8080'
+    green:   '#50CC50'
+    yellow:  '#00C0C0'
+    blue:    '#00747B'
+    magenta: '#FFAAFF'
+    cyan:    '#CCCC00'
+    white:   '#ffffff'
+  # Bright colors
   bright:
-    black: "#bcbcbc"
-    red: "#af0000"
-    green: "#008700"
-    yellow: "#5f8700"
-    blue: "#0087af"
-    magenta: "#8700af"
-    cyan: "#005f87"
-    white: "#eeeeee"
+    black:   '#CCCCCC'
+    red:     '#FF6060'
+    green:   '#50CC50'
+    yellow:  '#00F0F0'
+    blue:    '#00A0A0'
+    magenta: '#FFAAFF'
+    cyan:    '#F0F000'
+    white:   '#ffffff'

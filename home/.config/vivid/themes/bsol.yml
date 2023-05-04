@@ -3,7 +3,7 @@ colors:
 
   black   :  'CCCCCC'
   green   :  '00CC00'
-  purple  :  'FFFFFF'
+  purple  :  '00FFFF'
   red     :  'FF0000'
   yellow  :  'FFFF55'
   cyan    :  '00AAAA'
@@ -14,13 +14,13 @@ colors:
 
 core:
   normal_text:
-    foreground: white
+    foreground: yellow
 
   regular_file:
-    foreground: white
+    foreground: yellow
 
   reset_to_normal:
-    foreground: orange
+    foreground: white
 
   directory:
     foreground: purple
@@ -31,7 +31,7 @@ core:
   multi_hard_link: {}
 
   fifo:
-    foreground: yellow
+    foreground: orange
     background: black
 
   socket:
@@ -45,12 +45,12 @@ core:
     font-style: bold
 
   block_device:
-    foreground: yellow
+    foreground: orange
     background: black
     font-style: bold
 
   character_device:
-    foreground: yellow
+    foreground: orange
     background: black
     font-style: bold
 
@@ -64,12 +64,12 @@ core:
     background: black
 
   setuid:
-    foreground: white
+    foreground: yellow
     background: red
 
   setgid:
     foreground: black
-    background: yellow
+    background: orange
 
   file_with_capability: {}
 
@@ -82,7 +82,7 @@ core:
     background: green
 
   sticky:
-    foreground: white
+    foreground: yellow
     background: purple
 
   executable_file:
@@ -90,26 +90,26 @@ core:
 
 text:
   special:
-    foreground: orange
+    foreground: white
 
   todo:
-    foreground: orange
+    foreground: white
     font-style: bold
 
   licenses:
-    foreground: orange
+    foreground: white
 
   configuration:
-    foreground: orange
+    foreground: white
 
   other:
-    foreground: orange
+    foreground: white
 
 markup:
-  foreground: orange
+  foreground: white
 
 programming:
-  foreground: orange
+  foreground: white
 
 media:
   image:
@@ -119,14 +119,14 @@ media:
     foreground: cyan
 
   video:
-    foreground: orange
+    foreground: white
     font-style: bold
 
   fonts:
-    foreground: orange
+    foreground: white
 
 office:
-  foreground: orange
+  foreground: white
 
 archives:
   foreground: red

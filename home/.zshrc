@@ -11,6 +11,7 @@ export PATH="$HOME/.local/bin:$PATH"
 source_if_exists "$HOME/.config/zsh/local.zsh"
 source_if_exists "$HOME/.config/zsh/proxy.zsh"
 source_if_exists "$HOME/.config/zsh/private.zsh"
+source_if_exists "$HOME/.config/zsh/theme.zsh"
 source_if_exists "$HOME/.config/zsh/env.zsh"
 
 # -----------------------------------------------------------------------------
@@ -38,7 +39,9 @@ source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # vivid
-[ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-light)"
+# [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-light)"
+# [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-dark)"
+# [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate bsol)"
 
 # zsh
 export ZSH_PLUGINS_DIR="$HOME/.local/share/zsh"
@@ -59,6 +62,8 @@ bindkey -v
 # -----------------------------------------------------------------------------
 #                                  Aliases
 # -----------------------------------------------------------------------------
+# Keep scrollback buffer when typing clear
+alias clear="clear -x"
 # [ -x "$(command -v nvim)" ] && alias vim="nvim"
 [ -x "$(command -v exa)" ] && alias ls="exa"
 # [ -x "$(command -v bat)" ] && alias cat="bat"

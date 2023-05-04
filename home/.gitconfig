@@ -4,6 +4,9 @@
 [includeIf "gitdir:~/dev/personal/"]
     path = ~/.config/git/.gitconfig-personal
 
+[includeIf "gitdir:~/dev/orcl/"]
+    path = ~/.config/git/.gitconfig-orcl
+
 [core]
     editor = nvim
     excludesFile = ~/.config/git/gitignore

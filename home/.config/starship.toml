@@ -72,10 +72,16 @@ $status\
 $shell\
 $character"""
 
+# [character]
+# success_symbol = "[λ](bold green)"
+# error_symbol = "[λ](bold red)"
+# vicmd_symbol = "[|](bold green)"
+
 [character]
-success_symbol = "[λ](bold green)"
-error_symbol = "[λ](bold red)"
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
 vicmd_symbol = "[|](bold green)"
+
 
 [directory]
 truncation_length = 10
