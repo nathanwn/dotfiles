@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# To reset the keyboard layout:
+# > setxkbmap -layout us -option
+
+setxkbmap -layout us -option caps:super

@@ -1,3 +1,8 @@
-clear Lock
-keycode 66 = Hyper_L
-add mod4 = Hyper_L
+! Note: this is the old method that I use to map Caps Lock to Super.
+! However, this method is "deprecated" and, in my experience,
+! is super unstable.
+! I now use setxkbmap. See the ~/.xprofile file.
+
+! clear Lock
+! keycode 66 = Hyper_L
+! add mod4 = Hyper_L
