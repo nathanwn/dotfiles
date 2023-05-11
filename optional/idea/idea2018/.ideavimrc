@@ -1,0 +1,37 @@
+" Leader key
+let mapleader=" "
+
+" Lsp-equivalent functionalities
+nmap <Leader>gd <ESC>:action GotoDeclaration<CR>
+nmap <Leader>gi <ESC>:action GotoImplementation<CR>
+nmap <Leader>gt <ESC>:action GotoTypeDeclaration<CR>
+nmap <Leader>gu <ESC>:action ShowUsages<CR>
+nmap <Leader>gl <ESC>:action ShowErrorDescription<CR>
+nmap <Leader>gr <ESC>:action RenameElement<CR>
+nmap <Leader>gg <ESC>:action Generate<CR>
+nmap <Leader>ga <ESC>:action ShowIntentionActions<CR>
+nmap <Leader>gk <ESC>:action QuickJavaDoc<CR>
+nmap <Leader>[e <ESC>:action GotoPreviousError<CR>
+nmap <Leader>]e <ESC>:action GotoNextError<CR>
+nmap <Leader>dt <ESC>:action RunClass<CR>
+nmap <Leader>dp <ESC>:action Run<CR>
+nmap <Leader>cc <ESC>:action CHelper.Group<CR>
+
+" Telescope-equivalent functionalities
+nmap <Leader>ff <ESC>:action GotoFile<CR>
+nmap <Leader>fg <ESC>:action FindInPath<CR>
+nmap <Leader>fb <ESC>:action Switcher<CR>
+
+" Common navigation movements
+nmap <C-o> <ESC>:action Back<CR>
+nmap <C-i> <ESC>:action Forward<CR>
+
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+
+vnoremap < <gv
+vnoremap > >gv
+
+set clipboard=unnamed,unnamedplus

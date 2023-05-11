@@ -13,6 +13,7 @@ nmap K <Action>(QuickJavaDoc)
 nmap <Leader>[e <Action>(GotoPreviousError)
 nmap <Leader>]e <Action>(GotoNextError)
 nmap <Leader>dt <Action>(RunClass)
+nmap <Leader><Leader>c <Action>(CHelper.Group)
 
 " Telescope-equivalent functionalities
 nmap <Leader>ff <Action>(GotoFile)
@@ -27,5 +28,8 @@ nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
+
+vnoremap < <gv
+vnoremap > >gv
 
 set clipboard=unnamed,unnamedplus
