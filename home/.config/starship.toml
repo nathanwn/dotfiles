@@ -154,8 +154,8 @@ symbol = "gcp "
 symbol = "git "
 
 [golang]
-symbol = "go "
-format = '[$symbol ($version )]($style)'
+symbol = "go"
+format = '[$symbol:($version )]($style)'
 
 [gradle]
 symbol = "gradle "
@@ -167,23 +167,23 @@ symbol = "guix "
 symbol = "hg "
 
 [java]
-symbol = "java "
-format = '[$symbol($version )]($style)'
+symbol = "java"
+format = '[$symbol:($version )]($style)'
 
 [julia]
-symbol = "jl "
+symbol = "jl"
 
 [kotlin]
-symbol = "kt "
-format = '[$symbol($version )]($style)'
+symbol = "kt"
+format = '[$symbol:($version )]($style)'
 
 [lua]
-symbol = "lua "
-format = '[$symbol($version )]($style)'
+symbol = "lua"
+format = '[$symbol:($version )]($style)'
 
 [nodejs]
-symbol = "nodejs "
-format = '[$symbol($version )]($style)'
+symbol = "nodejs"
+format = '[$symbol:($version )]($style)'
 
 [memory_usage]
 symbol = "memory "
@@ -265,8 +265,8 @@ symbol = "pulumi "
 symbol = "purs "
 
 [python]
-symbol = "py "
-format = '[${symbol}${pyenv_prefix}(${version})(\[$virtualenv\] )]($style)'
+symbol = "py"
+format = '[${symbol}:${pyenv_prefix}(${version})(\[$virtualenv\] )]($style)'
 
 [raku]
 symbol = "raku "
@@ -275,12 +275,12 @@ symbol = "raku "
 symbol = "rb "
 
 [rust]
-symbol = "rs "
-format = '[$symbol($version )]($style)'
+symbol = "rs"
+format = '[$symbol:($version )]($style)'
 
 [scala]
-symbol = "scala "
-format = '[$symbol($version )]($style)'
+symbol = "scala"
+format = '[$symbol:($version )]($style)'
 
 [spack]
 symbol = "spack "
@@ -295,8 +295,8 @@ symbol = "sudo "
 symbol = "swift "
 
 [terraform]
-symbol = "terraform "
-format = '[$symbol($version )]($style)'
+symbol = "tf"
+format = '[$symbol:($version )]($style)'
 
 [zig]
 symbol = "zig "
