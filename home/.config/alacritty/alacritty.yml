@@ -1,0 +1,50 @@
+---
+import:
+  - ~/.config/alacritty/themes/bsol.yml
+
+# https://www.nerdfonts.com/font-downloads
+font:
+  normal:
+    # family: "JetBrainsMono Nerd Font"
+    # family: "Cousine Nerd Font"
+    # family: "Inconsolata Nerd Font"
+    # family: "CaskaydiaCove Nerd Font"
+    # family: "BigBlue_TerminalPlus Nerd Font"
+    # family: "3270 Nerd Font"
+    # family: "BlexMono Nerd Font"
+    # family: "BigBlue_TerminalPlus Nerd Font"
+    # family: "3270 Nerd Font"
+    # family: "ProggyCleanTT Nerd Font"
+    # family: "NotoSans Nerd Font"
+    # family: "BigBlue_TerminalPlus Nerd Font"
+    # family: "CaskaydiaCove Nerd Font"
+    # family: "Inconsolata Nerd Font"
+    # family: "Fira Code Nerd Font"
+    # family: "DejaVuSansMono Nerd Font"
+    # family: "Terminus"
+    # family: "Inconsolata Nerd Font"
+    family: "CaskaydiaCove Nerd Font"
+  bold:
+    family: "CaskaydiaCove Nerd Font"
+  italic:
+    family: "CaskaydiaCove Nerd Font"
+  bold_italic:
+    family: "CaskaydiaCove Nerd Font"
+  size: 14
+  offset:
+    x: -1
+    y: 2
+
+cursor:
+  style:
+    shape: Underline
+  thickness: 0.4
+
+window:
+  padding:
+    x: 5
+    y: 0
+
+scrolling:
+  history: 10000
+  multiplier: 10
