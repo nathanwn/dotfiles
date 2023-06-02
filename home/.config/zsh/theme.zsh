@@ -3,9 +3,9 @@
 # Available:
 # - bsol
 # - papercolor-light
-export GLOBAL_THEME="bsol"
+export GLOBAL_THEME="papercolor-light"
 
-if [ "$TERM" = "screen" ] && [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ] ; then
+if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ] ; then
   tmux source-file "${HOME}/.config/tmux/themes/${GLOBAL_THEME}.tmux"
 fi
 [ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate "${GLOBAL_THEME}")"

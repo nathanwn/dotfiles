@@ -1,5 +1,6 @@
 configuration {
-    font: "JetBrains Mono Nerd Font 12";
+    font: "ComicShanns Mono Nerd Font 14";
+    /* font: "JetBrains Mono Nerd Font 12"; */
     /* modi: "window,run,ssh";*/
     /* location: 0;*/
     /* yoffset: 0;*/
@@ -145,4 +146,6 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "gruvbox-light-soft"
+/* Check: /usr/share/rofi/themes/ */
+/* @theme "gruvbox-light-soft" */
+@theme "Paper"

@@ -5,7 +5,8 @@ bar {
     # status_command i3status
     status_command i3blocks -c ~/.config/i3/i3blocks/i3blocks.conf
 
-    font pango:JetbrainsMono Nerd Font, Font Awesome 5 Free 10
+    # font pango:JetbrainsMono Nerd Font, Font Awesome 5 Free 10
+    font pango:ComicShannsMono Nerd Font, Font Awesome 5 Free 11
     position top
     # status_command i3status-rs
     # status_command i3status-rs ~/.config/i3status-rust/config.toml

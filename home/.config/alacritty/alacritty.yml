@@ -1,6 +1,6 @@
 ---
 import:
-  - ~/.config/alacritty/themes/bsol.yml
+  - ~/.config/alacritty/themes/papercolor-light.yml
 
 # https://www.nerdfonts.com/font-downloads
 font:
@@ -23,22 +23,23 @@ font:
     # family: "DejaVuSansMono Nerd Font"
     # family: "Terminus"
     # family: "Inconsolata Nerd Font"
-    family: "CaskaydiaCove Nerd Font"
+    # family: "ComicShannsMono Nerd Font"
+    family: "ComicShannsMono Nerd Font"
   bold:
-    family: "CaskaydiaCove Nerd Font"
+    family: "ComicShannsMono Nerd Font"
   italic:
-    family: "CaskaydiaCove Nerd Font"
+    family: "ComicShannsMono Nerd Font"
   bold_italic:
-    family: "CaskaydiaCove Nerd Font"
+    family: "ComicShannsMono Nerd Font"
   size: 14
   offset:
-    x: -1
-    y: 2
+    x: 0
+    y: 0
 
 cursor:
   style:
     shape: Underline
-  thickness: 0.4
+  thickness: 0.5
 
 window:
   padding:
