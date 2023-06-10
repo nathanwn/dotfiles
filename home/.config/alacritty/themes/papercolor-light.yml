@@ -10,21 +10,20 @@ colors:
 
   normal:
     black: "#eeeeee"
-    red: "#af0000"
+    red: "#C02020"
     green: "#008000"
-    yellow: "#606000"
-    blue: "#000080"
-    magenta: "#8700af"
+    yellow: "#956000"
+    blue: "#003090"
+    magenta: "#660066"
     cyan: "#006090"
     white: "#878787"
 
   bright:
-    black: "#A6A6A6"
-    red: "#FF8080"
-    green: "#00a000"
+    black: "#A0A0A0"
+    red: "#FF0000"
+    green: "#20C020"
     yellow: "#a0a000"
-    blue: "#000080"
+    blue: "#00A0ff"
     magenta: "#aa00cc"
     cyan: "#0080cc"
     white: "#eeeeee"
-
