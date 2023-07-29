@@ -29,9 +29,6 @@ fi
 # -----------------------------------------------------------------------------
 #                                App settings
 # -----------------------------------------------------------------------------
-# vi-mode (disable in nvim terminal)
-env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v
-
 # fzf
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 source_if_exists "$HOME/.config/fzf/completion.zsh"
@@ -51,24 +48,21 @@ if [ -d "$ZSH_PLUGINS_DIR/zsh-completions/src" ]; then
   fpath=("$ZSH_PLUGINS_DIR/zsh-completions/src" $fpath)
 fi
 bindkey '^Y' autosuggest-accept
-bindkey -v
 
-# -----------------------------------------------------------------------------
-#                                   Theme
-# -----------------------------------------------------------------------------
 # Starship: https://github.com/starship/starship
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+[ -x "$(command -v exa)" ] && alias ls="exa"
 
-# -----------------------------------------------------------------------------
-#                                  Aliases
-# -----------------------------------------------------------------------------
 # Keep scrollback buffer when typing clear
 alias clear="clear -x"
 # [ -x "$(command -v nvim)" ] && alias vim="nvim"
-[ -x "$(command -v exa)" ] && alias ls="exa"
 # [ -x "$(command -v bat)" ] && alias cat="bat"
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
 [ -x "$(command -v xclip)" ] && alias gpath="pwd | xclip -sel clip"
+
+# vi-mode (disable in nvim terminal)
+bindkey -v
+# env | grep -q "NVIM_LISTEN_ADDRESS" || bindkey -v  # (disable in nvim terminal)
 
 # Alacritty issue in VirtualBox
 # See: https://github.com/archlinux/archinstall/issues/1104#issuecomment-1370096003

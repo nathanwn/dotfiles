@@ -1,5 +1,3 @@
-# export PATH="$HOME/bin/graalvm-ce-java17-22.3.0/bin:$PATH"
-
 # Available:
 # - bsol
 # - papercolor-light
