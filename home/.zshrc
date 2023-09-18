@@ -51,7 +51,7 @@ bindkey '^Y' autosuggest-accept
 
 # Starship: https://github.com/starship/starship
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
-[ -x "$(command -v exa)" ] && alias ls="exa"
+alias ls="ls --color=auto"
 
 # Keep scrollback buffer when typing clear
 alias clear="clear -x"
