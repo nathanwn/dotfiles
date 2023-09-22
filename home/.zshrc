@@ -3,6 +3,7 @@ function source_if_exists () {
 }
 
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/opt:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # -----------------------------------------------------------------------------
