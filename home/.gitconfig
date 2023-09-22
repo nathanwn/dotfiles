@@ -1,11 +1,5 @@
-[includeIf "gitdir:~/dev/ol/"]
-    path = ~/.config/git/.gitconfig-ol
-
-[includeIf "gitdir:~/dev/personal/"]
-    path = ~/.config/git/.gitconfig-personal
-
-[includeIf "gitdir:~/dev/orcl/"]
-    path = ~/.config/git/.gitconfig-orcl
+[include]
+    path = ~/.config/git/gitconfig
 
 [core]
     editor = nvim
