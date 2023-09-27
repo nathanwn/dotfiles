@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+
+# VARIABLE_PITCH_FONT='/mnt/font/LucidaGrande/16a/font'
+FIXED_PITCH_FONT="/mnt/font/JetBrainsMonoNF-Regular/11a/font"
+
+export PAGER=nobs
+export MANPAGER=nobs
+export prompt='$ '
+export EDITOR=E
+export TERM=dumb
+export MANPAGER=nobs
+export PAGER=nobs
+
+export SHELL=/bin/bash
+export acmeshell=/bin/bash
+
+export PLAN9_HOME="$HOME/dev/personal/plan9"
+
+# For plan9port, both PLAN9 and PATH needs to be set
+export PLAN9="$PLAN9_HOME/plan9port"
+export PATH="$PATH:$PLAN9/bin"
+
+# github.com/9fans/go
+export PATH="$PATH:$PLAN9_HOME/go/bin"
+
+export MANPATH="$MANPATH:$PLAN9/man"
+
+[ -z "$(pgrep plumber)" ] && plumber;
+
+# export PLUMBFILE="$HOME/git/acme-editor/lib/plumbing"
+# cat "$PLUMBFILE" "$PLAN9/plumb/initial.plumbing" | 9p write plumb/rules
+
+# [ -z "$(pgrep acme)" ] && acme -a -m /tmp/acme -f "$VARIABLE_PITCH_FONT" -F "$FIXED_PITCH_FONT" &
+[ -z "$(pgrep acme)" ] && acme -a -f "$FIXED_PITCH_FONT" "$@" &
