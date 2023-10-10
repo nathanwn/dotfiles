@@ -3,8 +3,11 @@ local wezterm = require("wezterm")
 return {
   color_scheme = "PaperColorLight (Gogh)",
   enable_tab_bar = false,
-  font = wezterm.font("JetBrainsMono Nerd Font"),
-  font_size = 11,
+  font = wezterm.font_with_fallback({
+    "ComicShannsMono Nerd Font",
+    "JetBrainsMono Nerd Font",
+  }),
+  font_size = 13,
   -- Disable ligature
   harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
   -- Cursor coloring
