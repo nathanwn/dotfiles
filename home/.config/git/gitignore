@@ -1,4 +1,5 @@
 requirements_nathanwien.txt
 requirements_nathanwn.txt
+.venv
 .envrc
 .direnv/
