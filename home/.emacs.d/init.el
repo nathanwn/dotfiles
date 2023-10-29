@@ -10,7 +10,7 @@
 
 (package-initialize)
 (unless package-archive-contents
- (package-refresh-contents))
+  (package-refresh-contents))
 
 ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
@@ -25,7 +25,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-contrib org-roam diff-hl flycheck vertico company-box xref company company-mode cmake-mode which-key use-package rainbow-delimiters org-bullets lsp-ui lsp-treemacs lsp-pyright ivy-rich helpful general evil-collection counsel-projectile command-log-mode)))
+   '(elisp-autofmt org-contrib org-roam diff-hl flycheck vertico company-box xref company company-mode cmake-mode which-key use-package rainbow-delimiters org-bullets lsp-ui lsp-treemacs lsp-pyright ivy-rich helpful general evil-collection counsel-projectile command-log-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -64,9 +64,9 @@
 (global-display-line-numbers-mode t)
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
-            term-mode-hook
-        shell-mode-hook
-            eshell-mode-hook))
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 
@@ -100,14 +100,17 @@
   (ivy-rich-mode 1))
 
 (use-package counsel
-  :bind (("M-x" . counsel-M-x)
+  :bind (
+     ("M-x" . counsel-M-x)
      ("C-x b" . counsel-ibuffer)
      ("C-x C-f" . counsel-find-file)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history))
+     :map minibuffer-local-map
+     ("C-r" . 'counsel-minibuffer-history)
+  )
   :config
   (counsel-mode 1)
-  (setq ivy-initial-input-alist nil))  ;; don't start searches with ^
+  ;; don't start searches with ^ to allow fuzzy search
+  (setq ivy-initial-inputs-alist nil))
 
 
 ;; Better help
@@ -128,10 +131,7 @@
   :config (projectile-mode)
   ;; :bind-keymap ("<leader>g" . projectile-command-map)
   :init
-  (setq projectile-project-search-path '(
-                                         "~/dev/personal"
-                                         "~/dev/orcl"
-  ))
+  (setq projectile-project-search-path '(("~/dev/" . 2)))
 )
 
 (use-package counsel-projectile
@@ -195,30 +195,44 @@
   (general-create-definer my-local-leader-def
     :states '(normal visual motion emacs)
     :prefix ",")
+  ;; finders (projectile and counsel)
   (my-leader-def
     :states '(normal visual)
     :keymaps 'override
     "ff" 'projectile-find-file
     "fg" 'counsel-projectile-rg
     "fp" 'projectile-switch-project
-    ;; org-roam
-    "of" 'org-roam-node-find
-    "oi" 'org-roam-node-insert
-    "oo" 'org-roam-buffer-toggle
-    )
+    "fb" 'counsel-ibuffer
+    "fo" 'counsel-minibuffer-history
+    "f?" 'counsel-M-x
+  )
+  ;; lsp
+  (my-leader-def
+    :states '(normal visual)
+    :keymaps 'override
+    "gd" 'eglot-find-declaration
+    "gt" 'eglot-find-typeDefinition
+    "gi" 'eglot-find-implementation
+    "ga" 'eglot-code-actions
+    "gr" 'eglot-rename
+  )
+  ;; org-roam
+  (my-leader-def
+    :states '(normal visual)
+    :keymaps 'org-mode-map
+    "rf" 'org-roam-node-find
+    "ri" 'org-roam-node-insert
+    "rt" 'org-roam-buffer-toggle
+  )
+  ;; buffer navigation
   (general-nmap
+    :states '(normal)
     :keymaps 'override
     "]e" 'flymake-goto-next-error
     "[e" 'flymake-goto-prev-error
     "]c" 'diff-hl-next-hunk
     "[c" 'diff-hl-previous-hunk
   )
-  ;; (my-leader-def
-  ;;   :states '(normal visual)
-  ;;   :keymaps 'override
-  ;;   "gd" 'lsp-find-definition
-  ;;   "gt" 'lsp-find-type-definition
-  ;; )
 )
 
 
@@ -295,11 +309,10 @@
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
 
-;; (use-package company-box
-;;   :hook (company-mode . company-box-mode))
+(use-package company-box
+    :hook (company-mode . company-box-mode))
 
 ;; git
 (use-package diff-hl
-    :init (global-diff-hl-mode)
+  :init (global-diff-hl-mode)
 )
-
