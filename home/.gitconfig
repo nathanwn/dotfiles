@@ -1,8 +1,9 @@
 [include]
     path = ~/.config/git/gitconfig
+    path = ~/.config/git/tools/delta.gitconfig
 
 [core]
-    editor = nvim
+    editor = vim
     excludesFile = ~/.config/git/gitignore
 
 [alias]
