@@ -7,7 +7,7 @@
 if [[ $# -eq 2 ]]; then
   selected_path=$1
 else
-  selected_path=$(bash -c "find $HOME/dev -maxdepth 7 -type d -name .git | xargs dirname | fzf --no-height --tac")
+  selected_path=$(bash -c "find $HOME/dev -maxdepth 7 -name .git | xargs dirname | fzf --no-height --tac")
 fi
 
 # Get the dir name.
@@ -23,20 +23,20 @@ cur_session_name=$(tmux display-message -p '#S')
 # Case 1: tmux is not active.
 # Create the new session on demand.
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_dir -c $selected_path
+    tmux new-session -s "$selected_dir" -c "$selected_path"
     echo "tmux new-session -s $selected_dir -c $selected_path"
     exit 0
 fi
 
 # Case 2: tmux is active, hence create in detach mode then switch.
 # Create the new session on demand.
-if ! tmux has-session -t=$selected_dir 2> /dev/null; then
+if ! tmux has-session -t="$selected_dir" 2> /dev/null; then
     tmux new-session -ds "$selected_dir" -c "$selected_path"
     echo "tmux new-session -ds $selected_dir -c $selected_path" >> ~/tmux-sessioniser.log
 fi
 
 # Switch to the new session.
-tmux switch-client -t $selected_dir
+tmux switch-client -t "$selected_dir"
 
 # Delete current session if it was not created with a project.
 num_pattern='^[0-9]+$'
@@ -44,6 +44,6 @@ if ! [[ $cur_session_name =~ $num_pattern ]] ; then
   tmux kill-window
   echo "tmux kill-window"  >> ~/tmux-sessioniser.log
 else
-  tmux kill-session -t $cur_session_name
+  tmux kill-session -t "$cur_session_name"
   echo "tmux kill-session -t $cur_session_name" >> ~/tmux-sessioniser.log
 fi
