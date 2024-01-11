@@ -8,12 +8,13 @@ nmap <Leader>gt <Action>(GotoTypeDeclaration)
 nmap <Leader>gu <Action>(ShowUsages)
 nmap <Leader>gr <Action>(RenameElement)
 nmap <Leader>gc <Action>(Generate)
-nmap <Leader>ga <Action>(ProblemsView.QuickFixes)
+nmap <Leader>ga <Action>(ShowIntentionActions)
 nmap K <Action>(QuickJavaDoc)
-nmap <Leader>[e <Action>(GotoPreviousError)
-nmap <Leader>]e <Action>(GotoNextError)
+nmap <Leader>dp <Action>(Run)
 nmap <Leader>dt <Action>(RunClass)
 nmap <Leader><Leader>c <Action>(CHelper.Group)
+nmap [e <Action>(GotoPreviousError)
+nmap ]e <Action>(GotoNextError)
 
 " Telescope-equivalent functionalities
 nmap <Leader>ff <Action>(GotoFile)
@@ -32,4 +33,6 @@ nmap <C-k> <C-w>k
 vnoremap < <gv
 vnoremap > >gv
 
+set visualbell
+set noerrorbells
 set clipboard=unnamed,unnamedplus
