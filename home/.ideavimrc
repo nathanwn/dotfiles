@@ -10,7 +10,7 @@ nmap <Leader>gr <Action>(RenameElement)
 nmap <Leader>gc <Action>(Generate)
 nmap <Leader>ga <Action>(ShowIntentionActions)
 nmap K <Action>(QuickJavaDoc)
-nmap <Leader>dp <Action>(Run)
+nmap <Leader>dg <Action>(Run)
 nmap <Leader>dt <Action>(RunClass)
 nmap <Leader><Leader>c <Action>(CHelper.Group)
 nmap [e <Action>(GotoPreviousError)
@@ -25,10 +25,7 @@ nmap <Leader>fb <Action>(Switcher)
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
+nmap <Leader>vt <Action>(ActivateTerminalToolWindow)
 
 vnoremap < <gv
 vnoremap > >gv
