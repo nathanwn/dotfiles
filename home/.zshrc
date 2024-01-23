@@ -22,9 +22,9 @@ source_if_exists "$HOME/.config/zsh/env.zsh"
 _comp_options+=(globdots)
 # editor
 if [ -x "$(command -v nvim)" ]; then
-   export EDITOR=nvim
+  export EDITOR=nvim
 else
-   export EDITOR=vim
+  export EDITOR=vim
 fi
 
 # -----------------------------------------------------------------------------
