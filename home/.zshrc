@@ -68,3 +68,7 @@ bindkey -v
 # Alacritty issue in VirtualBox
 # See: https://github.com/archlinux/archinstall/issues/1104#issuecomment-1370096003
 # export  LIBGL_ALWAYS_SOFTWARE=true
+
+if [[ $(uname) == "Darwin" ]]; then
+  source "$HOME/.config/zsh/darwin.zsh"
+fi
