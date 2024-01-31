@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 function source_if_exists () {
   FILE=$1 && test -e $FILE && source $FILE
 }
@@ -50,8 +57,16 @@ if [ -d "$ZSH_PLUGINS_DIR/zsh-completions/src" ]; then
 fi
 bindkey '^Y' autosuggest-accept
 
-# Starship: https://github.com/starship/starship
-[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+if [[ "$SHELL" = *zsh ]]; then
+  # https://github.com/romkatv/powerlevel10k
+  if [ -d "$ZSH_PLUGINS_DIR/powerlevel10k" ]; then
+    source "$ZSH_PLUGINS_DIR/powerlevel10k/powerlevel10k.zsh-theme"
+  # Starship: https://github.com/starship/starship
+  elif [ -x "$(command -v starship)" ]; then
+    eval "$(starship init zsh)"
+  fi
+fi
+
 alias ls="ls --color=auto"
 
 # Keep scrollback buffer when typing clear
@@ -72,3 +87,6 @@ bindkey -v
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
