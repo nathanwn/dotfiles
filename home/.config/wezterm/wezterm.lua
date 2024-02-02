@@ -17,6 +17,7 @@ local wezterm = require("wezterm")
 
 
 return {
+  check_for_updates = false,
   color_scheme = "PaperColorLight (Gogh)",
   -- color_schemes = {
   --   my_tokyonight_day = my_tokyonight_day,
