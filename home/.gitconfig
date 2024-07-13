@@ -3,7 +3,7 @@
     path = ~/.config/git/tools/delta.gitconfig
 
 [core]
-    editor = vim
+    editor = nvim
     excludesFile = ~/.config/git/gitignore
 
 [alias]

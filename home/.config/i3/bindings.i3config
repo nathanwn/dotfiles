@@ -1,5 +1,6 @@
 # Terminal
-bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id "$HOME/opt/wez"
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -58,8 +59,10 @@ bindsym $mod+a focus parent
 # bindsym $mod+d focus child
 
 # moving workspaces between screens/monitors
+# do xev -event keyboard and look for second entry in keysym
 bindsym $mod+comma move workspace to output left
 bindsym $mod+period move workspace to output right
+bindsym $mod+slash move workspace to output next
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

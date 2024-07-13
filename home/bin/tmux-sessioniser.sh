@@ -3,11 +3,19 @@
 # Originally github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessioniser,
 # with adjustments to fit my workflow.
 
+root_dir="$HOME/dev"
+
 # Get the path.
 if [[ $# -eq 2 ]]; then
   selected_path=$1
 else
-  selected_path=$(bash -c "find $HOME/dev -maxdepth 7 -name .git | xargs dirname | fzf --no-height --tac")
+  selected_path=$(\
+    bash -c "find $root_dir -maxdepth 7 -name .git \
+    | xargs dirname \
+    | sed 's;$root_dir/;;g' \
+    | fzf --no-height --tac"
+  )
+  selected_path="$root_dir/$selected_path"
 fi
 
 # Get the dir name.

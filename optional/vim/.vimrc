@@ -11,38 +11,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-  " Git
-  Plug 'tpope/vim-fugitive'
   " Tmux
   Plug 'christoomey/vim-tmux-navigator'
   " Themes
   Plug 'NLKNguyen/papercolor-theme'
-  Plug 'nanotech/jellybeans.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  " FZF
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'airblade/vim-rooter'
-  " TS, React
-  Plug 'leafgarland/typescript-vim'
-  Plug 'peitalin/vim-jsx-typescript'
-  " Emmet
-  Plug 'mattn/emmet-vim'
-  " Neovim only
-  if has('nvim')
-    Plug 'neoclide/coc.nvim', {'branch': 'release' }
-    Plug 'fatih/vim-go'
-  else
-    Plug 'neoclide/coc.nvim', {'branch': 'release', 'on': []}
-    Plug 'fatih/vim-go',      {'on': []}
-  endif
 call plug#end()
 
 " -----------------------------------------------------------------------------
 "                                   Themes
 " -----------------------------------------------------------------------------
-set background=light
+" set background=light
 colorscheme PaperColor
 let g:airline_theme='papercolor'
 
@@ -65,10 +45,10 @@ let s:conceal_on = 0
 nmap \cc :call ToggleConceal()<CR>
 
 " = Need this for `a` in normal-mode to work properly
-nnoremap e he
+" nnoremap e he
 
 " autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * call RemoveTrailingWhitespace()
+" autocmd BufWritePre * call RemoveTrailingWhitespace()
 
 " = Centering selected text
 nmap \ac "xy:echo(AlignCenter(80))<CR>
@@ -78,3 +58,4 @@ vnoremap \ex :w !bash<CR>
 
 " = Copy path to clipboard
 nmap \cp :let @+=expand("%:p")<CR>
+set clipboard=unnamed,unnamedplus

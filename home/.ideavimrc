@@ -9,15 +9,18 @@ nmap <Leader>gu <Action>(ShowUsages)
 nmap <Leader>gr <Action>(RenameElement)
 nmap <Leader>gc <Action>(Generate)
 nmap <Leader>ga <Action>(ShowIntentionActions)
+nmap <Leader>gk <Action>(ShowHoverInfo)
+nmap <Leader>gl <Action>(ShowErrorDescription)
 nmap K <Action>(QuickJavaDoc)
 nmap <Leader>dg <Action>(Run)
 nmap <Leader>dt <Action>(RunClass)
 nmap <Leader><Leader>c <Action>(CHelper.Group)
-nmap [e <Action>(GotoPreviousError)
-nmap ]e <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
 
 " Telescope-equivalent functionalities
 nmap <Leader>ff <Action>(GotoFile)
+nmap <Leader>fc <Action>(Find)
 nmap <Leader>fg <Action>(FindInPath)
 nmap <Leader>fb <Action>(Switcher)
 
@@ -25,7 +28,21 @@ nmap <Leader>fb <Action>(Switcher)
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 
+" Git
+nmap [c <Action>(VcsShowPrevChangeMarker)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap <Leader>hp <Action>(VcsShowCurrentChangeMarker)
+nmap <Leader>hr <Action>(Vcs.RollbackChangedLines)
+nmap <Leader>hb <Action>(Annotate)
+
+" Debug
+nmap <Leader>db <Action>(Breakpoint)
+
+" View
+nmap <Leader>ve <Action>(ActivateProjectToolWindow)
 nmap <Leader>vt <Action>(ActivateTerminalToolWindow)
+nmap <Leader>vg <Action>(ActivateVersionControlToolWindow)
+nmap <Leader>vo <Action>(ActivateStructureToolWindow)
 
 vnoremap < <gv
 vnoremap > >gv

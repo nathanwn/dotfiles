@@ -1,2 +1,4 @@
 set selection-clipboard clipboard
 set sandbox none
+# Dark theme
+# set recolor true

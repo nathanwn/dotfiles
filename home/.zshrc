@@ -58,12 +58,12 @@ fi
 bindkey '^Y' autosuggest-accept
 
 if [[ "$SHELL" = *zsh ]]; then
-  # https://github.com/romkatv/powerlevel10k
-  if [ -d "$ZSH_PLUGINS_DIR/powerlevel10k" ]; then
-    source "$ZSH_PLUGINS_DIR/powerlevel10k/powerlevel10k.zsh-theme"
   # Starship: https://github.com/starship/starship
-  elif [ -x "$(command -v starship)" ]; then
+  if [ -x "$(command -v starship)" ]; then
     eval "$(starship init zsh)"
+  # https://github.com/romkatv/powerlevel10k
+  elif [ -d "$ZSH_PLUGINS_DIR/powerlevel10k" ]; then
+    source "$ZSH_PLUGINS_DIR/powerlevel10k/powerlevel10k.zsh-theme"
   fi
 fi
 

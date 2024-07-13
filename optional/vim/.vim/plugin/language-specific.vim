@@ -1,11 +1,13 @@
 function SyntaxC()
   setlocal colorcolumn=80
-  " autocmd BufWritePre *.c,*.h execute "%! clang-format -style=file"
+  " autocmd BufWritePre *.c,*.h execute \\\\\"%! clang-format -style=file" "
+  " remove the \\\\\
 endfunction
 
 function SyntaxCpp()
   setlocal colorcolumn=80
-  " autocmd BufWritePre *.cpp,*.h,*.hpp execute "%! clang-format -style=file"
+  " autocmd BufWritePre *.cpp,*.h,*.hpp execute \\\\\"%! clang-format -style=file"
+  " remove the \\\\\
 endfunction
 
 function SyntaxHtml()
@@ -40,11 +42,11 @@ function SyntaxYaml()
   call SetIndentSize(2)
 endfunction
 
-autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
-autocmd BufEnter,BufNewFile,BufRead *.clang-format set filetype=yaml
+" autocmd BufEnter,BufNewFile,BufRead *.h set filetype=c
+" autocmd BufEnter,BufNewFile,BufRead *.clang-format set filetype=yaml
 
-autocmd filetype c               call SyntaxC()
-autocmd filetype cpp             call SyntaxCpp()
+" autocmd filetype c               call SyntaxC()
+" autocmd filetype cpp             call SyntaxCpp()
 autocmd filetype html            call SyntaxHtml()
 autocmd filetype json            call SyntaxJson()
 autocmd filetype markdown        call SyntaxMarkdown()

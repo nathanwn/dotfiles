@@ -1,3 +1,3 @@
 # dotfiles
 
-This repository stores my personal development environment setup.
+My dotfiles. Managed by GNU Stow.

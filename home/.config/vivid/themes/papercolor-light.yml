@@ -9,7 +9,7 @@ colors:
   cyan: '0184bc'
 
   black: '000000'
-  gray: '999999'
+  gray: '888888'
   darkgray: '666666'
   darkergray: '333333'
 
@@ -79,7 +79,8 @@ text:
     font-style: bold
 
   licenses:
-    foreground: gray
+    foreground: background_color
+    background: yellow
 
   configuration:
     foreground: yellow
