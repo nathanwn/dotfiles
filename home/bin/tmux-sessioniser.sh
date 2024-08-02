@@ -15,11 +15,14 @@ else
     | sed 's;$root_dir/;;g' \
     | fzf --no-height --tac"
   )
+  # When fzf is interrupted by ctrl+c, it returns an empty string.
+  if [[ -z $selected_path ]]; then
+    exit 0
+  fi
   selected_path="$root_dir/$selected_path"
 fi
 
 # Get the dir name.
-tmux_running=$(pgrep tmux)
 selected_dir=$(basename "${selected_path}")
 
 echo "selected_dir: $selected_dir" >> ~/tmux-sessioniser.log
@@ -27,24 +30,17 @@ echo "selected_path: $selected_path" >> ~/tmux-sessioniser.log
 
 # Get the current session name.
 cur_session_name=$(tmux display-message -p '#S')
+# Use tr to convert '.' to '_' for session name as tmux session name cannot take '.'
+session_name=$(realpath -s --relative-to="$root_dir" "$selected_path" | tr '.' '_')
 
-# Case 1: tmux is not active.
 # Create the new session on demand.
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s "$selected_dir" -c "$selected_path"
-    echo "tmux new-session -s $selected_dir -c $selected_path"
-    exit 0
-fi
-
-# Case 2: tmux is active, hence create in detach mode then switch.
-# Create the new session on demand.
-if ! tmux has-session -t="$selected_dir" 2> /dev/null; then
-    tmux new-session -ds "$selected_dir" -c "$selected_path"
-    echo "tmux new-session -ds $selected_dir -c $selected_path" >> ~/tmux-sessioniser.log
+if ! tmux has-session -t="$session_name" 2> /dev/null; then
+    tmux new-session -ds "$session_name" -c "$selected_path"
+    echo "tmux new-session -ds $session_name-c $selected_path" >> ~/tmux-sessioniser.log
 fi
 
 # Switch to the new session.
-tmux switch-client -t "$selected_dir"
+tmux switch-client -t "$session_name"
 
 # Delete current session if it was not created with a project.
 num_pattern='^[0-9]+$'
