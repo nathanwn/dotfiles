@@ -1,0 +1,2 @@
+[includeIf "gitdir:~/dev/personal/"]
+    path = ~/.config/git/personal/gitconfig
