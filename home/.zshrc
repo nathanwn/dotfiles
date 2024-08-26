@@ -6,6 +6,8 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/opt:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # -----------------------------------------------------------------------------
 #                               Local Configs
 # -----------------------------------------------------------------------------
@@ -36,11 +38,26 @@ source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # zsh
-export ZSH_PLUGINS_DIR="$HOME/.local/share/zsh"
-source_if_exists "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source_if_exists "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-if [ -d "$ZSH_PLUGINS_DIR/zsh-completions/src" ]; then
-  fpath=("$ZSH_PLUGINS_DIR/zsh-completions/src" $fpath)
+export ZSH_PLUGINS_DIR="/usr/share"
+export ZSH_USER_PLUGINS_DIR="$HOME/.local/share/zsh"
+
+zsh_syntax_highlighting="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -f "$ZSH_PLUGINS_DIR/$zsh_syntax_highlighting" ]; then
+  source "$ZSH_PLUGINS_DIR/$zsh_syntax_highlighting"
+elif [ -f "$ZSH_USER_PLUGINS_DIR/$zsh_syntax_highlighting" ]; then
+  source "$ZSH_USER_PLUGINS_DIR/$zsh_syntax_highlighting"
+fi
+
+zsh_autosuggestions="$ZSH_USER_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+zsh_autosuggestions="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ -f "$ZSH_PLUGINS_DIR/$zsh_autosuggestions" ]; then
+  source "$ZSH_PLUGINS_DIR/$zsh_autosuggestions"
+elif [ -f "$ZSH_USER_PLUGINS_DIR/$zsh_autosuggestions" ]; then
+  source "$ZSH_USER_PLUGINS_DIR/$zsh_autosuggestions"
+fi
+
+if [ -d "$ZSH_USER_PLUGINS_DIR/zsh-completions/src" ]; then
+  fpath=("$ZSH_USER_PLUGINS_DIR/zsh-completions/src" $fpath)
 fi
 bindkey '^Y' autosuggest-accept
 
@@ -53,9 +70,18 @@ fi
 
 # Keep scrollback buffer when typing clear
 alias clear="clear -x"
+
 alias ls="ls --color=auto"
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
-[ -x "$(command -v xclip)" ] && alias gpath="pwd | xclip -sel clip"
+[ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-light)"
+
+function gpath() {
+  if [ -x "$(command -v xclip)" ] && cat /proc/version | grep -q "WSL" ; then
+    wslpath -w "$PWD" | xclip -selection clipboard
+  else
+    pwd | xclip -selection clipboard
+  fi
+}
 
 # vi-mode
 bindkey -v
