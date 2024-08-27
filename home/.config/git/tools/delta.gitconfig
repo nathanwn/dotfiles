@@ -9,11 +9,11 @@
     line-numbers = true
     navigate = true      # use n and N to move between diff sections
     # https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_day.gitconfig
-    minus-style                   = syntax "#dfccd4"
-    minus-non-emph-style          = syntax "#dfccd4"
-    minus-emph-style              = syntax "#d99ea2"
-    minus-empty-line-marker-style = syntax "#dfccd4"
-    line-numbers-minus-style      = "#c25d64"
+    minus-style                   = syntax "#efccd4"
+    minus-non-emph-style          = syntax "#efccd4"
+    minus-emph-style              = syntax "#e99ea2"
+    minus-empty-line-marker-style = syntax "#efccd4"
+    line-numbers-minus-style      = "#e25d64"
     plus-style                    = syntax "#cefdc6"
     plus-non-emph-style           = syntax "#cefdc6"
     plus-emph-style               = syntax "#57d7bc"
