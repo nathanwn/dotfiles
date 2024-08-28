@@ -1,8 +1,10 @@
 local wezterm = require("wezterm")
 
-return {
+local config = {
   check_for_updates = false,
-  color_scheme = "tokyonight_day",
+  -- color_scheme = "tokyonight_day",
+  -- color_scheme = "PaperColor Light (base16)",
+  color_scheme = "Papercolor Light (Gogh)",
   enable_tab_bar = false,
   -- To get all system fonts: wezterm ls-fonts --list-system
   font = wezterm.font_with_fallback({
@@ -21,3 +23,12 @@ return {
   -- Cursor coloring
   force_reverse_video_cursor = true,
 }
+
+config.keys = {
+  {
+    key = "F11",
+    action = wezterm.action.ToggleFullScreen,
+  },
+}
+
+return config

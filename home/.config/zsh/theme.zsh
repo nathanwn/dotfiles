@@ -1,3 +1,6 @@
+# Add some colors
+alias ls="ls --color=auto"
+
 # Available:
 # - bsol
 # - papercolor-light
@@ -13,4 +16,4 @@ if [ -x "$(command -v vivid)" ]; then
   fi
 fi
 
-# export LS_COLORS
+export LS_COLORS

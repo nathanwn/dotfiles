@@ -70,10 +70,10 @@ fi
 
 # Keep scrollback buffer when typing clear
 alias clear="clear -x"
+# Enable vi-mode
+bindkey -v
 
-alias ls="ls --color=auto"
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
-[ -x "$(command -v vivid)" ] && export LS_COLORS="$(vivid generate one-light)"
 
 function gpath() {
   if [ -x "$(command -v xclip)" ] && cat /proc/version | grep -q "WSL" ; then
@@ -82,9 +82,6 @@ function gpath() {
     pwd | xclip -selection clipboard
   fi
 }
-
-# vi-mode
-bindkey -v
 
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"
