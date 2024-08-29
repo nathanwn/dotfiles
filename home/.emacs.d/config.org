@@ -1,0 +1,457 @@
+#+TITLE: emacs config
+#+OPTIONS: toc:2
+
+* Startup
+** Scripts
+#+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+(require 'elpaca)
+#+end_src
+
+** use-package settings
+#+begin_src emacs-lisp
+(setq use-package-always-ensure t)
+#+end_src
+
+** Sane defaults
+#+begin_src emacs-lisp
+;; Disable UI clutters
+(setq inhibit-startup-message t)
+(scroll-bar-mode -1)        ; Disable visible scrollbar
+(tool-bar-mode -1)          ; Disable the toolbar
+(tooltip-mode -1)           ; Disable tooltips
+(menu-bar-mode -1)          ; Disable the menu bar
+(blink-cursor-mode -1)      ; Disable cursor blinking
+; (set-fringe-mode 10)        ; Give some breathing room
+
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; Backup files
+(setq make-backup-files nil) ; stop creating ~ files
+;; Recovery files
+(setq auto-save-default nil) ; stop creating #...# files
+#+end_src
+
+* UI
+** Theme
+#+begin_src emacs-lisp
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (load-theme 'papercolor t)
+
+;;; For packaged versions which must use `require'.
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+  ;; Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+  ;; Load the theme of your choice.
+  (load-theme 'modus-operandi-tritanopia))
+#+end_src
+
+** Fonts
+#+begin_src emacs-lisp
+;; (set-face-attribute 'default nil :font "ComicShannsMono Nerd Font" :height 132)
+;; (set-face-attribute 'variable-pitch nil :font "Source Sans Pro" :height 140)
+;; (set-face-attribute 'fixed-pitch nil :font "ComicShannsMono Nerd Font" :height 132)
+;; (set-face-attribute 'default nil :font "DejaVu Sans Mono" :height 132)
+;; (set-face-attribute 'variable-pitch nil :font "DejaVu Sans" :height 140)
+;; (set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono" :height 132)
+(set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 116)
+(set-face-attribute 'variable-pitch nil :font "SourceSans3" :height 128)
+(set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd Font" :height 116)
+#+end_src
+
+** Line numbers
+#+begin_src emacs-lisp
+;; Load the built-in line-number mode
+(column-number-mode)
+(global-display-line-numbers-mode t)
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
+
+** Modeline
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+#+end_src
+
+* org-mode
+Note: this is for the non-gnu version of org-mode.
+#+begin_src emacs-lisp
+(defun my-org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (auto-fill-mode 0)
+  (visual-line-mode 1)
+  ;; stop emacs from automatically
+  (electric-indent-mode -1)
+  (setq evil-auto-indent nil)
+  ;; modify default ellipsis marker (...)
+  (setq org-ellipsis " ▾")
+  ;; hide emphasis markers
+  (setq org-hide-emphasis-markers t)
+  ;; syntax highlighting in org src blocks
+  (setq org-src-fontify-natively t)
+  ;; highlight inline LaTeX
+  (setq org-highlight-latex-and-related '(native))
+  ;; automatically change bullet type when indenting
+  ;; Ex: indenting a + makes the bullet a *.
+  (setq org-list-demote-modify-bullet
+        '(("+" . "*") ("*" . "-") ("-" . "+")))
+  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+)
+;; fonts
+;; (dolist (face '((org-level-1 . 3.2)
+;;                 (org-level-2 . 2.8)
+;;                 (org-level-3 . 2.4)
+;;                 (org-level-4 . 1.8)
+;;                 (org-level-5 . 1.6)
+;;                 (org-level-6 . 1.4)
+;;                 (org-level-7 . 1.05)
+;;                 (org-level-8 . 1.05)))
+;;   (set-face-attribute (car face) nil :font (face-attribute 'default :font) :weight 'bold :height (* 100 (cdr face))))
+#+end_src
+
+** snippets
+To use one of these, do =<el + Tab>= for example.
+#+begin_src emacs-lisp
+(require 'org-tempo)
+(add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("groovy" . "src groovy"))
+#+end_src
+** org-contrib
+#+begin_src emacs-lisp
+(use-package org-contrib
+  :hook (org-mode . my-org-mode-setup)
+  :config
+  (require 'ox-md nil t)
+)
+#+end_src
+
+** bullets
+#+begin_src emacs-lisp
+(use-package org-superstar
+  :after org
+  :hook (org-mode . org-superstar-mode)
+  :custom
+  ;; (org-superstar-remove-leading-stars t)
+  (org-superstar-headline-bullets-list '("◉" "○" "●" "○" "●" "○" "●"))
+)
+;; Make sure org-indent face is available
+(require 'org-indent)
+#+end_src
+** toc
+#+begin_src emacs-lisp
+(use-package toc-org
+  :commands toc-org-enable
+  :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
+
+** org-roam
+#+begin_src emacs-lisp
+;; (use-package org-roam
+;;   :ensure t
+;;   :init
+;;   (setq org-roam-graph-executable "~/.emacs.d/dot")
+;;   (setq org-roam-graph-filetype "png")
+;;   (setq org-roam-graph-viewer nil)
+;;   :custom
+;;   (org-roam-directory "~/dev/personal/org-notes")
+;;   :config
+;;   (org-roam-setup)
+;; )
+;;
+;; (use-package org-roam-ui
+;;     :after org-roam ;; or :after org
+;; ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;; ;;         a hookable mode anymore, you're advised to pick something yourself
+;; ;;         if you don't care about startup time, use
+;; ;;  :hook (after-init . org-roam-ui-mode)
+;;     :config
+;;     (setq org-roam-ui-sync-theme t
+;;           org-roam-ui-follow t
+;;           org-roam-ui-update-on-save t
+;;           org-roam-ui-open-on-start t))
+#+end_src
+** org-html-preview
+#+begin_src emacs-lisp
+(use-package org-preview-html)
+#+end_src
+
+* Utils
+** Logging key events
+#+begin_src emacs-lisp
+(use-package command-log-mode
+  :commands command-log-mode)
+#+end_src
+** Bracket coloring for Lisp
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+#+end_src
+
+* Finders
+** ivy
+#+begin_src emacs-lisp
+(use-package ivy
+  :diminish  ;; hide the minor mode from mode line
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+;; Provide useful descriptions in ivy minibuffers
+(use-package ivy-rich
+  :diminish
+  :init
+  (ivy-rich-mode 1))
+#+end_src
+
+** counsel
+#+begin_src emacs-lisp
+(use-package counsel
+  :diminish
+  :bind (
+     ("M-x" . counsel-M-x)
+     ("C-x b" . counsel-ibuffer)
+     ("C-x C-f" . counsel-find-file)
+     :map minibuffer-local-map
+     ("C-r" . 'counsel-minibuffer-history)
+  )
+  :config
+  (counsel-mode 1)
+  ;; don't start searches with ^ to allow fuzzy search
+  (setq ivy-initial-inputs-alist nil))
+#+end_src
+
+* Help
+=helpful= provides better help for emacs.
+#+begin_src emacs-lisp
+(use-package helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+#+end_src
+* Project management
+#+begin_src emacs-lisp
+;; Project management
+(use-package projectile
+  :config (projectile-mode)
+  ;; :bind-keymap ("<leader>g" . projectile-command-map)
+  :init
+  (setq projectile-project-search-path '(("~/dev/" . 3)))
+)
+
+(use-package counsel-projectile
+  :diminish
+  :config (counsel-projectile-mode))
+#+end_src
+
+* Key bindings
+** which-key
+#+begin_src emacs-lisp
+(use-package which-key
+  :defer 0
+  :diminish ;; which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
+#+end_src
+
+** evil-mode
+Useful resource: https://github.com/noctuid/evil-guide#bare-minimum-emacs-knowledge
+#+begin_src emacs-lisp
+(use-package evil
+  :diminish
+  :after (projectile)
+  :init
+  ;; use ctrl-h + v to view what each option does
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)  ;; not turning on evil for other modes
+  (setq evil-want-C-u-scroll t)
+  (setq evil-vsplit-window-right t)
+  (setq evil-split-window-below t)
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal)
+  ;; enable redo with C-r
+  (evil-set-undo-system 'undo-redo)
+  ;; make :q/:wq kill the buffer, and not Emacs
+  (global-set-key [remap evil-quit] 'kill-buffer-and-window)
+  ;; set leader key in normal state
+  ; (evil-set-leader 'normal (kbd "SPC"))
+  ;; set local leader
+  ; (evil-set-leader 'normal "," t)
+  ;; keybindings
+  ;; projectile & counsel
+  ; (evil-define-key 'normal 'global (kbd "<leader>fp") 'projectile-switch-project)
+  ; (evil-define-key 'normal 'global (kbd "<leader>ff") 'projectile-find-file)
+  ; (evil-define-key 'normal 'global (kbd "<leader>fg") 'counsel-projectile-rg)
+  ; (evil-define-key 'normal 'global (kbd "<leader>fb") 'counsel-buffer-or-recentf)
+  ;; lsp
+  ; (evil-define-key 'normal lsp-mode-map (kbd "d") 'lsp-find-definition)
+  ; (evil-define-key 'normal lsp-mode-map (kbd "t") 'lsp-find-type-definition)
+)
+#+end_src
+
+** evil-collection
+This provides sane evil config for a lot of modes.
+#+begin_src emacs-lisp
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+#+end_src
+
+** Key mapping util
+#+begin_src emacs-lisp
+(use-package general
+  :config
+  (general-evil-setup t)
+  (general-create-definer my-leader-def
+     :states '(normal visual motion emacs insert)
+     :prefix "SPC")
+  (general-create-definer my-local-leader-def
+    :states '(normal visual motion emacs)
+    :prefix ",")
+  ;; finders (projectile and counsel)
+  (my-leader-def
+    :states '(normal visual)
+    :keymaps 'override
+    "f"  '(:ignore t :wk "Find")
+    "ff" '(projectile-find-file :wk "Find file (project)")
+    "fg" '(counsel-projectile-rg :wk "Ripgrep (project)")
+    "fw" '(projectile-switch-project :wk "Switch project")
+    "fb" '(counsel-ibuffer :wk "Find buffer")
+    "fc" '(counsel-grep :wk "Grep")
+    "fp" '(counsel-minibuffer-history :wk "Find prev")
+    "f;" '(counsel-M-x :wk "Find command")
+    "fh"  '(:ignore t :wk "Help/Describe")
+    "fhv"  '(counsel-describe-variable :wk "Describe variable")
+    "fhx"  '(helpful-command :wk "Describe command")
+    "fhp"  '(describe-package :wk "Describe command")
+  )
+  ;; ;; lsp
+  ;; (my-leader-def
+  ;;   :states '(normal visual)
+  ;;   ;; :keymaps 'override
+  ;;   :keymaps 'eglot-mode-map
+  ;;   "gd" 'eglot-find-declaration
+  ;;   "gt" 'eglot-find-typeDefinition
+  ;;   "gi" 'eglot-find-implementation
+  ;;   "ga" 'eglot-code-actions
+  ;;   "gr" 'eglot-rename
+  ;; )
+  ;; org-roam
+  (my-leader-def
+    :states '(normal visual)
+    :keymaps 'org-mode-map
+    "gd" 'org-open-at-point  ;; org-roam
+    "S-RET" 'org-ctrl-c-ret
+  )
+  ;; (my-leader-def
+  ;;   :states '(normal visual)
+  ;;   :keymaps 'override
+  ;;   "r"  '(:ignore t :wk "Org-roam")
+  ;;   "rf" '(org-roam-node-find :wk "Find")
+  ;;   "ri" '(org-roam-node-insert :wk "Insert")
+  ;;   "rt" '(org-roam-buffer-toggle :wk "Buffer toggle")
+  ;; )
+  ;; buffer navigation
+  (general-nmap
+    :states '(normal)
+    :keymaps 'override
+    "]e" 'flymake-goto-next-error
+    "[e" 'flymake-goto-prev-error
+    "]c" 'diff-hl-next-hunk
+    "[c" 'diff-hl-previous-hunk
+  )
+  ;; zooming
+  (global-set-key (kbd "C-=") 'text-scale-increase)
+  (global-set-key (kbd "C--") 'text-scale-decrease)
+)
+#+end_src
+
+* Autocompletion
+#+begin_src emacs-lisp
+(use-package company
+  :diminish
+  :hook (prog-mode . company-mode)
+  :bind (:map company-active-map ("<tab>" . company-complete-common-or-cycle))
+        ;; use this if you want tab for cycling
+        ;; (:map company-active-map ("<tab>" . company-complete-common-or-cycle))
+        ;; use this if you want tab for completion
+        ;; (:map company-active-map ("<tab>" . company-complete-selection))
+  :custom
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0))
+(use-package company-box
+  :diminish
+  :hook (company-mode . company-box-mode))
+#+end_src
+
+* Git
+#+begin_src emacs-lisp
+(use-package diff-hl
+  :init (global-diff-hl-mode))
+#+end_src
+
+* Tree-sitter
+#+begin_src emacs-lisp
+(use-package tree-sitter
+  :diminish (tree-sitter-mode)
+  :hook ((after-init . global-tree-sitter-mode)
+         (tree-sitter-after-on . tree-sitter-hl-mode)))
+(use-package tree-sitter-langs
+  :after tree-sitter)
+#+end_src
+* Languages
+** Groovy
+#+begin_src emacs-lisp
+(use-package groovy-mode)
+#+end_src

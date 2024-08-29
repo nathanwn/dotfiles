@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-cp ./stow/.* ~/
+cp ./stow/.stow* ~/
 stow home
