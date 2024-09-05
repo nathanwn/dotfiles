@@ -6,6 +6,9 @@
     editor = nvim
     excludesFile = ~/.config/git/gitignore
 
+[init]
+    defaultBranch = main
+
 [alias]
     cs    = commit --signoff --gpg-sign
     ds    = diff --staged
