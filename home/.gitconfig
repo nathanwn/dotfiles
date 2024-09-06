@@ -18,3 +18,4 @@
     log2  = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(black)%s%C(reset) %C(magenta)- %an%C(reset)'
     log3  = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(black)%s%C(reset)%n''          %C(magenta)- %an <%ae> %C(reset) %C(magenta)(committer: %cn <%ce>)%C(reset)'
     pullr = pull --recurse-submodules
+    zip   = archive --format zip -o "../$(basename $PWD).zip" HEAD
