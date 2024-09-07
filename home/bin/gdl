@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+
+import argparse
+import logging
+import logging.config
+import os
+import subprocess
+from collections.abc import Sequence
+from typing import Optional
+
+PROG = "gdl"
+
+logger = logging.getLogger(PROG)
+
+
+def configure_logging(verbose: int) -> None:
+    """Configure logging."""
+    log_levels = ["INFO", "DEBUG", "TRACE"]
+    log_level = log_levels[min(len(log_levels) - 1, verbose)]
+    logging.config.dictConfig(
+        {
+            "version": 1,
+            "disable_existing_loggers": False,
+            "formatters": {
+                "standard": {
+                    "format": f"[{PROG}|%(levelname)s]: %(message)s",
+                },
+                "verbose": {
+                    "format": (
+                        f"[{PROG}|%(levelname)s|%(module)s|L%(lineno)d]: %(message)s"
+                    )
+                },
+            },
+            "handlers": {
+                "stderr": {
+                    "class": "logging.StreamHandler",
+                    "level": log_level,
+                    "formatter": "verbose" if verbose else "standard",
+                    "stream": "ext://sys.stderr",
+                },
+            },
+            "root": {
+                "level": "DEBUG",
+                "handlers": ["stderr"],
+            },
+        }
+    )
+
+
+def wrapper_found() -> bool:
+    if not os.path.isfile("gradlew"):
+        logger.error("`gradlew` not found.")
+        return False
+    if not os.path.isfile("gradlew.bat"):
+        logger.error("`gradlew.bat` not found.")
+        return False
+    return True
+
+
+def main(argv: Optional[Sequence[str]] = None) -> int:
+    arg_parser = argparse.ArgumentParser()
+
+    arg_parser.add_argument(
+        *("-v", "--verbose"),
+        help="Enable verbose logging",
+        action="count",
+        default=0,
+    )
+    arg_parser.add_argument(
+        *("-d", "--debug"),
+        action="store_true",
+        default=False,
+        help="Run gradle in remote debugging mode for plugins.",
+    )
+    arg_parser.add_argument(
+        *("--dry",),
+        help="Show gradle command instead of running it.",
+    )
+    arg_parser.add_argument(
+        *("-l", "--log-level"),
+        choices=["quiet", "warn", "lifecycle", "info", "debug"],
+        default="info",
+        help="Run gradle in remote debugging mode for plugins.",
+    )
+
+    args, gradle_rest = arg_parser.parse_known_args(argv)
+    logger.info("args: %s", vars(args))
+    configure_logging(args.verbose)
+
+    gradle_args = ["--console=plain"]
+
+    if args.log_level != "lifecycle":
+        gradle_args.append(f"--{args.log_level}")
+
+    if args.debug:
+        gradle_args.extend(["--no-daemon", "-Dorg.gradle.debug=true"])
+
+    gradle_args.extend(gradle_rest)
+    logger.info("command: %s", vars(gradle_args))
+
+    if not args.dry:
+        if not wrapper_found():
+            return 1
+        subprocess.run(args=gradle_args)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

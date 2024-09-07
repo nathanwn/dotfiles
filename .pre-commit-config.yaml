@@ -3,7 +3,23 @@ repos:
     rev: v4.6.0
     hooks:
       - id: trailing-whitespace
+
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v0.20.0
     hooks:
       - id: stylua
+
+  - repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
