@@ -61,6 +61,7 @@ if [ -d "$ZSH_USER_PLUGINS_DIR/zsh-completions/src" ]; then
 fi
 bindkey '^Y' autosuggest-accept
 
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/default.toml"
 if [[ "$SHELL" = *zsh ]]; then
   # Starship: https://github.com/starship/starship
   if [ -x "$(command -v starship)" ]; then
