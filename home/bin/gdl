@@ -65,13 +65,15 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         default=0,
     )
     arg_parser.add_argument(
-        *("-d", "--debug"),
+        *("--remote-debug",),
         action="store_true",
         default=False,
         help="Run gradle in remote debugging mode for plugins.",
     )
     arg_parser.add_argument(
         *("--dry",),
+        action="store_true",
+        default=False,
         help="Show gradle command instead of running it.",
     )
     arg_parser.add_argument(
@@ -90,7 +92,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.log_level != "lifecycle":
         gradle_args.append(f"--{args.log_level}")
 
-    if args.debug:
+    if args.remote_debug:
         gradle_args.extend(["--no-daemon", "-Dorg.gradle.debug=true"])
 
     gradle_args.extend(gradle_rest)
@@ -103,7 +105,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     command = [wrapper, *gradle_args]
 
     if args.dry:
-        print("command: %s", " ".join(command))
+        command = " ".join(command)
+        print()
     else:
         logger.info("command: %s", " ".join(command))
         subprocess.run(args=command)
