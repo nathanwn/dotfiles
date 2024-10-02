@@ -11,6 +11,7 @@ nmap <Leader>gc <Action>(Generate)
 nmap <Leader>ga <Action>(ShowIntentionActions)
 nmap <Leader>gk <Action>(ShowHoverInfo)
 nmap <Leader>gl <Action>(ShowErrorDescription)
+nmap <Leader>gn <Action>(ToggleInlayHintsGloballyAction)
 nmap K <Action>(QuickJavaDoc)
 nmap <Leader>dg <Action>(Run)
 nmap <Leader>dt <Action>(RunClass)
@@ -43,6 +44,8 @@ nmap <Leader>ve <Action>(ActivateProjectToolWindow)
 nmap <Leader>vt <Action>(ActivateTerminalToolWindow)
 nmap <Leader>vg <Action>(ActivateVersionControlToolWindow)
 nmap <Leader>vo <Action>(ActivateStructureToolWindow)
+
+nmap <Leader>tw <Action>(EditorToggleUseSoftWraps)
 
 vnoremap < <gv
 vnoremap > >gv

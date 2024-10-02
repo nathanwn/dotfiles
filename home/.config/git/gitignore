@@ -4,3 +4,5 @@ requirements_nathanwn.txt
 .venv
 .envrc
 .direnv/
+__pycache__/
+.gdlrc.json

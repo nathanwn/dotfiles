@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
 
+# 9p ls fonts
 # VARIABLE_PITCH_FONT='/mnt/font/LucidaGrande/16a/font'
 FIXED_PITCH_FONT="/mnt/font/JetBrainsMonoNF-Regular/11a/font"
 
-export PAGER=nobs
-export MANPAGER=nobs
-export prompt='$ '
 export EDITOR=E
-export TERM=dumb
 export MANPAGER=nobs
+export NO_COLOR=1
 export PAGER=nobs
+export TERM=dumb
+export prompt='$ '
 
 export SHELL=/bin/bash
 export acmeshell=/bin/bash

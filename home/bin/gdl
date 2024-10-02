@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
 import argparse
+import json
 import logging
 import logging.config
 import os
+import re
 import subprocess
+import sys
 from collections.abc import Sequence
 from typing import Optional
 
@@ -15,7 +18,7 @@ logger = logging.getLogger(PROG)
 
 def configure_logging(verbose: int) -> None:
     """Configure logging."""
-    log_levels = ["INFO", "DEBUG", "TRACE"]
+    log_levels = ["INFO", "DEBUG"]
     log_level = log_levels[min(len(log_levels) - 1, verbose)]
     logging.config.dictConfig(
         {
@@ -79,7 +82,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     arg_parser.add_argument(
         *("-l", "--log-level"),
         choices=["quiet", "warn", "lifecycle", "info", "debug"],
-        default="info",
+        default="lifecycle",
         help="Run gradle in remote debugging mode for plugins.",
     )
 
@@ -105,11 +108,137 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     command = [wrapper, *gradle_args]
 
     if args.dry:
-        command = " ".join(command)
-        print()
+        command_args = " ".join(command)
+        print(command_args)
     else:
+        conf = {}
+        rc_file = os.path.join(os.getcwd(), ".gdlrc.json")
+        if os.path.isfile(rc_file):
+            logger.info("rc file %s found.", rc_file)
+            with open(rc_file, "r") as f:
+                conf = json.load(f)
+
         logger.info("command: %s", " ".join(command))
-        subprocess.run(args=command)
+        # subprocess.run(args=command)
+        process = subprocess.Popen(
+            args=command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+
+        RED = "\033[91m"
+        GREEN = "\033[92m"
+        BLUE = "\033[94m"
+        CYAN = "\033[93m"
+        RESET = "\033[0m"
+
+        last_line_blank = False
+
+        for raw_line in process.stdout:  # type: ignore
+            line = raw_line.decode()[:-1]
+            if line.strip() == "":
+                if last_line_blank:
+                    continue
+                last_line_blank = True
+                sys.stdout.write("\n")
+                sys.stdout.flush()
+                continue
+
+            line_ignored = False
+            for pattern in conf.get("ignored", []):
+                if re.match(pattern, line) is not None:
+                    logger.debug(
+                        "Line '%s' matches ignored pattern '%s'", line, pattern
+                    )
+                    line_ignored = True
+                    continue
+            if line_ignored:
+                continue
+
+            line_color = None
+            for color in ["red", "blue", "green", "cyan"]:
+                for pattern in conf.get(color, []):
+                    if re.match(pattern, line) is not None:
+                        logger.debug(
+                            "Line '%s' matches highlighted pattern '%s'", line, pattern
+                        )
+                        line_color = color
+                        continue
+                if line_color is not None:
+                    break
+
+            last_line_blank = False
+
+            if not sys.stdout.isatty():
+                sys.stdout.write(line)
+            elif line_color == "blue":
+                sys.stdout.write(f"{BLUE}{line}{RESET}")
+            elif line_color == "red":
+                sys.stdout.write(f"{RED}{line}{RESET}")
+            elif line_color == "cyan":
+                sys.stdout.write(f"{CYAN}{line}{RESET}")
+            elif line_color == "green":
+                sys.stdout.write(f"{GREEN}{line}{RESET}")
+            else:
+                sys.stdout.write(line)
+
+            sys.stdout.write("\n")
+            sys.stdout.flush()
+
+        process.stdout.close()  # type: ignore
+
+        for raw_line in process.stderr:  # type: ignore
+            line = raw_line.decode()[:-1]
+            if line.strip() == "":
+                if last_line_blank:
+                    continue
+                last_line_blank = True
+                sys.stderr.write("\n")
+                sys.stderr.flush()
+                continue
+
+            line_ignored = False
+            for pattern in conf.get("ignored", []):
+                if re.match(pattern, line) is not None:
+                    logger.debug(
+                        "Line '%s' matches ignored pattern '%s'", line, pattern
+                    )
+                    line_ignored = True
+                    continue
+            if line_ignored:
+                continue
+
+            line_color = None
+            for color in ["red", "blue", "green", "cyan"]:
+                for pattern in conf.get(color, []):
+                    if re.match(pattern, line) is not None:
+                        logger.debug(
+                            "Line '%s' matches highlighted pattern '%s'", line, pattern
+                        )
+                        line_color = color
+                        continue
+                if line_color is not None:
+                    break
+
+            last_line_blank = False
+
+            if not sys.stderr.isatty():
+                sys.stderr.write(line)
+            elif line_color == "blue":
+                sys.stderr.write(f"{BLUE}{line}{RESET}")
+            elif line_color == "red":
+                sys.stderr.write(f"{RED}{line}{RESET}")
+            elif line_color == "cyan":
+                sys.stderr.write(f"{CYAN}{line}{RESET}")
+            elif line_color == "green":
+                sys.stderr.write(f"{GREEN}{line}{RESET}")
+            else:
+                sys.stderr.write(line)
+
+            sys.stderr.write("\n")
+            sys.stderr.flush()
+
+        process.wait()
 
     return 0
 

@@ -10,7 +10,8 @@ set -g pane-active-border-style "fg=#2e2e2e"
 set -g status-style "fg=#2e2e2e,bg=#c9c9c9"
 set -g status-left "#[fg=#eeeeee,bg=#005faf,bold] #S #[fg=#2e2e2e,bg=#c9c9c9,nobold,nounderscore,noitalics]"
 set -g status-right "#[fg=#eeeeee,bg=#005faf,bold] #h "
-set -g status-left-length 50
+set -g status-left-length 100
+set -g status-right-length 100
 
 setw -g window-status-activity-style "underscore,fg=#2e2e2e,bg=#c9c9c9"
 setw -g window-status-separator ""

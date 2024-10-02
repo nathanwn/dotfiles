@@ -61,6 +61,11 @@ if [ -d "$ZSH_USER_PLUGINS_DIR/zsh-completions/src" ]; then
 fi
 bindkey '^Y' autosuggest-accept
 
+HISTFILE=~/.local/share/zsh/.history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/default.toml"
 if [[ "$SHELL" = *zsh ]]; then
   # Starship: https://github.com/starship/starship
@@ -75,6 +80,7 @@ alias clear="clear -x"
 bindkey -v
 
 [ -x "$(command -v direnv)" ] && eval "$(direnv hook zsh)"
+[ -x "$(command -v fdfind)" ] && alias fd="fdfind"
 
 function gpath() {
   if [ -x "$(command -v xclip)" ] && cat /proc/version | grep -q "WSL" ; then
@@ -83,6 +89,8 @@ function gpath() {
     pwd | xclip -selection clipboard
   fi
 }
+
+alias git-archive='git archive --format zip -o "$(basename $PWD).zip" HEAD'
 
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"
