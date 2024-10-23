@@ -5,10 +5,15 @@ alias grep="grep --color=auto"
 # Available:
 # - bsol
 # - papercolor-light
-export GLOBAL_THEME="papercolor-light"
+# export GLOBAL_THEME="papercolor-light"
+export GLOBAL_THEME="base16-solarized-dark"
 
 if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ] ; then
-  tmux source-file "${HOME}/.config/tmux/themes/${GLOBAL_THEME}.tmux"
+  if [[ $GLOBAL_THEME == base16-* ]]; then
+    tmux source-file "$HOME/.local/share/base16/tinted-tmux/colors/${GLOBAL_THEME}.conf"
+  else
+    tmux source-file "${HOME}/.config/tmux/themes/${GLOBAL_THEME}.tmux"
+  fi
 fi
 
 if [ -x "$(command -v vivid)" ]; then

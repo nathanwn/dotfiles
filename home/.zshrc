@@ -91,6 +91,7 @@ function gpath() {
 }
 
 alias git-archive='git archive --format zip -o "$(basename $PWD).zip" HEAD'
+alias du-list='du -sh * | sort -rh'
 
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"
