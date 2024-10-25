@@ -11,10 +11,10 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # -----------------------------------------------------------------------------
 #                               Local Configs
 # -----------------------------------------------------------------------------
+source_if_exists "$HOME/.config/zsh/ansible.zsh"
 source_if_exists "$HOME/.config/zsh/local.zsh"
 source_if_exists "$HOME/.config/zsh/proxy.zsh"
 source_if_exists "$HOME/.config/zsh/theme.zsh"
-source_if_exists "$HOME/.config/zsh/ansible.zsh"
 
 # -----------------------------------------------------------------------------
 #                              Shell settings

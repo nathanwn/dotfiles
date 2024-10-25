@@ -5,6 +5,7 @@ alias grep="grep --color=auto"
 # Available:
 # - bsol
 # - papercolor-light
+# export GLOBAL_THEME="papercolor-light"
 
 if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ] ; then
   if [[ $GLOBAL_THEME == base16-* ]]; then
