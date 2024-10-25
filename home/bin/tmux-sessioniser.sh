@@ -10,7 +10,7 @@ if [[ $1 == "repo" ]] ; then
 
   # Get the path.
   selected_path=$(\
-    bash -c "find $root_dir -maxdepth 7 -name .git \
+    bash -c "find $root_dir -maxdepth 7 -name .git 2> /dev/null \
     | xargs dirname \
     | sed 's;$root_dir/;;g' \
     | fzf --no-height --tac"
