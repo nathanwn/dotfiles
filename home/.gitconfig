@@ -23,4 +23,4 @@
     tclean  = clean -fdxn
 
 [color]
-	ui = auto
+    ui = auto
