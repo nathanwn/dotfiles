@@ -38,28 +38,31 @@ source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # zsh
-export ZSH_PLUGINS_DIR="/usr/share"
-export ZSH_USER_PLUGINS_DIR="$HOME/.local/share/zsh"
+if [ -z "$ZSH_SET" ]; then
+  export ZSH_PLUGINS_DIR="/usr/share"
+  export ZSH_USER_PLUGINS_DIR="$HOME/.local/share/zsh"
 
-zsh_syntax_highlighting="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if [ -f "$ZSH_PLUGINS_DIR/$zsh_syntax_highlighting" ]; then
-  source "$ZSH_PLUGINS_DIR/$zsh_syntax_highlighting"
-elif [ -f "$ZSH_USER_PLUGINS_DIR/$zsh_syntax_highlighting" ]; then
-  source "$ZSH_USER_PLUGINS_DIR/$zsh_syntax_highlighting"
-fi
+  zsh_syntax_highlighting="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  if [ -f "$ZSH_PLUGINS_DIR/$zsh_syntax_highlighting" ]; then
+    source "$ZSH_PLUGINS_DIR/$zsh_syntax_highlighting"
+  elif [ -f "$ZSH_USER_PLUGINS_DIR/$zsh_syntax_highlighting" ]; then
+    source "$ZSH_USER_PLUGINS_DIR/$zsh_syntax_highlighting"
+  fi
 
-zsh_autosuggestions="$ZSH_USER_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-zsh_autosuggestions="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-if [ -f "$ZSH_PLUGINS_DIR/$zsh_autosuggestions" ]; then
-  source "$ZSH_PLUGINS_DIR/$zsh_autosuggestions"
-elif [ -f "$ZSH_USER_PLUGINS_DIR/$zsh_autosuggestions" ]; then
-  source "$ZSH_USER_PLUGINS_DIR/$zsh_autosuggestions"
-fi
+  zsh_autosuggestions="$ZSH_USER_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  zsh_autosuggestions="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  if [ -f "$ZSH_PLUGINS_DIR/$zsh_autosuggestions" ]; then
+    source "$ZSH_PLUGINS_DIR/$zsh_autosuggestions"
+  elif [ -f "$ZSH_USER_PLUGINS_DIR/$zsh_autosuggestions" ]; then
+    source "$ZSH_USER_PLUGINS_DIR/$zsh_autosuggestions"
+  fi
 
-if [ -d "$ZSH_USER_PLUGINS_DIR/zsh-completions/src" ]; then
-  fpath=("$ZSH_USER_PLUGINS_DIR/zsh-completions/src" $fpath)
+  if [ -d "$ZSH_USER_PLUGINS_DIR/zsh-completions/src" ]; then
+    fpath=("$ZSH_USER_PLUGINS_DIR/zsh-completions/src" $fpath)
+  fi
+  bindkey '^Y' autosuggest-accept
+  export ZSH_SET=1
 fi
-bindkey '^Y' autosuggest-accept
 
 HISTFILE=~/.local/share/zsh/.history
 HISTSIZE=10000
