@@ -1,8 +1,8 @@
 requirements_nathanwien.txt
 requirements_nathanwn.txt
-.idea/
 .venv
 .envrc
 .direnv/
 __pycache__/
 .gdlrc.json
+zz

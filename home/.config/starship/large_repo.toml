@@ -77,6 +77,10 @@ $character"""
 # error_symbol = "[λ](bold red)"
 # vicmd_symbol = "[|](bold green)"
 
+[cmd_duration]
+min_time = 500
+format = '[$duration]($style)'
+
 [character]
 success_symbol = "[>](bold green)"
 error_symbol = "[x](bold red)"
@@ -277,7 +281,7 @@ symbol = "rb "
 
 [rust]
 symbol = "rs"
-format = '[$symbol:($version )]($style)'
+format = '[$symbol:($version )]($style) '
 
 [scala]
 symbol = "scala"
