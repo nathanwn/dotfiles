@@ -1,8 +1,14 @@
 #!/usr/bin/env sh
 
 # 9p ls fonts
-# VARIABLE_PITCH_FONT='/mnt/font/LucidaGrande/16a/font'
-FIXED_PITCH_FONT="/mnt/font/JetBrainsMonoNF-Regular/11a/font"
+if [ "$(uname)" = "Darwin" ];
+then
+  FIXED_PITCH_FONT="/mnt/font/JetBrainsMonoNerdFontComplete-Regular/14a/font"
+else
+  # VARIABLE_PITCH_FONT='/mnt/font/LucidaGrande/16a/font'
+  FIXED_PITCH_FONT="/mnt/font/JetBrainsMonoNF-Regular/11a/font"
+  # FIXED_PITCH_FONT="/mnt/font/Monaco/11a/font"
+fi
 
 export EDITOR=E
 export MANPAGER=nobs

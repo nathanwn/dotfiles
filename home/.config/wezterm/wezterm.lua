@@ -11,11 +11,12 @@ local config = {
     "JetBrainsMono Nerd Font",
     "ComicShannsMono Nerd Font",
     "DejaVuSansMono Nerd Font",
-    "RobotoMono Nerd Font",
-    "Iosevka Nerd Font",
     "FiraCode Nerd Font",
+    "Iosevka Nerd Font",
+    "JetBrainsMono Nerd Font Mono",
+    "RobotoMono Nerd Font",
   }),
-  font_size = 11,
+  font_size = 17,
   -- Disable ligature
   harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
   -- Disable bell

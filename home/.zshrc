@@ -2,6 +2,7 @@ function source_if_exists () {
   FILE=$1 && test -e $FILE && source $FILE
 }
 
+export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/opt:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
