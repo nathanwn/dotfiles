@@ -24,3 +24,8 @@
 
 [color]
     ui = auto
+
+[feature]
+    # Speed up git status on large repo.
+    # Should be generally safe to use without major downsides.
+    manyFiles = 1
