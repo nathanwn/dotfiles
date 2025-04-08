@@ -5,21 +5,23 @@
     diffFilter = delta --color-only
 
 [delta]
-    light = true         # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
     line-numbers = true
     navigate = true      # use n and N to move between diff sections
-    # https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_day.gitconfig
-    minus-style                   = syntax "#efccd4"
-    minus-non-emph-style          = syntax "#efccd4"
-    minus-emph-style              = syntax "#e99ea2"
-    minus-empty-line-marker-style = syntax "#efccd4"
-    line-numbers-minus-style      = "#e25d64"
-    plus-style                    = syntax "#cefdc6"
-    plus-non-emph-style           = syntax "#cefdc6"
-    plus-emph-style               = syntax "#57d7bc"
-    plus-empty-line-marker-style  = syntax "#cefdc6"
-    line-numbers-plus-style       = "#59aa96"
-    line-numbers-zero-style       = "#a8aecb"
+
+    # IMPORTANT: Change this when change theme
+    light = false        # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    # https://github.com/folke/tokyonight.nvim/blob/main/extras/delta/tokyonight_storm.gitconfig
+    minus-style                   = syntax "#3f2d3d"
+    minus-non-emph-style          = syntax "#3f2d3d"
+    minus-emph-style              = syntax "#763842"
+    minus-empty-line-marker-style = syntax "#3f2d3d"
+    line-numbers-minus-style      = "#914c54"
+    plus-style                    = syntax "#283b4d"
+    plus-non-emph-style           = syntax "#283b4d"
+    plus-emph-style               = syntax "#316172"
+    plus-empty-line-marker-style  = syntax "#283b4d"
+    line-numbers-plus-style       = "#449dab"
+    line-numbers-zero-style       = "#3b4261"
 
 [merge]
     conflictstyle = diff3
