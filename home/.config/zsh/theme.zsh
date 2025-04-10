@@ -7,7 +7,7 @@ alias grep="grep --color=auto"
 # - papercolor-light
 # export GLOBAL_THEME="papercolor-light"
 
-if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ] ; then
+if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ]; then
   if [[ $GLOBAL_THEME == base16-* ]]; then
     tmux source-file "$HOME/.local/share/base16/tinted-tmux/colors/${GLOBAL_THEME}.conf"
   else

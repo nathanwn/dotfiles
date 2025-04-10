@@ -1,4 +1,31 @@
 gui:
   theme:
+    # Default if no theme
+    # selectedLineBgColor:
+    #   - reverse
+
+    # https://github.com/folke/tokyonight.nvim/blob/main/extras/lazygit/tokyonight_storm.yml
+    activeBorderColor:
+      - "#ff9e64"
+      - "bold"
+    inactiveBorderColor:
+      - "#29a4bd"
+    searchingActiveBorderColor:
+      - "#ff9e64"
+      - "bold"
+    optionsTextColor:
+      - "#7aa2f7"
     selectedLineBgColor:
-      - reverse
+      - "#2e3c64"
+    cherryPickedCommitFgColor:
+      - "#7aa2f7"
+    cherryPickedCommitBgColor:
+      - "#bb9af7"
+    markedBaseCommitFgColor:
+      - "#7aa2f7"
+    markedBaseCommitBgColor:
+      - "#e0af68"
+    unstagedChangesColor:
+      - "#db4b4b"
+    defaultFgColor:
+      - "#c0caf5"

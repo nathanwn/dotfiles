@@ -36,6 +36,7 @@ fi
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 source_if_exists "$HOME/.config/fzf/completion.zsh"
 source_if_exists "$HOME/.config/fzf/key-bindings.zsh"
+source_if_exists "$HOME/.config/fzf/theme.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # zsh
