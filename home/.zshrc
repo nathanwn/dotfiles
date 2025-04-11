@@ -95,7 +95,7 @@ function gpath() {
   fi
 }
 
-alias git-archive='git archive --format zip -o "$(basename $PWD).zip" HEAD'
+alias git-zip='git archive --format zip -o "$(basename $PWD).zip" HEAD'
 alias du-list='du -sh * | sort -rh'
 
 if [[ $(uname) == "Darwin" ]]; then
