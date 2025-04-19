@@ -100,4 +100,6 @@ alias du-list='du -sh * | sort -rh'
 
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"
+elif [[ "$(cat /proc/sys/kernel/osrelease)" == *"WSL2" ]]; then
+  source "$HOME/.config/zsh/wsl2.zsh"
 fi
