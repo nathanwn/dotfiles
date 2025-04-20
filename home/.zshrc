@@ -76,6 +76,9 @@ if [[ "$SHELL" = *zsh ]]; then
   # Starship: https://github.com/starship/starship
   if [ -x "$(command -v starship)" ]; then
     eval "$(starship init zsh)"
+  else
+    precmd() { print "" }
+    export PS1="%{%F{blue}%}%3~"$'\n'"> %{%f%}% "
   fi
 fi
 

@@ -29,8 +29,15 @@ if [[ $1 == "repo" ]] ; then
 
   # Get the current session name.
   cur_session_name=$(tmux display-message -p '#S')
+  echo "cur_session_name: $cur_session_name" >> ~/tmux-sessioniser.log
   # Use tr to convert '.' to '_' for session name as tmux session name cannot take '.'
-  session_name=$(realpath -s --relative-to="$root_dir" "$selected_path" | tr '.' '_')
+  if command -v grealpath &>/dev/null; then
+    realpath_cmd="grealpath"
+  else
+    realpath_cmd="realpath"
+  fi
+  session_name=$("$realpath_cmd" -s --relative-to="$root_dir" "$selected_path" | tr '.' '_')
+  echo "session_name: $session_name" >> ~/tmux-sessioniser.log
 
   # Create the new session on demand.
   if ! tmux has-session -t="$session_name" 2> /dev/null; then
