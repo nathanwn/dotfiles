@@ -120,8 +120,35 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
         logger.info("command: %s", " ".join(command))
         # subprocess.run(args=command)
+
+    try:
+        # Start the subprocess
+        proc = subprocess.Popen(
+            ["your_command", "arg1", "arg2"],  # Replace with your command
+            preexec_fn=os.setsid  # Ensure the subprocess has its own process group
+        )
+
+        # Wait for the subprocess to complete
+        proc.wait()
+    except KeyboardInterrupt:
+        # Catch the SIGINT and forward it to the subprocess
+        print("Caught Ctrl+C, forwarding SIGINT to subprocess...")
+        os.killpg(os.getpgid(proc.pid), signal.SIGINT)  # Send SIGINT to the subprocess group
+        proc.wait()  # Wait for the subprocess to terminate
+        sys.exit(1)  # Exit with an error code or propagate as needed
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        sys.exit(1)
+    finally:
+        # Cleanup if the subprocess is still running
+        if proc.poll() is None:
+            proc.terminate()
+            proc.wait()
+
         process = subprocess.Popen(
             args=command,
+            # Ensure the subprocess has its own process group so that we can kill the whole process tree
+            preexec_fn=os.setsid,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
