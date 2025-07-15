@@ -1,4 +1,17 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+  Plug 'christoomey/vim-tmux-navigator'
+  " Plug 'NLKNguyen/papercolor-theme'
+  " Plug 'vim-airline/vim-airline'
+  " Plug 'vim-airline/vim-airline-themes'
+call plug#end()
 " Filetype
+syntax on
 filetype plugin indent on
 " Automatically source custom .vimrc
 set exrc
@@ -40,3 +53,13 @@ set statusline+=\ %l,%c  " Line and column number
 " Indent
 vnoremap < <gv
 vnoremap > >gv
+
+set background=light
+colorscheme quiet
+
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-w>h :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
+nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
+nnoremap <silent> <C-w>l :TmuxNavigateRight<cr>
+nnoremap <silent> <C-w>\ :TmuxNavigatePrevious<cr>
