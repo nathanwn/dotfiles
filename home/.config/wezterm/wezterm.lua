@@ -10,7 +10,7 @@ local font_family
 -- font_family = "Inconsolata Nerd Font"
 -- font_family = "NotoSansM Nerd Font"
 font_family = "RecMonoLinear Nerd Font"
--- font_family = "RobotoMono Nerd Font"
+font_family = "RobotoMono Nerd Font"
 
 local font_size = 16
 

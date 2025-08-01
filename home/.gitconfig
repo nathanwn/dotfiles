@@ -1,6 +1,6 @@
 [include]
     path = ~/.config/git/gitconfig
-    path = ~/.config/git/tools/delta.gitconfig
+    # path = ~/.config/git/tools/delta.gitconfig
 
 [core]
     editor = nvim
@@ -18,6 +18,7 @@
     pullr      = pull --recurse-submodules
     dclean     = clean -fdx
     tclean     = clean -fdxn
+    # allcommits = log --reverse --format="%C(auto) %h %s" origin/main...HEAD
 
 [color]
     ui = auto

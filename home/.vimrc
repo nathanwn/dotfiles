@@ -13,8 +13,6 @@ call plug#end()
 " Filetype
 syntax on
 filetype plugin indent on
-" Automatically source custom .vimrc
-set exrc
 " Line number
 set nu rnu
 " Indentation
@@ -53,9 +51,6 @@ set statusline+=\ %l,%c  " Line and column number
 " Indent
 vnoremap < <gv
 vnoremap > >gv
-
-set background=light
-colorscheme quiet
 
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-w>h :TmuxNavigateLeft<cr>
