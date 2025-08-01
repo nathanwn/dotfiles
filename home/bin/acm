@@ -20,7 +20,7 @@ export prompt='$ '
 export SHELL=/bin/bash
 export acmeshell=/bin/bash
 
-export PLAN9_HOME="$HOME/dev/personal/plan9"
+export PLAN9_HOME="$HOME/dev/plan9"
 
 # For plan9port, both PLAN9 and PATH needs to be set
 export PLAN9="$PLAN9_HOME/plan9port"

@@ -1,6 +1,6 @@
 command_timeout = 1000
 
-# removed:
+# removed: package
 format = """
 $username\
 $hostname\
@@ -17,7 +17,6 @@ $git_metrics\
 $git_status\
 $hg_branch\
 $docker_context\
-$package\
 $buf\
 $c\
 $cmake\

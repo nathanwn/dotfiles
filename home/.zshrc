@@ -71,7 +71,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/default.toml"
+# export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/default.toml"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/large_repo.toml"
 if [[ "$SHELL" = *zsh ]]; then
   # Starship: https://github.com/starship/starship
   if [ -x "$(command -v starship)" ]; then
@@ -100,6 +101,7 @@ function gpath() {
 
 alias git-zip='git archive --format zip -o "$(basename $PWD).zip" HEAD'
 alias du-list='du -sh * | sort -rh'
+alias vim=nvim
 
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"
