@@ -1,4 +1,6 @@
 gui:
+  useHunkModeInStagingView: false
+
   theme:
     # Default if no theme
     # selectedLineBgColor:
