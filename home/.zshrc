@@ -101,7 +101,7 @@ function gpath() {
 
 alias git-zip='git archive --format zip -o "$(basename $PWD).zip" HEAD'
 alias du-list='du -sh * | sort -rh'
-alias vim=nvim
+[ -x "$(command -v nvim)" ] && alias vim=nvim
 
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"
