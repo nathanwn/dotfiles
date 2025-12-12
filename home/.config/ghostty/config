@@ -1,0 +1,8 @@
+cursor-style = block
+cursor-style-blink = false
+font-family = "Google Sans Code"
+font-feature = "-calt"
+font-feature = "-liga"
+font-feature = "-dlig"
+font-size = 17
+theme = dark:Tokyonight Storm,light:Nvim Light
