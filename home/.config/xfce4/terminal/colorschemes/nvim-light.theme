@@ -1,0 +1,9 @@
+[Scheme]
+Name=NvimLight
+ColorForeground=#080808
+ColorBackground=#e5e5e5
+ColorCursor=#005f87
+ColorPalette=#080808;#af0000;#005f00;#5f5f00;#005f87;#8700af;#005f5f;#bdbdbd;#767676;#d70000;#d75f00;#878700;#0087af;#af005f;#00afaf;#ffffff
+TabActivityColor=#005f87
+ColorSelection=#d0d0d0
+ColorSelectionText=#080808
