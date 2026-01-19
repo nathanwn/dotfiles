@@ -1,11 +1,13 @@
+(load-file "~/.emacs.d/local.el")
 (setq custom-file "~/.emacs.d/custom.el")
+(add-to-list 'load-path "~/.emacs.d/elisp/")
 
 (require 'package)
 
 ;; Add MELPA, GNU ELPA, and MELPA Stable to your package-archives
 (setq package-archives
-      '(("melpa"        . "https://melpa.org/packages/")
-        ("gnu"          . "https://elpa.gnu.org/packages/")
+      '(("melpa" . "https://melpa.org/packages/")
+        ("gnu"   . "https://elpa.gnu.org/packages/")
         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 ;; Initialize the package system
@@ -32,8 +34,6 @@
 (menu-bar-mode -1)
 ;; Disable cursor blinking
 (blink-cursor-mode -1)
-;; Turn off bell sound
-(setq ring-bell-function 'ignore)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -48,6 +48,26 @@
 (setq-default indent-line-function 'insert-tab)
 (setq-default c-basic-offset 4)
 
+;; Theme
+; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+; (load-theme 'papercolor t)
+(use-package modus-themes
+  :ensure t
+  :config
+  ;; Add all your customizations prior to loading the themes
+  (setq modus-themes-italic-constructs t
+        modus-themes-bold-constructs nil)
+  ;; Maybe define some palette overrides, such as by using our presets
+  (setq modus-themes-common-palette-overrides
+        modus-themes-preset-overrides-intense)
+  ;; Load the theme of your choice.
+  (load-theme 'modus-operandi-tritanopia))
+;; (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 122)
+(set-face-attribute 'default nil :font "RobotoMono Nerd Font" :height 140)
+(set-face-attribute 'variable-pitch nil :font "Sans" :height 128)
+;; (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd Font" :height 122)
+(set-face-attribute 'fixed-pitch nil :font "RobotoMono Nerd Font" :height 140)
+
 ;; Load the built-in line-number mode
 (column-number-mode)
 (global-display-line-numbers-mode t)
@@ -58,14 +78,34 @@
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+;; ; Finders
+(use-package counsel
+  :diminish
+  :bind (
+     ("M-x" . counsel-M-x)
+     ("C-x b" . counsel-ibuffer)
+     ("C-x C-f" . counsel-find-file)
+     :map minibuffer-local-map
+     ("C-r" . 'counsel-minibuffer-history)
+  )
+  :config
+  (counsel-mode 1)
+  ;; don't start searches with ^ to allow fuzzy search
+  (setq ivy-initial-inputs-alist nil))
+
+; Repo navigation
 (use-package projectile
   :config (projectile-mode)
   :init
   (setq projectile-project-search-path '(("~/dev/" . 4)))
-  (projectile-discover-projects-in-search-path)
 )
 
-;; Evil
+(use-package counsel-projectile
+  :diminish
+  :config (counsel-projectile-mode))
+
+
+;; Vi {{{
 (use-package evil
   :diminish
   :after (projectile)
@@ -98,15 +138,9 @@
   :after evil
   :config
   (evil-collection-init))
+;; }}}
 
-;; picker
-(use-package counsel
-  :diminish
-  :config
-  (counsel-mode 1)
-  ;; don't start searches with ^ to allow fuzzy search
-  (setq ivy-initial-inputs-alist nil))
-
+;; ;; Keymapping {{{
 (use-package general
   :config
   (general-evil-setup t)
@@ -116,32 +150,42 @@
   (general-create-definer my-local-leader-def
     :states '(normal visual motion emacs)
     :prefix ",")
+  ;; finders (projectile and counsel)
   (my-leader-def
     :states '(normal visual)
     :keymaps 'override
-    "p"  '(execute-extended-command :wk "Run command")
-  )
-  (my-leader-def
-    :states '(normal visual)
-    :keymaps 'override
-    ;; Projects
-    "a"  '(:ignore t :wk "Projectile")
-    "ag" '(projectile-switch-project :wk "Switch project")
-    ;; Compile
-    "ds"  '(compile   :wk "Switch")
-    "dg"  '(recompile :wk "Go")
-    ;; Finders
     "f"  '(:ignore t :wk "Find")
     "ff" '(projectile-find-file :wk "Find file (project)")
-    "fg" '(projectile-grep :wk "Grep (project)")
+    "fg" '(counsel-projectile-rg :wk "Ripgrep (project)")
+    "fw" '(projectile-switch-project :wk "Switch project")
     "fb" '(counsel-ibuffer :wk "Find buffer")
-    "fc" '(counsel-grep :wk "Find in current buffer")
+    "fc" '(counsel-grep :wk "Grep")
+    "fp" '(counsel-minibuffer-history :wk "Find prev")
     "f;" '(counsel-M-x :wk "Find command")
     "fh"  '(:ignore t :wk "Help/Describe")
     "fhv"  '(counsel-describe-variable :wk "Describe variable")
     "fhx"  '(describe-command :wk "Describe command")
     "fhp"  '(describe-package :wk "Describe package")
   )
+  (my-leader-def
+    :states '(normal visual)
+    :keymaps 'override
+    "p"  '(:ignore t :wk "Project")
+    "pr" '(projectile-discover-projects-in-search-path :wk "Rediscover projects")
+    "pg" '(projectile-run-project :wk "Run command")
+    "pc" '(projectile-compile-project :wk "Compile")
+  )
+  ;; ;; lsp
+  ;; (my-leader-def
+  ;;   :states '(normal visual)
+  ;;   ;; :keymaps 'override
+  ;;   :keymaps 'eglot-mode-map
+  ;;   "gd" 'eglot-find-declaration
+  ;;   "gt" 'eglot-find-typeDefinition
+  ;;   "gi" 'eglot-find-implementation
+  ;;   "ga" 'eglot-code-actions
+  ;;   "gr" 'eglot-rename
+  ;; )
   ;; buffer navigation
   (general-nmap
     :states '(normal)
@@ -156,27 +200,35 @@
   (global-set-key (kbd "C--") 'text-scale-decrease)
 )
 
-;; Theme
-(use-package ef-themes
-  :ensure t
-  :init
+(use-package which-key
+  :defer 0
+  :diminish
   :config
-  (setq modus-themes-mixed-fonts t)
-  (setq modus-themes-italic-constructs t)
-  ;; https://protesilaos.com/emacs/ef-themes-pictures
-  ;; (modus-themes-load-theme 'ef-reverie)
-  ;; (modus-themes-load-theme 'ef-cyprus)
-  (modus-themes-load-theme 'ef-trio-light)
-)
-(set-face-attribute 'default nil
-  :font "JetBrainsMono Nerd Font" :height 160)
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
+;; }}}
 
+;; direnv {{{
+(use-package direnv
+  :config
+  (direnv-mode))
+;; }}}
+
+;; Utils
+;; Logging key events
+(use-package command-log-mode
+  :commands command-log-mode)
 ;; Bracket coloring for Lisp
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; Hide modes in modeline
-(use-package diminish
+;; Languages
+(use-package groovy-mode)
+
+;; Modeline
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
   :config
-  (diminish 'counsel)
+  (setq doom-modeline-icon nil)
 )
