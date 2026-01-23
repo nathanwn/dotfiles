@@ -42,6 +42,10 @@
 ;; Recovery files
 (setq auto-save-default nil) ; stop creating #...# files
 
+;; Control vertical/horizontal split
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
+
 ;; Indentation
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -168,15 +172,11 @@
   ;; (modus-themes-load-theme 'ef-cyprus)
   (modus-themes-load-theme 'ef-trio-light)
 )
-(set-face-attribute 'default nil
-  :font "JetBrainsMono Nerd Font" :height 160)
 
-;; Bracket coloring for Lisp
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
+;; Org-mode
+(add-hook 'org-mode-hook #'visual-line-mode)  ;; Enable word-wrap
+(add-hook 'org-mode-hook #'org-indent-mode)  ;; Enable smart-wrap & indent
 
-;; Hide modes in modeline
-(use-package diminish
-  :config
-  (diminish 'counsel)
-)
+;; (set-face-attribute 'default nil :font "Menlo" :height 150)
+(set-face-attribute 'fixed-pitch nil :font "Google Sans Code" :height 160)
+;; (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 170)
