@@ -24,10 +24,16 @@ nmap <Leader>ff <Action>(GotoFile)
 nmap <Leader>fc <Action>(Find)
 nmap <Leader>fg <Action>(FindInPath)
 nmap <Leader>fb <Action>(Switcher)
+nmap <Leader>f; <Action>(GotoAction)
+vmap <Leader>f; <Action>(GotoAction)
 
 " Common navigation movements
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
+
+" Quick-fix equivalent movements
+nmap [q <Action>(PreviousOccurence)
+nmap ]q <Action>(NextOccurence)
 
 " Git
 nmap [c <Action>(VcsShowPrevChangeMarker)
@@ -53,3 +59,4 @@ vnoremap > >gv
 set visualbell
 set noerrorbells
 set clipboard=unnamed,unnamedplus
+" set clipboard^=ideaput (Not sure what this does)
