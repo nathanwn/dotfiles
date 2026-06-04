@@ -25,7 +25,12 @@ DEFAULT_DARK_THEME="tokyonight-storm"
 DEFAULT_LIGHT_THEME="nvim-light"
 
 function reload_theme() {
-  export GLOBAL_THEME="$1"
+  if (($# > 0)); then
+    GLOBAL_THEME="$1"
+  else
+    GLOBAL_THEME="$(cat $GLOBAL_THEME_FILE)"
+  fi
+  export GLOBAL_THEME
   if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ]; then
     if [[ $GLOBAL_THEME == base16-* ]]; then
       tmux source-file "$HOME/.local/share/base16/tinted-tmux/colors/${GLOBAL_THEME}.conf"
@@ -75,6 +80,7 @@ fi
 
 echo "$GLOBAL_THEME" > "$GLOBAL_THEME_FILE"
 export GLOBAL_THEME
+reload_theme
 
 # -----------------------------------------------------------------------------
 #                              Shell settings
