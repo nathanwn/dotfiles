@@ -19,7 +19,8 @@ font-size = 18
 # font-thicken-strength = 150
 
 # THEME
-theme = dark:Tokyonight Storm,light:Nvim Light
+# theme = dark:Tokyonight Storm,light:Nvim Light
+theme = dark:Catppuccin Frappe,light:Catppuccin Latte
 # theme = Tokyonight Storm
 # theme = Nvim Light
 # theme = Builtin Solarized Dark

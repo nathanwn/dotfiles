@@ -21,8 +21,12 @@ source_if_exists "$HOME/.config/zsh/local.zsh"
 # DEFAULT_THEME="papercolor-light"
 # DEFAULT_THEME="solarized-dark"
 # DEFAULT_THEME="nvim-light"
-DEFAULT_DARK_THEME="tokyonight-storm"
-DEFAULT_LIGHT_THEME="nvim-light"
+
+# DEFAULT_DARK_THEME="tokyonight-storm"
+# DEFAULT_LIGHT_THEME="nvim-light"
+
+DEFAULT_DARK_THEME="catppuccin-frappe"
+DEFAULT_LIGHT_THEME="catppuccin-latte"
 
 function reload_theme() {
   if (($# > 0)); then
@@ -32,13 +36,9 @@ function reload_theme() {
   fi
   export GLOBAL_THEME
   if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ]; then
-    if [[ $GLOBAL_THEME == base16-* ]]; then
-      tmux source-file "$HOME/.local/share/base16/tinted-tmux/colors/${GLOBAL_THEME}.conf"
-    else
-      source_if_exists "$HOME/.config/zsh/themes/${GLOBAL_THEME}.zsh"
-      tmux source-file "$HOME/.config/tmux/themes/${GLOBAL_THEME}.tmux"
-      tmux source-file "$HOME/.config/tmux/themes/base-theme.tmux"
-    fi
+    source_if_exists "$HOME/.config/zsh/themes/${GLOBAL_THEME}.zsh"
+    tmux source-file "$HOME/.config/tmux/themes/${GLOBAL_THEME}.tmux"
+    tmux source-file "$HOME/.config/tmux/themes/base-theme.tmux"
   fi
 
   # vivid
@@ -89,6 +89,7 @@ reload_theme
 _comp_options+=(globdots)
 # editor
 if [ -x "$(command -v nvim)" ]; then
+  alias vim=nvim
   export EDITOR=nvim
 else
   export EDITOR=vim
@@ -164,7 +165,6 @@ function gpath() {
 
 alias git-zip='git archive --format zip -o "$(basename $PWD).zip" HEAD'
 alias du-list='du -sh * | sort -rh'
-[ -x "$(command -v nvim)" ] && alias vim=nvim
 
 if [[ $(uname) == "Darwin" ]]; then
   source "$HOME/.config/zsh/darwin.zsh"

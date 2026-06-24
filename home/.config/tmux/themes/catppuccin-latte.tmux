@@ -1,0 +1,6 @@
+set -g @theme_bg           "#eff1f5"
+set -g @theme_fg           "#4c4f69"
+set -g @theme_bar_bg       "#e6e9ef"
+set -g @theme_accent       "#1e66f5"
+set -g @theme_accent_fg    "#eff1f5"
+set -g @theme_border_soft  "#ccd0da"
