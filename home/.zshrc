@@ -9,6 +9,12 @@ export PATH="$HOME/.local/bin:$PATH"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
+if [[ $(uname) == "Darwin" ]]; then
+  source "$HOME/.config/zsh/darwin.zsh"
+elif [[ "$(cat /proc/sys/kernel/osrelease)" == *"WSL2" ]]; then
+  source "$HOME/.config/zsh/wsl2.zsh"
+fi
+
 # -----------------------------------------------------------------------------
 #                               Local Configs
 # -----------------------------------------------------------------------------
@@ -17,16 +23,19 @@ source_if_exists "$HOME/.config/zsh/local.zsh"
 # -----------------------------------------------------------------------------
 #                                  Theming
 # -----------------------------------------------------------------------------
-# Available:
-# DEFAULT_THEME="papercolor-light"
-# DEFAULT_THEME="solarized-dark"
-# DEFAULT_THEME="nvim-light"
-
-# DEFAULT_DARK_THEME="tokyonight-storm"
-# DEFAULT_LIGHT_THEME="nvim-light"
-
-DEFAULT_DARK_THEME="catppuccin-frappe"
-DEFAULT_LIGHT_THEME="catppuccin-latte"
+# Themes:
+# "papercolor-light"
+# "solarized-dark"
+# "nvim-light"
+# "tokyonight-storm"
+# "nvim-light"
+# Note: Prefer setting default dark and light themes in local.zsh
+if [[ -n "$DEFAULT_DARK_THEME" ]]; then
+    DEFAULT_DARK_THEME="catppuccin-frappe"
+fi
+if [[ -n "$DEFAULT_LIGHT_THEME" ]]; then
+    DEFAULT_LIGHT_THEME="catppuccin-latte"
+fi
 
 function reload_theme() {
   if (($# > 0)); then
@@ -80,7 +89,7 @@ fi
 
 echo "$GLOBAL_THEME" > "$GLOBAL_THEME_FILE"
 export GLOBAL_THEME
-reload_theme
+# reload_theme
 
 # -----------------------------------------------------------------------------
 #                              Shell settings
@@ -93,6 +102,17 @@ if [ -x "$(command -v nvim)" ]; then
   export EDITOR=nvim
 else
   export EDITOR=vim
+fi
+
+# Go
+export PATH="$PATH:/usr/local/go/bin"
+
+# Android
+export ANDROID_HOME="$HOME/sdk"
+if [[ $(uname) == "Darwin" ]]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+else
+  export ANDROID_HOME="$HOME/.local/share/android/sdk"
 fi
 
 # -----------------------------------------------------------------------------
@@ -163,15 +183,6 @@ function gpath() {
   fi
 }
 
-alias git-zip='git archive --format zip -o "$(basename $PWD).zip" HEAD'
-alias du-list='du -sh * | sort -rh'
-
-if [[ $(uname) == "Darwin" ]]; then
-  source "$HOME/.config/zsh/darwin.zsh"
-elif [[ "$(cat /proc/sys/kernel/osrelease)" == *"WSL2" ]]; then
-  source "$HOME/.config/zsh/wsl2.zsh"
-fi
-
 function enable_sdkman() {
   export SDKMAN_DIR="$HOME/.sdkman"
   [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -183,13 +194,8 @@ function enable_nvm() {
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
 
-# Go
-export PATH="$PATH:/usr/local/go/bin"
-
-# Android
-export ANDROID_HOME="$HOME/sdk"
-if [[ $(uname) == "Darwin" ]]; then
-  export ANDROID_HOME="$HOME/Library/Android/sdk"
-else
-  export ANDROID_HOME="$HOME/.local/share/android/sdk"
-fi
+# Useful commands
+# Create an archive from a git commit:
+# > git archive --format zip -o "$(basename $PWD).zip" HEAD
+# List files/directories sorted by size
+# > du -sh * | sort -rh
