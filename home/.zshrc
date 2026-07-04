@@ -38,12 +38,26 @@ if [[ -n "$DEFAULT_LIGHT_THEME" ]]; then
 fi
 
 function reload_theme() {
-  if (($# > 0)); then
-    GLOBAL_THEME="$1"
-  else
-    GLOBAL_THEME="$(cat $GLOBAL_THEME_FILE)"
+  export GLOBAL_THEME_FILE="$HOME/.local/share/zsh/local_theme.txt"
+  if [ ! -f "$GLOBAL_THEME_FILE" ]; then
+    mkdir -p "$HOME/.local/share/zsh"
+    touch "$GLOBAL_THEME_FILE"
   fi
+  PREV_GLOBAL_THEME="$(cat "$GLOBAL_THEME_FILE")"
+
+  if [[ $(uname) == "Darwin" ]]; then
+    if defaults read -g AppleInterfaceStyle 2> /dev/null | grep -q "Dark" ; then
+      GLOBAL_THEME="$DEFAULT_DARK_THEME"
+    else
+      GLOBAL_THEME="$DEFAULT_LIGHT_THEME"
+    fi
+  else
+    GLOBAL_THEME="$DEFAULT_DARK_THEME"
+  fi
+
+  echo "$GLOBAL_THEME" > "$GLOBAL_THEME_FILE"
   export GLOBAL_THEME
+
   if [ -n "$TMUX" ] && [ -x "$(command -v tmux)" ]; then
     source_if_exists "$HOME/.config/zsh/themes/${GLOBAL_THEME}.zsh"
     tmux source-file "$HOME/.config/tmux/themes/${GLOBAL_THEME}.tmux"
@@ -61,35 +75,11 @@ function reload_theme() {
   # fzf
   export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --color=bg:$TMUX_BG,fg:$TMUX_FG,hl:$TMUX_ACCENT,bg+:$TMUX_BAR_BG,fg+:$TMUX_FG,hl+:$TMUX_ACCENT,info:$TMUX_ACCENT,prompt:$TMUX_ACCENT,pointer:$TMUX_ACCENT,marker:$TMUX_ACCENT,spinner:$TMUX_ACCENT,header:$TMUX_ACCENT"
 }
+reload_theme
 
 # Add some colors
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
-
-export GLOBAL_THEME_FILE="$HOME/.local/share/zsh/local_theme.txt"
-if [ ! -f "$GLOBAL_THEME_FILE" ]; then
-  mkdir -p "$HOME/.local/share/zsh"
-  touch "$GLOBAL_THEME_FILE"
-fi
-PREV_GLOBAL_THEME="$(cat "$GLOBAL_THEME_FILE")"
-
-if [[ $(uname) == "Darwin" ]]; then
-  if defaults read -g AppleInterfaceStyle 2> /dev/null | grep -q "Dark" ; then
-    GLOBAL_THEME="$DEFAULT_DARK_THEME"
-  else
-    GLOBAL_THEME="$DEFAULT_LIGHT_THEME"
-  fi
-else
-  GLOBAL_THEME="$DEFAULT_DARK_THEME"
-fi
-
-if [[ "$PREV_GLOBAL_THEME" != "$GLOBAL_THEME" ]]; then
-  tmux list-panes -a -F "#{pane_id}" | xargs -I PANE tmux send-keys -t PANE "reload_theme $GLOBAL_THEME" Enter
-fi
-
-echo "$GLOBAL_THEME" > "$GLOBAL_THEME_FILE"
-export GLOBAL_THEME
-# reload_theme
 
 # -----------------------------------------------------------------------------
 #                              Shell settings
