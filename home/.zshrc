@@ -30,11 +30,13 @@ source_if_exists "$HOME/.config/zsh/local.zsh"
 # "tokyonight-storm"
 # "nvim-light"
 # Note: Prefer setting default dark and light themes in local.zsh
-if [[ -n "$DEFAULT_DARK_THEME" ]]; then
+if [[ -z "$DEFAULT_DARK_THEME" ]]; then
     DEFAULT_DARK_THEME="catppuccin-frappe"
+    export DEFAULT_DARK_THEME
 fi
-if [[ -n "$DEFAULT_LIGHT_THEME" ]]; then
+if [[ -z "$DEFAULT_LIGHT_THEME" ]]; then
     DEFAULT_LIGHT_THEME="catppuccin-latte"
+    export DEFAULT_LIGHT_THEME
 fi
 
 function reload_theme() {
