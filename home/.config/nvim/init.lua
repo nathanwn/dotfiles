@@ -48,6 +48,66 @@ local keys = {
   },
 }
 
+-- Leader keys
+vim.g.mapleader = vim.keycode("<Space>")
+vim.g.maplocalleader = vim.keycode("<Space>")
+-- Clipboard
+vim.opt.clipboard = { "unnamed", "unnamedplus" }
+-- Indentation
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+if vim.g.vscode then
+  local vscode = require("vscode-neovim")
+  -- find
+  vim.keymap.set("n", keys.find.files, function()
+    vscode.call("workbench.action.quickOpen")
+  end)
+  vim.keymap.set("n", keys.find.git_grep, function()
+    vscode.call("workbench.action.findInFiles")
+  end)
+  vim.keymap.set("n", keys.find.commands, function()
+    vscode.call("workbench.action.showCommands")
+  end)
+  -- lsp
+  vim.keymap.set("n", keys.lsp.code_actions, function()
+    vscode.call("editor.action.codeAction")
+  end)
+  vim.keymap.set("n", keys.lsp.definition, function()
+    vscode.call("editor.action.revealDefinition")
+  end)
+  vim.keymap.set("n", keys.lsp.declaration, function()
+    vscode.call("editor.action.goToDeclaration")
+  end)
+  vim.keymap.set("n", keys.lsp.implementation, function()
+    vscode.call("editor.action.goToImplementation")
+  end)
+  vim.keymap.set("n", keys.lsp.hover, function()
+    vscode.call("editor.action.showHover")
+  end)
+  vim.keymap.set("n", keys.lsp.rename, function()
+    vscode.call("editor.action.rename")
+  end)
+  vim.keymap.set("n", keys.lsp.type_definition, function()
+    vscode.call("editor.action.goToTypeDefinition")
+  end)
+  vim.keymap.set("n", keys.lsp.usages, function()
+    vscode.call("editor.action.goToReferences")
+  end)
+  -- git
+  vim.keymap.set("n", keys.git.hunk.next, function()
+    vscode.call("workbench.action.editor.nextChange")
+  end)
+  vim.keymap.set("n", keys.git.hunk.prev, function()
+    vscode.call("workbench.action.editor.previousChange")
+  end)
+  -- view
+  vim.keymap.set("n", keys.view.filetree, function()
+    vscode.call("workbench.action.toggleSidebarVisibility")
+  end)
+  return
+end
+
 local os_uname = vim.loop.os_uname()
 local os_name = os_uname.sysname
 local os_release = os_uname.release
@@ -109,8 +169,6 @@ vim.opt.mouse = "a"
 vim.opt.exrc = true
 -- Backspace issue
 vim.opt.backspace = { "indent", "eol", "start" }
--- Clipboard
-vim.opt.clipboard = { "unnamed", "unnamedplus" }
 -- Termcolor
 vim.opt.termguicolors = true
 -- Buffers
@@ -131,16 +189,8 @@ vim.api.nvim_create_user_command("NL", function()
   vim.cmd([[%s/ *$//e]])
 end, {})
 
--- Leader keys
-vim.g.mapleader = vim.keycode("<Space>")
-vim.g.maplocalleader = vim.keycode("<Space>")
-
 -- Reload init.lua
 -- vim.keymap.set("n", "<F12>", ":luafile ~/.config/nvim/init.lua<CR>")
-
--- Indentation
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
 
 -- Quickfix list
 vim.keymap.set("n", keys.quickfix.prev, "<cmd>cprevious<CR>")
