@@ -625,8 +625,8 @@ require("lazy").setup({
     end,
   },
   {
-    "https://github.com/nvim-tree/nvim-tree.lua.git",
-    version = "v1.16.0",
+    "https://github.com/nvim-tree/nvim-tree.lua",
+    version = "v1.18.0",
     opts = {
       renderer = {
         add_trailing = true,
