@@ -479,7 +479,9 @@ require("lazy").setup({
         vim.keymap.set("n", key, fn, { desc = desc })
       end
       local builtin = require("telescope.builtin")
-      map(keys.find.git_files, "Git files", builtin.git_files)
+      map(keys.find.git_files, "Git files", function()
+        builtin.git_files({ show_untracked = true })
+      end)
       map(keys.find.files, "Files", function()
         builtin.find_files({ hidden = true })
       end)
